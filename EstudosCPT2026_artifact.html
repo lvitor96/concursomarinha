@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CP-T 2026 · Lucas Rodrigues</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-deep:#061A35;--navy:#0D2B55;--navy-mid:#1A4A8A;--blue-soft:#EBF2FC;
+  --blue-tint:#F4F8FF;--gold:#C9A84C;--gold-light:#F0D890;--white:#FFFFFF;
+  --off-white:#F8FAFF;--grey-200:#E8EEF8;--grey-400:#9BAAC4;--text-dark:#061A35;
+  --text-soft:#6B7FA3;--green:#1A7A4A;--green-soft:#E6F5EE;
+  --radius-sm:8px;--radius-md:14px;--radius-lg:20px;--radius-xl:26px;
+  --shadow-sm:0 2px 8px rgba(6,26,53,.08);--shadow-md:0 6px 24px rgba(6,26,53,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--navy-deep);
+  color:var(--text-dark);-webkit-font-smoothing:antialiased;overflow:hidden}
+
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh;
+  background:var(--off-white);overflow:hidden;max-width:100%}
+
+/* HEADER */
+#header{background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);
+  padding:14px 16px 0;flex-shrink:0;position:relative;overflow:hidden}
+#header::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,.08) 0%,transparent 70%)}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.header-brand{display:flex;align-items:center;gap:10px}
+.brand-anchor{width:34px;height:34px;background:var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(201,168,76,.25)}
+.brand-text h1{font-family:'DM Serif Display',serif;font-size:16px;color:var(--white);line-height:1.2}
+.brand-text p{font-size:10px;color:var(--gold-light);letter-spacing:.5px}
+.header-date{text-align:right}
+.header-date .day-num{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);line-height:1}
+.header-date .day-label{font-size:10px;color:var(--grey-400);letter-spacing:.4px}
+.global-progress{padding:10px 16px 0}
+.progress-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-label{font-size:10px;color:var(--grey-400);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+.progress-pct{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white)}
+.progress-track{height:4px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 100%);
+  border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);width:0%}
+.tab-bar{display:flex;gap:2px;padding:10px 12px 0;overflow-x:auto;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:6px 13px;border-radius:7px 7px 0 0;border:none;
+  background:rgba(255,255,255,.07);color:var(--grey-400);font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+.tab-btn.active{background:var(--off-white);color:var(--navy);font-weight:700}
+
+/* MAIN */
+#main{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+  background:var(--off-white);scroll-behavior:smooth;padding-bottom:80px}
+#main::-webkit-scrollbar{display:none}
+
+/* PANELS */
+.panel{display:none;animation:fadeUp .25s ease both}
+.panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* DASHBOARD */
+.dash-hero{background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 60%,var(--navy-mid) 100%);
+  padding:20px 16px 24px;position:relative;overflow:hidden}
+.dash-hero::after{content:'⚓';position:absolute;right:-8px;bottom:-18px;
+  font-size:100px;opacity:.05;pointer-events:none}
+.dash-greeting{font-family:'DM Serif Display',serif;font-size:24px;color:var(--white);
+  line-height:1.2;margin-bottom:3px}
+.dash-greeting em{font-style:italic;color:var(--gold-light)}
+.dash-sub{font-size:12px;color:var(--grey-400);margin-bottom:18px}
+.daily-card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-lg);padding:14px}
+.daily-card-header{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.daily-badge{background:var(--gold);color:var(--navy-deep);font-size:9px;font-weight:800;
+  letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:99px}
+.daily-date-label{font-size:11px;color:var(--grey-400)}
+.daily-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--white);
+  margin-bottom:8px;line-height:1.3}
+.daily-topics{display:flex;flex-direction:column;gap:5px}
+.daily-topic-pill{display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.75)}
+.pill-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pill-dot.reg{background:var(--gold)}.pill-dot.mus{background:#7EC8E3}
+.daily-rest{text-align:center;padding:6px 0}
+.rest-icon{font-size:30px;margin-bottom:5px}
+.rest-text{font-family:'DM Serif Display',serif;font-size:17px;color:var(--gold-light)}
+.rest-sub{font-size:11px;color:var(--grey-400);margin-top:3px}
+
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 14px 0}
+.stat-card{background:var(--white);border-radius:var(--radius-md);padding:12px 10px;
+  text-align:center;box-shadow:var(--shadow-sm);border:1px solid var(--grey-200)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:24px;color:var(--navy);line-height:1}
+.stat-label{font-size:9px;color:var(--text-soft);font-weight:600;letter-spacing:.4px;
+  text-transform:uppercase;margin-top:2px}
+
+.section-header{padding:18px 14px 8px;display:flex;align-items:baseline;justify-content:space-between}
+.section-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy)}
+.section-link{font-size:11px;color:var(--navy-mid);font-weight:500;cursor:pointer;border:none;background:none}
+.upcoming-list{padding:0 14px;display:flex;flex-direction:column;gap:7px}
+.upcoming-item{background:var(--white);border-radius:var(--radius-md);padding:11px 13px;
+  display:flex;align-items:center;gap:11px;box-shadow:var(--shadow-sm);
+  border:1px solid var(--grey-200);cursor:pointer;transition:all .15s}
+.upcoming-item.today{border-color:var(--gold);background:linear-gradient(135deg,#FFFDF0,#FFF8E1)}
+.upcoming-dot-date{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--blue-tint);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.upcoming-item.today .upcoming-dot-date{background:var(--gold)}
+.up-day-num{font-family:'DM Serif Display',serif;font-size:15px;color:var(--navy);line-height:1}
+.upcoming-item.today .up-day-num{color:var(--white)}
+.up-day-name{font-size:8px;color:var(--grey-400);text-transform:uppercase;letter-spacing:.5px}
+.upcoming-item.today .up-day-name{color:rgba(255,255,255,.75)}
+.upcoming-info{flex:1;min-width:0}
+.upcoming-subjects{font-size:10px;font-weight:700;color:var(--navy-mid);margin-bottom:1px}
+.upcoming-desc{font-size:10px;color:var(--text-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.upcoming-check{width:19px;height:19px;border-radius:50%;border:2px solid var(--grey-200);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .2s}
+.upcoming-check.done{background:var(--green);border-color:var(--green);color:white}
+
+/* TOPICS */
+.topics-panel-header{background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);
+  padding:18px 16px 22px;position:relative;overflow:hidden}
+.topics-panel-header::after{content:attr(data-icon);position:absolute;right:12px;bottom:-10px;
+  font-size:68px;opacity:.08;pointer-events:none}
+.tph-label{font-size:9px;color:var(--gold);font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:3px}
+.tph-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:12px}
+.tph-progress-row{display:flex;align-items:center;gap:11px}
+.tph-pct{font-family:'DM Serif Display',serif;font-size:30px;color:var(--white);min-width:56px}
+.tph-track-wrap{flex:1}
+.tph-track{height:5px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+.tph-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.tph-count{font-size:10px;color:var(--grey-400);margin-top:3px}
+
+.topic-group{margin:10px 14px 0;background:var(--white);border-radius:var(--radius-lg);
+  overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--grey-200)}
+.tg-header{padding:12px 14px;background:var(--blue-tint);border-bottom:1px solid var(--grey-200);
+  display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;
+  -webkit-user-select:none;transition:background .15s}
+.tg-header:active{background:var(--blue-soft)}
+.tg-icon{font-size:15px}
+.tg-name{font-weight:700;font-size:12px;color:var(--navy);flex:1}
+.tg-badge{font-size:9px;font-weight:700;color:var(--navy-mid);background:var(--grey-200);
+  padding:2px 8px;border-radius:99px}
+.tg-badge.complete{background:var(--green-soft);color:var(--green)}
+.tg-chevron{font-size:11px;color:var(--grey-400);transition:transform .25s}
+.tg-header.open .tg-chevron{transform:rotate(180deg)}
+.tg-body{display:none}.tg-body.open{display:block}
+
+.topic-item{padding:11px 14px;display:flex;align-items:flex-start;gap:11px;
+  border-bottom:1px solid var(--grey-200);transition:background .15s;cursor:pointer;
+  -webkit-tap-highlight-color:transparent}
+.topic-item:last-child{border-bottom:none}
+.topic-item:active{background:var(--blue-tint)}
+.topic-item.checked{background:var(--green-soft)}
+.topic-checkbox{width:20px;height:20px;border-radius:5px;border:2px solid var(--grey-200);
+  flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;
+  transition:all .2s cubic-bezier(.4,0,.2,1);background:var(--white);font-size:11px}
+.topic-item.checked .topic-checkbox{background:var(--green);border-color:var(--green);color:white}
+.topic-code{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--navy-mid);margin-bottom:2px}
+.topic-item.checked .topic-code{color:var(--green)}
+.topic-desc{font-size:12px;color:var(--text-dark);line-height:1.45}
+.topic-item.checked .topic-desc{color:var(--text-soft);text-decoration:line-through;
+  text-decoration-color:var(--grey-400)}
+
+/* CALENDAR */
+.cal-header-strip{background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);
+  padding:18px 16px 22px}
+.cal-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:2px}
+.cal-sub{font-size:11px;color:var(--grey-400)}
+.cal-month{margin:10px 14px 0}
+.cal-month-label{font-family:'DM Serif Display',serif;font-size:15px;color:var(--navy);
+  padding:7px 3px;border-bottom:2px solid var(--gold);margin-bottom:5px;
+  display:flex;align-items:center;gap:8px}
+.cal-month-label span{font-size:11px;color:var(--text-soft);font-family:'DM Sans',sans-serif}
+.cal-week-days{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:3px}
+.cal-wd{font-size:9px;font-weight:700;color:var(--text-soft);letter-spacing:.4px;padding:3px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{aspect-ratio:1;border-radius:6px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;cursor:pointer;transition:all .15s;
+  position:relative;-webkit-tap-highlight-color:transparent}
+.cal-day:active{transform:scale(.9)}
+.cal-day.empty{pointer-events:none}.cal-day.weekend{opacity:.25;pointer-events:none}
+.cal-day.study{background:var(--blue-tint);border:1px solid var(--grey-200)}
+.cal-day.study.done{background:var(--green-soft);border-color:#B2DFCA}
+.cal-day.rest{background:#FFF8E1;border:1px solid #FFE082}
+.cal-day.today-cal{background:var(--navy)!important;border-color:var(--navy)!important}
+.cal-day-num{font-size:12px;font-weight:700;color:var(--text-dark);line-height:1}
+.cal-day.study.done .cal-day-num{color:var(--green)}
+.cal-day.today-cal .cal-day-num{color:var(--white)}
+.cal-day.rest .cal-day-num{color:#B8860B}
+.cal-day-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);margin-top:2px}
+.cal-day.done .cal-day-dot{background:var(--green)}
+.cal-day.today-cal .cal-day-dot{background:var(--gold)}
+.day-sheet{display:none;margin:10px 14px 0;background:var(--white);border-radius:var(--radius-lg);
+  padding:16px;box-shadow:var(--shadow-md);border:1px solid var(--grey-200);animation:fadeUp .2s ease}
+.day-sheet.visible{display:block}
+.ds-date{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ds-badge{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+  padding:3px 8px;border-radius:99px}
+.ds-badge.study{background:var(--blue-tint);color:var(--navy-mid)}
+.ds-badge.rest{background:#FFF8E1;color:#B8860B}
+.ds-badge.done{background:var(--green-soft);color:var(--green)}
+.ds-topics{display:flex;flex-direction:column;gap:7px}
+.ds-topic-row{display:flex;align-items:flex-start;gap:8px;padding:9px;
+  background:var(--blue-tint);border-radius:var(--radius-sm)}
+.ds-topic-row.mus{background:#F0F8FF}
+.ds-subj-badge{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  padding:2px 6px;border-radius:99px;flex-shrink:0;margin-top:1px}
+.ds-subj-badge.reg{background:var(--navy);color:var(--gold-light)}
+.ds-subj-badge.mus{background:var(--navy-mid);color:#B3D9F5}
+.ds-topic-text{font-size:11px;color:var(--text-dark);line-height:1.4}
+
+/* BIBLIOGRAPHY */
+.bib-header{background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);
+  padding:18px 16px 22px}
+.bib-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:2px}
+.bib-sub{font-size:11px;color:var(--grey-400)}
+.bib-list{padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.bib-card{background:var(--white);border-radius:var(--radius-md);padding:13px 14px;
+  box-shadow:var(--shadow-sm);border:1px solid var(--grey-200);display:flex;gap:11px;align-items:flex-start}
+.bib-code{font-family:'DM Serif Display',serif;font-size:19px;color:var(--navy);
+  min-width:34px;flex-shrink:0;line-height:1;padding-top:1px}
+.bib-obra{font-size:12px;font-weight:700;color:var(--text-dark);line-height:1.35;margin-bottom:2px}
+.bib-author{font-size:10px;color:var(--text-soft);margin-bottom:4px}
+.bib-area-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.4px;
+  text-transform:uppercase;padding:2px 7px;border-radius:99px;background:var(--blue-tint);color:var(--navy-mid)}
+
+/* BOTTOM NAV */
+#bottom-nav{flex-shrink:0;background:var(--white);border-top:1px solid var(--grey-200);
+  display:flex;box-shadow:0 -3px 16px rgba(6,26,53,.06);z-index:10;padding-bottom:4px}
+.nav-btn{flex:1;padding:9px 4px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;
+  cursor:pointer;border:none;background:none;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.nav-btn:active{transform:scale(.9)}
+.nav-icon{font-size:19px;line-height:1}
+.nav-label{font-size:9px;font-weight:500;color:var(--grey-400);letter-spacing:.3px}
+.nav-btn.active .nav-label{color:var(--navy);font-weight:800}
+.nav-indicator{width:4px;height:4px;border-radius:50%;background:transparent;margin-top:1px}
+.nav-btn.active .nav-indicator{background:var(--gold)}
+
+/* TOAST */
+#toast{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-70px);
+  background:var(--navy-deep);color:var(--white);padding:10px 18px;border-radius:99px;
+  font-size:12px;font-weight:600;z-index:1000;transition:transform .3s cubic-bezier(.4,0,.2,1);
+  white-space:nowrap;box-shadow:0 8px 32px rgba(6,26,53,.3);border:1px solid rgba(201,168,76,.3)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+@keyframes checkPop{0%{transform:scale(1)}40%{transform:scale(1.35)}70%{transform:scale(.9)}100%{transform:scale(1)}}
+.check-pop{animation:checkPop .3s cubic-bezier(.4,0,.2,1)}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div id="header">
+    <div class="header-top">
+      <div class="header-brand">
+        <div class="brand-anchor">⚓</div>
+        <div class="brand-text">
+          <h1>CP-T 2026 · Música</h1>
+          <p>LUCAS RODRIGUES · MARINHA DO BRASIL</p>
+        </div>
+      </div>
+      <div class="header-date">
+        <div class="day-num" id="hdr-day">--</div>
+        <div class="day-label" id="hdr-month">---</div>
+      </div>
+    </div>
+    <div class="global-progress">
+      <div class="progress-meta">
+        <span class="progress-label">Progresso Geral</span>
+        <span class="progress-pct" id="global-pct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="global-bar"></div></div>
+    </div>
+    <div class="tab-bar" id="tab-bar">
+      <button class="tab-btn active" data-panel="dashboard">Dashboard</button>
+      <button class="tab-btn" data-panel="regencia">Regência</button>
+      <button class="tab-btn" data-panel="musica">Música</button>
+      <button class="tab-btn" data-panel="calendario">Calendário</button>
+      <button class="tab-btn" data-panel="bibliografia">Bibliografia</button>
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="panel active" id="panel-dashboard">
+      <div class="dash-hero">
+        <div class="dash-greeting">Bom dia, <em>Lucas</em> 👋</div>
+        <div class="dash-sub" id="dash-sub-text">Carregando seu plano...</div>
+        <div class="daily-card" id="daily-card"></div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-num" id="stat-done">0</div><div class="stat-label">Concluídos</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-remain">51</div><div class="stat-label">Restantes</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-days">--</div><div class="stat-label">Dias p/ prova</div></div>
+      </div>
+      <div class="section-header">
+        <span class="section-title">Próximos dias</span>
+        <button class="section-link" onclick="switchPanel('calendario')">Ver calendário →</button>
+      </div>
+      <div class="upcoming-list" id="upcoming-list"></div>
+    </div>
+
+    <div class="panel" id="panel-regencia">
+      <div class="topics-panel-header" data-icon="🎼">
+        <div class="tph-label">Área 1</div>
+        <div class="tph-title">Regência</div>
+        <div class="tph-progress-row">
+          <div class="tph-pct" id="reg-pct">0%</div>
+          <div class="tph-track-wrap">
+            <div class="tph-track"><div class="tph-fill" id="reg-bar"></div></div>
+            <div class="tph-count" id="reg-count">0 / 26 tópicos</div>
+          </div>
+        </div>
+      </div>
+      <div id="reg-groups"></div>
+    </div>
+
+    <div class="panel" id="panel-musica">
+      <div class="topics-panel-header" data-icon="🎵">
+        <div class="tph-label">Área 2</div>
+        <div class="tph-title">Conhecimentos Gerais em Música</div>
+        <div class="tph-progress-row">
+          <div class="tph-pct" id="mus-pct">0%</div>
+          <div class="tph-track-wrap">
+            <div class="tph-track"><div class="tph-fill" id="mus-bar"></div></div>
+            <div class="tph-count" id="mus-count">0 / 25 tópicos</div>
+          </div>
+        </div>
+      </div>
+      <div id="mus-groups"></div>
+    </div>
+
+    <div class="panel" id="panel-calendario">
+      <div class="cal-header-strip">
+        <div class="cal-title">Calendário de Estudos</div>
+        <div class="cal-sub">23/03 – 22/05/2026 · Somente dias úteis</div>
+      </div>
+      <div id="cal-container"></div>
+      <div class="day-sheet" id="day-sheet"></div>
+    </div>
+
+    <div class="panel" id="panel-bibliografia">
+      <div class="bib-header">
+        <div class="bib-title">Bibliografia</div>
+        <div class="bib-sub">10 obras de referência · CP-T/2026</div>
+      </div>
+      <div class="bib-list" id="bib-list"></div>
+    </div>
+  </div>
+
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-panel="dashboard"><span class="nav-icon">🏠</span><span class="nav-label">Início</span><div class="nav-indicator"></div></button>
+    <button class="nav-btn" data-panel="regencia"><span class="nav-icon">🎼</span><span class="nav-label">Regência</span><div class="nav-indicator"></div></button>
+    <button class="nav-btn" data-panel="musica"><span class="nav-icon">🎵</span><span class="nav-label">Música</span><div class="nav-indicator"></div></button>
+    <button class="nav-btn" data-panel="calendario"><span class="nav-icon">📅</span><span class="nav-label">Agenda</span><div class="nav-indicator"></div></button>
+    <button class="nav-btn" data-panel="bibliografia"><span class="nav-icon">📚</span><span class="nav-label">Biblio</span><div class="nav-indicator"></div></button>
+  </nav>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const REGENCIA_GROUPS=[
+  {id:'reg-hist',icon:'🕰️',name:'História da Regência',topics:[
+    {id:'REG-01',desc:'Introdução histórica: direção de orquestra sécs. XVII–XIX; o advento do artista intérprete'},
+    {id:'REG-02',desc:'Direção de orquestra no séc. XX: maestro, partitura, ópera e interpretação autenticista'},
+    {id:'REG-19',desc:'Desenvolvimento da regência orquestral: Antiguidade ao Classicismo'},
+    {id:'REG-20',desc:'Aspectos da regência: apreensão do código e comunicação do gesto regencial'},
+  ]},
+  {id:'reg-maes',icon:'👨‍🎤',name:'Maestros e Referências',topics:[
+    {id:'REG-07',desc:'Grandes maestros históricos, modernos e contemporâneos; mulheres regentes'},
+    {id:'REG-08',desc:'Os maestros brasileiros: da Colônia ao Império e à atualidade'},
+    {id:'REG-09',desc:'Regência e regentes, por Francisco Mignone'},
+  ]},
+  {id:'reg-orq',icon:'🎻',name:'Orquestra e Técnica',topics:[
+    {id:'REG-03',desc:'O maestro e a orquestra: autoridade, memória e percepção do gesto e da partitura'},
+    {id:'REG-04',desc:'O maestro e a batuta: atividades básicas, estudo da partitura e comunicação gestual'},
+    {id:'REG-05',desc:'Os andamentos: conceitos fundamentais e variações interpretativas'},
+    {id:'REG-18',desc:'A orquestra: origem, evolução e tendências'},
+  ]},
+  {id:'reg-gest',icon:'🤲',name:'Gesto e Comunicação',topics:[
+    {id:'REG-13',desc:'Comunicação gestual: expressão corporal, postura e independência dos braços'},
+    {id:'REG-14',desc:'Gestos rítmicos e expressivos: gênese, organização e trajetória'},
+  ]},
+  {id:'reg-interp',icon:'🎯',name:'Interpretação e Ensaios',topics:[
+    {id:'REG-15',desc:'Interpretação e relação do regente com a obra: análise formal e maturação'},
+    {id:'REG-06',desc:'Os ensaios de orquestra: técnicas e registros históricos de maestros'},
+    {id:'REG-16',desc:'Ensaios: preparação e técnicas em função do conjunto e da obra'},
+    {id:'REG-17',desc:'Afinação: trajetória histórica das formas e prática nos ensaios'},
+  ]},
+  {id:'reg-lider',icon:'⭐',name:'Liderança',topics:[
+    {id:'REG-10',desc:'Liderança na regência: formação musical, intelectual, física e patrimônio do regente'},
+    {id:'REG-11',desc:'Postura do líder: autoridade, empatia, planejamento, argumentação e reconhecimento'},
+    {id:'REG-12',desc:'Condução do grupo e virtudes; administração de conflitos, crises e soluções'},
+  ]},
+  {id:'reg-banda',icon:'🎺',name:'Banda, Sopros e Arranjo',topics:[
+    {id:'REG-21',desc:'Padronização da instrumentação'},
+    {id:'REG-22',desc:'Desenvolvimento histórico da música para sopros'},
+    {id:'REG-23',desc:'Noções básicas para o regente de Bandas e tabela de parâmetros técnicos'},
+    {id:'REG-24',desc:'Antes de escrever um arranjo: princípios e procedimentos'},
+  ]},
+];
+
+const MUSICA_GROUPS=[
+  {id:'mus-med',icon:'🏰',name:'Música Medieval e Renascentista',topics:[
+    {id:'MUS-07',desc:'Música medieval: Cantochão, Organum, Descante, Clausula, Motetos e Ars Nova'},
+    {id:'MUS-08',desc:'Música renascentista: sacra, Países Baixos, Itália e coral alemão'},
+    {id:'MUS-09',desc:'Música renascentista: vocal profana, madrigais elisabetanos, Veneza e instrumental'},
+  ]},
+  {id:'mus-bar',icon:'🕍',name:'Música Barroca',topics:[
+    {id:'MUS-10',desc:'Música Barroca: Monodia, primeiras óperas, velho e novo estilo, Oratório'},
+    {id:'MUS-11',desc:'Música Barroca: suíte, sonatas, concerto grosso e orquestra'},
+  ]},
+  {id:'mus-clas',icon:'🏛️',name:'Música Clássica',topics:[
+    {id:'MUS-12',desc:'Música Clássica: orquestra, piano, sonatas, sinfonia e forma sonata'},
+    {id:'MUS-13',desc:'Música Clássica: concerto, ópera e principais características'},
+  ]},
+  {id:'mus-rom',icon:'🌹',name:'Romantismo séc. XIX',topics:[
+    {id:'MUS-14',desc:'Romantismo: orquestra, Lied alemão, piano e música programática'},
+    {id:'MUS-15',desc:'Romantismo: concerto, drama musical de Wagner e nacionalismo'},
+    {id:'MUS-16',desc:'Romantismo: música coral e romantismo tardio'},
+  ]},
+  {id:'mus-mod',icon:'🌐',name:'Música Moderna (séc. XX)',topics:[
+    {id:'MUS-01',desc:'A música moderna: prelúdio e romantismo tardio'},
+    {id:'MUS-02',desc:'Nova harmonia, novo ritmo, nova forma e gênios nacionais'},
+    {id:'MUS-03',desc:'Neoclassicismo e Serialismo no séc. XX'},
+    {id:'MUS-04',desc:'O mundo moderno, Oriente, continuação e Eletrônica'},
+    {id:'MUS-05',desc:'Música aleatória, teatro, política e multiplicidade'},
+    {id:'MUS-06',desc:'Estilo em música: períodos, melodia, harmonia, ritmo, timbre, forma e textura'},
+    {id:'MUS-17',desc:'Música no séc. XX: Impressionismo, nacionalismo e influências jazzísticas'},
+    {id:'MUS-18',desc:'Música no séc. XX: Politonalidade, Atonalidade e Expressionismo'},
+    {id:'MUS-19',desc:'Música no séc. XX: Serialismo/Dodecafonismo e Neoclassicismo'},
+    {id:'MUS-20',desc:'Música no séc. XX: novos sons, música concreta, eletrônica e serialismo total'},
+    {id:'MUS-21',desc:'Música aleatória no séc. XX'},
+  ]},
+  {id:'mus-teo',icon:'🎵',name:'Teoria Musical',topics:[
+    {id:'MUS-22',desc:'Modos litúrgicos e transposição dos modos'},
+    {id:'MUS-23',desc:'Escalas exóticas e transposição para os instrumentos'},
+    {id:'MUS-24',desc:'Revisão Bloco 1 — Música (MUS-01 a MUS-12)'},
+    {id:'MUS-25',desc:'Revisão Bloco 2 — Música (MUS-13 a MUS-23)'},
+  ]},
+];
+
+const BIBLIO_DATA=[
+  {code:'B1',obra:'A Arte da Regência',author:'LAGO JÚNIOR, Sylvio. Rio de Janeiro: Lacerda Editores, 2002.',area:'Regência — Geral'},
+  {code:'B2',obra:'Regência – Uma Arte Complexa',author:'ROCHA, Ricardo. Rio de Janeiro: Ibis Libris, 2004.',area:'Regência — Geral'},
+  {code:'B3',obra:'A Comunicação Gestual na Regência',author:'MUNIZ NETO, José Viegas. São Paulo: Annablume, 2003.',area:'Regência — Gestual'},
+  {code:'B4',obra:'Guia Prático para o Regente de Banda',author:'JARDIM, Marcelo. Rio de Janeiro: Funarte, 2008.',area:'Regência — Banda'},
+  {code:'B5',obra:'A Música Moderna',author:'GRIFFITHS, Paul. Rio de Janeiro: Jorge Zahar, 1998.',area:'Música séc. XX'},
+  {code:'B6',obra:'Uma Breve História da Música',author:'BENNETT, Roy. Rio de Janeiro: Jorge Zahar, 1986.',area:'História da Música'},
+  {code:'B7',obra:'Teoria da Música',author:'MED, Bohumil. 5ª ed. Brasília: MusiMed, 2017.',area:'Teoria Musical'},
+  {code:'B8',obra:'O Livro da Música Clássica',author:'COLLISSON, Steve.',area:'Barroco, Classicismo e Romantismo'},
+  {code:'B9',obra:'História da Música Ocidental',author:'GROUT, Donald J.; PALISCA, Claude.',area:'História da Música — Medieval ao séc. XX'},
+  {code:'B10',obra:'Técnica e Estética',author:'JUNKER, David.',area:'Regência — Interpretação e Estética'},
+];
+
+const SCHEDULE=[
+  {date:'2026-03-23',reg:'REG-01',mus:'MUS-01',regDesc:'Introdução histórica sécs. XVII–XIX',musDesc:'A música moderna: prelúdio'},
+  {date:'2026-03-24',reg:'REG-02',mus:'MUS-02',regDesc:'Direção no séc. XX: maestro e partitura',musDesc:'Nova harmonia, ritmo e forma'},
+  {date:'2026-03-25',reg:'REG-03',mus:'MUS-03',regDesc:'O maestro e a orquestra',musDesc:'Neoclassicismo e Serialismo'},
+  {date:'2026-03-26',reg:'REG-04',mus:'MUS-04',regDesc:'O maestro e a batuta',musDesc:'O mundo moderno e Eletrônica'},
+  {date:'2026-03-27',reg:'REG-05',mus:'MUS-05',regDesc:'Os andamentos',musDesc:'Música aleatória e teatro'},
+  {date:'2026-03-30',reg:'REG-06',mus:'MUS-06',regDesc:'Os ensaios de orquestra',musDesc:'Estilo em música'},
+  {date:'2026-03-31',reg:'REG-07',mus:'MUS-07',regDesc:'Grandes maestros; mulheres regentes',musDesc:'Música medieval'},
+  {date:'2026-04-01',reg:'REG-08',mus:'MUS-08',regDesc:'Os maestros brasileiros',musDesc:'Música renascentista: sacra'},
+  {date:'2026-04-02',reg:'REG-09',mus:'MUS-09',regDesc:'Regência e regentes — Mignone',musDesc:'Música renascentista: vocal'},
+  {date:'2026-04-03',reg:'REG-10',mus:'MUS-10',regDesc:'Liderança na regência',musDesc:'Música Barroca: ópera e Oratório'},
+  {date:'2026-04-06',reg:'REG-11',mus:'MUS-11',regDesc:'Postura do líder',musDesc:'Música Barroca: suíte e concerto'},
+  {date:'2026-04-07',reg:'REG-12',mus:'MUS-12',regDesc:'Administração de conflitos',musDesc:'Música Clássica: sinfonia e sonata'},
+  {date:'2026-04-08',reg:'REG-13',mus:'MUS-13',regDesc:'Comunicação gestual',musDesc:'Música Clássica: concerto e ópera'},
+  {date:'2026-04-09',reg:'REG-14',mus:'MUS-14',regDesc:'Gestos rítmicos e expressivos',musDesc:'Romantismo: Lied e piano'},
+  {date:'2026-04-10',reg:'REG-15',mus:'MUS-15',regDesc:'Interpretação e relação com a obra',musDesc:'Romantismo: Wagner e nacionalismo'},
+  {date:'2026-04-13',reg:'REG-16',mus:'MUS-16',regDesc:'Ensaios: preparação e técnicas',musDesc:'Romantismo: música coral'},
+  {date:'2026-04-14',reg:'REG-17',mus:'MUS-17',regDesc:'Afinação: trajetória histórica',musDesc:'Séc. XX: Impressionismo e Jazz'},
+  {date:'2026-04-15',reg:'REG-18',mus:'MUS-18',regDesc:'A orquestra: origem e evolução',musDesc:'Séc. XX: Atonalidade e Expressionismo'},
+  {date:'2026-04-16',reg:'REG-19',mus:'MUS-19',regDesc:'Desenvolvimento da regência orquestral',musDesc:'Séc. XX: Serialismo e Neoclassicismo'},
+  {date:'2026-04-17',reg:'REG-20',mus:'MUS-20',regDesc:'Aspectos da regência',musDesc:'Séc. XX: novos sons e eletrônica'},
+  {date:'2026-04-20',reg:'REG-21',mus:'MUS-21',regDesc:'Padronização da instrumentação',musDesc:'Música aleatória no séc. XX'},
+  {date:'2026-04-21',reg:'REG-22',mus:'MUS-22',regDesc:'Música para sopros',musDesc:'Modos litúrgicos'},
+  {date:'2026-04-22',reg:'REG-23',mus:'MUS-23',regDesc:'Noções para regente de Banda',musDesc:'Escalas exóticas e transposição'},
+  {date:'2026-04-23',reg:'REG-24',mus:'MUS-24',regDesc:'Antes de escrever um arranjo',musDesc:'Revisão Bloco 1 — Música'},
+  {date:'2026-04-24',reg:'REG-25',mus:'MUS-25',regDesc:'Revisão Bloco 1 — Regência',musDesc:'Revisão Bloco 2 — Música'},
+  {date:'2026-04-27',type:'rev',regDesc:'REV: Regência — História e Técnica',musDesc:'REV: Música Antiga'},
+  {date:'2026-04-28',type:'rev',regDesc:'REV: Maestros e Liderança',musDesc:'REV: Barroco e Classicismo'},
+  {date:'2026-04-29',type:'rev',regDesc:'REV: Gestual e Interpretação',musDesc:'REV: Romantismo séc. XIX'},
+  {date:'2026-04-30',type:'rev',regDesc:'REV: Orquestra, Banda e Arranjo',musDesc:'REV: Música séc. XX'},
+  {date:'2026-05-01',type:'rev',regDesc:'REV: Blocos de revisão integrada',musDesc:'REV: Modos, escalas e transposição'},
+  {date:'2026-05-04',type:'sim',regDesc:'SIMULADO: Regência (50 questões)',musDesc:'SIMULADO: Conhecimentos Musicais'},
+  {date:'2026-05-05',type:'rev',regDesc:'Correção de erros — Regência',musDesc:'Correção de erros — Música'},
+  {date:'2026-05-06',type:'rev',regDesc:'Revisão Final — Regência',musDesc:'Revisão Final — Música'},
+  {date:'2026-05-07',type:'final',regDesc:'Revisão geral integrada + mapas mentais',musDesc:'Descanso ativo e preparo mental'},
+];
+
+// STATE — usa objeto em memória (artifact não tem localStorage persistente entre sessões)
+let checked={};
+try{checked=JSON.parse(localStorage.getItem('cpt2026')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('cpt2026',JSON.stringify(checked))}catch(e){}}
+
+const ALL_IDS=[...REGENCIA_GROUPS,...MUSICA_GROUPS].flatMap(g=>g.topics.map(t=>t.id));
+
+function showToast(m){const e=document.getElementById('toast');e.textContent=m;
+  e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2000)}
+
+function pct(d,t){return t>0?Math.round(d/t*100):0}
+function getTodayStr(){return new Date().toISOString().slice(0,10)}
+function fmt(ds){
+  const[y,m,d]=ds.split('-').map(Number);const dt=new Date(y,m-1,d);
+  const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  return{dd:String(d).padStart(2,'0'),mmm:months[m-1],dow:days[dt.getDay()],full:`${d} de ${months[m-1]}`};
+}
+
+function updateHeader(){
+  const n=new Date();
+  const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  document.getElementById('hdr-day').textContent=n.getDate();
+  document.getElementById('hdr-month').textContent=`${days[n.getDay()]} · ${months[n.getMonth()]}`;
+}
+
+function updateProgress(){
+  const done=ALL_IDS.filter(id=>checked[id]).length,total=ALL_IDS.length,p=pct(done,total);
+  document.getElementById('global-pct').textContent=p+'%';
+  document.getElementById('global-bar').style.width=p+'%';
+  document.getElementById('stat-done').textContent=done;
+  document.getElementById('stat-remain').textContent=total-done;
+  const exam=new Date(2026,4,22),today=new Date();today.setHours(0,0,0,0);
+  const diff=Math.ceil((exam-today)/86400000);
+  document.getElementById('stat-days').textContent=diff>0?diff:'—';
+  const ri=REGENCIA_GROUPS.flatMap(g=>g.topics.map(t=>t.id));
+  const rd=ri.filter(id=>checked[id]).length,rp=pct(rd,ri.length);
+  document.getElementById('reg-pct').textContent=rp+'%';
+  document.getElementById('reg-bar').style.width=rp+'%';
+  document.getElementById('reg-count').textContent=`${rd} / ${ri.length} tópicos`;
+  const mi=MUSICA_GROUPS.flatMap(g=>g.topics.map(t=>t.id));
+  const md=mi.filter(id=>checked[id]).length,mp=pct(md,mi.length);
+  document.getElementById('mus-pct').textContent=mp+'%';
+  document.getElementById('mus-bar').style.width=mp+'%';
+  document.getElementById('mus-count').textContent=`${md} / ${mi.length} tópicos`;
+}
+
+function buildDashboard(){
+  const today=getTodayStr(),entry=SCHEDULE.find(s=>s.date===today);
+  const card=document.getElementById('daily-card'),sub=document.getElementById('dash-sub-text');
+  const h=new Date().getHours();
+  const gi=h<5?0:h<12?1:h<18?2:3;
+  const greets=['Boa madrugada','Bom dia','Boa tarde','Boa noite'];
+  document.querySelector('.dash-greeting').innerHTML=`${greets[gi]}, <em>Lucas</em> 👋`;
+  if(!entry){
+    const isWE=[0,6].includes(new Date().getDay());
+    sub.textContent=isWE?'Hoje é dia de descanso — recarregue! 🌊':'Fora do período de estudos.';
+    card.innerHTML=`<div class="daily-rest"><div class="rest-icon">${isWE?'⚓':'📅'}</div>
+      <div class="rest-text">${isWE?'Dia de Descanso':'Sem estudo hoje'}</div>
+      <div class="rest-sub">${isWE?'Volte mais forte na segunda!':'Período: 23/03 a 07/05/2026'}</div></div>`;
+  } else if(entry.type==='final'){
+    sub.textContent='Último dia — confie no seu preparo! ✨';
+    card.innerHTML=`<div class="daily-rest"><div class="rest-icon">🌟</div>
+      <div class="rest-text">Revisão Final & Descanso</div>
+      <div class="rest-sub">Você se preparou. Respire fundo!</div></div>`;
+  } else {
+    const f=fmt(entry.date),label=entry.type==='sim'?'SIMULADO':entry.type==='rev'?'REVISÃO':'META DO DIA';
+    sub.textContent=`Sua missão de hoje, ${f.dow} ${f.dd}/${f.mmm}:`;
+    card.innerHTML=`<div class="daily-card-header"><span class="daily-badge">${label}</span>
+      <span class="daily-date-label">${f.dow}, ${f.dd} de ${f.mmm}</span></div>
+      <div class="daily-title">${entry.reg||'Revisão'} + ${entry.mus||'Revisão'}</div>
+      <div class="daily-topics">
+        <div class="daily-topic-pill"><span class="pill-dot reg"></span>${entry.regDesc}</div>
+        <div class="daily-topic-pill"><span class="pill-dot mus"></span>${entry.musDesc}</div>
+      </div>`;
+  }
+  buildUpcoming(today);
+}
+
+function buildUpcoming(today){
+  const list=document.getElementById('upcoming-list');list.innerHTML='';
+  const up=SCHEDULE.filter(s=>s.date>=today).slice(0,5);
+  if(!up.length){list.innerHTML='<div style="padding:18px;text-align:center;color:var(--text-soft);font-size:12px">Período concluído! 🎉</div>';return;}
+  up.forEach(entry=>{
+    const f=fmt(entry.date),isToday=entry.date===today;
+    const done=entry.reg&&entry.mus?(checked[entry.reg]&&checked[entry.mus]):false;
+    const el=document.createElement('div');
+    el.className='upcoming-item'+(isToday?' today':'');
+    el.innerHTML=`<div class="upcoming-dot-date"><div class="up-day-num">${f.dd}</div>
+      <div class="up-day-name">${f.dow}</div></div>
+      <div class="upcoming-info">
+        <div class="upcoming-subjects">${entry.reg||'REVISÃO'} · ${entry.mus||'REVISÃO'}</div>
+        <div class="upcoming-desc">${entry.regDesc}</div>
+      </div>
+      <div class="upcoming-check${done?' done':''}">${done?'✓':''}</div>`;
+    el.addEventListener('click',()=>switchPanel('calendario'));
+    list.appendChild(el);
+  });
+}
+
+function buildGroups(groups,containerId){
+  const container=document.getElementById(containerId);container.innerHTML='';
+  groups.forEach(group=>{
+    const done=group.topics.filter(t=>checked[t.id]).length,complete=done===group.topics.length;
+    const div=document.createElement('div');div.className='topic-group';div.id='grp-'+group.id;
+    const hdr=document.createElement('div');hdr.className='tg-header';
+    hdr.innerHTML=`<span class="tg-icon">${group.icon}</span><span class="tg-name">${group.name}</span>
+      <span class="tg-badge${complete?' complete':''}">${done}/${group.topics.length}</span>
+      <span class="tg-chevron">▼</span>`;
+    const body=document.createElement('div');body.className='tg-body';
+    group.topics.forEach(topic=>{
+      const isC=!!checked[topic.id];
+      const row=document.createElement('div');row.className='topic-item'+(isC?' checked':'');row.dataset.id=topic.id;
+      row.innerHTML=`<div class="topic-checkbox">${isC?'✓':''}</div>
+        <div class="topic-text"><div class="topic-code">${topic.id}</div>
+        <div class="topic-desc">${topic.desc}</div></div>`;
+      row.addEventListener('click',()=>{
+        checked[topic.id]=!checked[topic.id];save();
+        row.classList.toggle('checked',checked[topic.id]);
+        const cb=row.querySelector('.topic-checkbox');cb.textContent=checked[topic.id]?'✓':'';
+        cb.classList.add('check-pop');cb.addEventListener('animationend',()=>cb.classList.remove('check-pop'),{once:true});
+        const allR=div.querySelectorAll('.topic-item');
+        const dc=[...allR].filter(r=>r.classList.contains('checked')).length;
+        const badge=hdr.querySelector('.tg-badge');badge.textContent=`${dc}/${allR.length}`;
+        badge.className='tg-badge'+(dc===allR.length?' complete':'');
+        updateProgress();buildDashboard();
+        if(checked[topic.id])showToast('✓ Tópico concluído!');
+      });
+      body.appendChild(row);
+    });
+    hdr.addEventListener('click',()=>{const o=hdr.classList.toggle('open');body.classList.toggle('open',o);});
+    div.appendChild(hdr);div.appendChild(body);container.appendChild(div);
+  });
+}
+
+function buildCalendar(){
+  const container=document.getElementById('cal-container');container.innerHTML='';
+  const sm={};SCHEDULE.forEach(s=>sm[s.date]=s);
+  const sd=new Set(SCHEDULE.map(s=>s.date));
+  const today=getTodayStr();
+  [{y:2026,m:3,label:'Março 2026'},{y:2026,m:4,label:'Abril 2026'},{y:2026,m:5,label:'Maio 2026'}]
+  .forEach(({y,m,label})=>{
+    const wrap=document.createElement('div');wrap.className='cal-month';
+    const ms=SCHEDULE.filter(s=>s.date.startsWith(`${y}-${String(m).padStart(2,'0')}`));
+    const mdone=ms.filter(s=>s.reg&&s.mus&&(checked[s.reg]||checked[s.mus])).length;
+    wrap.innerHTML=`<div class="cal-month-label">${label} <span>${mdone}/${ms.length} dias</span></div>
+      <div class="cal-week-days">${['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'].map(d=>`<div class="cal-wd">${d}</div>`).join('')}</div>
+      <div class="cal-grid" id="cg-${m}"></div>`;
+    container.appendChild(wrap);
+    const grid=wrap.querySelector(`#cg-${m}`);
+    const fd=new Date(y,m-1,1).getDay(),dim=new Date(y,m,0).getDate();
+    for(let i=0;i<fd;i++){const b=document.createElement('div');b.className='cal-day empty';grid.appendChild(b);}
+    for(let d=1;d<=dim;d++){
+      const ds=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const dow=new Date(y,m-1,d).getDay(),isWE=dow===0||dow===6;
+      const inPer=ds>='2026-03-23'&&ds<='2026-05-22',isSt=sd.has(ds),entry=sm[ds];
+      const isT=ds===today,isDone=isSt&&entry&&entry.reg&&entry.mus&&checked[entry.reg]&&checked[entry.mus];
+      const cell=document.createElement('div');
+      let cls='cal-day';
+      if(isWE)cls+=' weekend';
+      else if(!inPer)cls+=' empty';
+      else if(isSt)cls+=' study'+(isDone?' done':'');
+      else cls+=' rest';
+      if(isT)cls+=' today-cal';
+      cell.className=cls;
+      cell.innerHTML=`<div class="cal-day-num">${d}</div>${isSt?'<div class="cal-day-dot"></div>':''}`;
+      if(isSt&&entry)cell.addEventListener('click',()=>{
+        const sheet=document.getElementById('day-sheet'),f=fmt(ds);
+        const isPast=ds<today,type=entry.type;
+        let bc='study',bl='Dia de Estudo';
+        if(type==='rev'){bc='study';bl='Revisão';}if(type==='sim'){bc='study';bl='Simulado';}
+        if(type==='final'){bc='rest';bl='Revisão Final';}if(isPast&&!isT)bc='done';
+        sheet.innerHTML=`<div class="ds-date">${f.dow}, ${f.full}
+          <span class="ds-badge ${bc}">${bl}</span></div>
+          <div class="ds-topics">
+            <div class="ds-topic-row"><span class="ds-subj-badge reg">${entry.reg||'REV'}</span>
+              <span class="ds-topic-text">${entry.regDesc}</span></div>
+            <div class="ds-topic-row mus"><span class="ds-subj-badge mus">${entry.mus||'REV'}</span>
+              <span class="ds-topic-text">${entry.musDesc}</span></div>
+          </div>`;
+        sheet.classList.add('visible');sheet.scrollIntoView({behavior:'smooth',block:'nearest'});
+      });
+      grid.appendChild(cell);
+    }
+  });
+}
+
+function buildBiblio(){
+  const list=document.getElementById('bib-list');list.innerHTML='';
+  BIBLIO_DATA.forEach(b=>{
+    const card=document.createElement('div');card.className='bib-card';
+    card.innerHTML=`<div class="bib-code">${b.code}</div>
+      <div><div class="bib-obra">${b.obra}</div>
+      <div class="bib-author">${b.author}</div>
+      <span class="bib-area-tag">${b.area}</span></div>`;
+    list.appendChild(card);
+  });
+}
+
+function switchPanel(name){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('main').scrollTo(0,0);
+  document.querySelectorAll('.tab-btn,.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.panel===name));
+}
+
+document.querySelectorAll('.tab-btn,.nav-btn').forEach(btn=>btn.addEventListener('click',()=>switchPanel(btn.dataset.panel)));
+
+// INIT
+updateHeader();updateProgress();buildDashboard();
+buildGroups(REGENCIA_GROUPS,'reg-groups');buildGroups(MUSICA_GROUPS,'mus-groups');
+buildCalendar();buildBiblio();
+</script>
+</body>
+</html>
