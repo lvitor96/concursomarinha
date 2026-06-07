@@ -196,9 +196,11 @@ async function carregarModulo(painel) {
       case 'estudar':
         renderizarPlaceholder('estudar', '📚', 'Banco de Resumos', 'Em desenvolvimento...');
         break;
-      case 'questoes':
-        renderizarPlaceholder('questoes', '❓', 'Banco de Questões', 'Em desenvolvimento...');
+      case 'questoes': {
+        const { iniciarQuestoes } = await import('./questoes.js');
+        await iniciarQuestoes();
         break;
+      }
       case 'cronograma':
         renderizarPlaceholder('cronograma', '📅', 'Cronograma', 'Em desenvolvimento...');
         break;
