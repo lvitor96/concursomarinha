@@ -203,9 +203,11 @@ async function carregarModulo(painel) {
         await iniciarQuestoes();
         break;
       }
-      case 'cronograma':
-        renderizarPlaceholder('cronograma', '📅', 'Cronograma', 'Em desenvolvimento...');
+      case 'cronograma': {
+        const { iniciarCronograma } = await import('./cronograma.js');
+        await iniciarCronograma();
         break;
+      }
       case 'config':
         renderizarPainelConfig();
         break;
