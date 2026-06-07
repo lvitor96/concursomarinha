@@ -3,7 +3,7 @@
  * Estratégia: Cache-first para assets estáticos, Network-first para dados.
  */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_STATIC  = `sedf-static-${CACHE_VERSION}`;
 const CACHE_DYNAMIC = `sedf-dynamic-${CACHE_VERSION}`;
 
@@ -19,9 +19,12 @@ const ASSETS_ESTATICOS = [
   '/js/sync.js',
   '/icons/icon.svg',
   '/css/questoes.css',
+  '/css/resumos.css',
   '/js/questoes.js',
+  '/js/resumos.js',
   '/data/topicos.json',
   '/data/questoes.json',
+  '/data/resumos.json',
 ];
 
 const FIREBASE_SDK_BASE = 'https://www.gstatic.com/firebasejs/10.12.2';

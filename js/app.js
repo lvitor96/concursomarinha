@@ -193,9 +193,11 @@ async function carregarModulo(painel) {
         // Dashboard é renderizado inline por agora
         renderizarDashboardPlaceholder();
         break;
-      case 'estudar':
-        renderizarPlaceholder('estudar', '📚', 'Banco de Resumos', 'Em desenvolvimento...');
+      case 'estudar': {
+        const { iniciarResumes } = await import('./resumos.js');
+        await iniciarResumes();
         break;
+      }
       case 'questoes': {
         const { iniciarQuestoes } = await import('./questoes.js');
         await iniciarQuestoes();
