@@ -492,13 +492,13 @@ function _hoje() {
 
 function _diasDaSemana(offset = 0) {
   const hoje = new Date();
-  // Começa na segunda-feira da semana
+  // Começa no domingo; retorna Dom–Sex (6 dias — sábado é dia de descanso)
   const diaSem = hoje.getDay(); // 0=Dom
-  const seg = new Date(hoje);
-  seg.setDate(hoje.getDate() - (diaSem === 0 ? 6 : diaSem - 1) + offset * 7);
-  return Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(seg);
-    d.setDate(seg.getDate() + i);
+  const dom = new Date(hoje);
+  dom.setDate(hoje.getDate() - diaSem + offset * 7);
+  return Array.from({ length: 6 }, (_, i) => {
+    const d = new Date(dom);
+    d.setDate(dom.getDate() + i);
     return d.toISOString().slice(0, 10);
   });
 }
