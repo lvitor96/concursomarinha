@@ -1,0 +1,222 @@
+{
+  "versao": "1.0.0",
+  "blocos": [
+    {
+      "id": "basicos",
+      "nome": "Conhecimentos Básicos",
+      "sigla": "CB",
+      "cor": "#3b82f6",
+      "qtdProva": 30,
+      "disciplinas": [
+        {
+          "id": "portugues",
+          "nome": "Língua Portuguesa",
+          "incidencia": "alta",
+          "topicos": [
+            { "id": "pt-01", "nome": "Interpretação de textos", "incidencia": "alta", "pctProva": 17 },
+            { "id": "pt-02", "nome": "Reescrita de frases e substituição de palavras", "incidencia": "alta", "pctProva": 16 },
+            { "id": "pt-03", "nome": "Morfologia", "incidencia": "alta", "pctProva": 14 },
+            { "id": "pt-04", "nome": "Sintaxe", "incidencia": "alta", "pctProva": 9 },
+            { "id": "pt-05", "nome": "Ortografia", "incidencia": "media", "pctProva": 7 },
+            { "id": "pt-06", "nome": "Coesão e coerência / conectores", "incidencia": "media", "pctProva": 6 },
+            { "id": "pt-07", "nome": "Pontuação", "incidencia": "media", "pctProva": 5 },
+            { "id": "pt-08", "nome": "Concordância verbal e nominal", "incidencia": "media", "pctProva": 5 },
+            { "id": "pt-09", "nome": "Semântica", "incidencia": "media", "pctProva": 4 },
+            { "id": "pt-10", "nome": "Regência verbal e nominal", "incidencia": "media", "pctProva": 4 },
+            { "id": "pt-11", "nome": "Tipologia e gênero textual", "incidencia": "baixa", "pctProva": 3 }
+          ]
+        },
+        {
+          "id": "redacao-oficial",
+          "nome": "Redação Oficial",
+          "incidencia": "media",
+          "topicos": [
+            { "id": "ro-01", "nome": "Manual de Redação da Presidência da República", "incidencia": "media" },
+            { "id": "ro-02", "nome": "Tipos de documentos oficiais", "incidencia": "media" },
+            { "id": "ro-03", "nome": "Linguagem e formatação oficial", "incidencia": "baixa" }
+          ]
+        },
+        {
+          "id": "realidade-df",
+          "nome": "Realidade do DF e RIDE",
+          "incidencia": "media",
+          "topicos": [
+            { "id": "df-01", "nome": "História e geografia do Distrito Federal", "incidencia": "media" },
+            { "id": "df-02", "nome": "Aspectos sociais, culturais, econômicos e políticos do DF", "incidencia": "media" },
+            { "id": "df-03", "nome": "RIDE — Região Integrada de Desenvolvimento (LC nº 94/1998)", "incidencia": "baixa" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complementares",
+      "nome": "Conhecimentos Complementares",
+      "sigla": "CC",
+      "cor": "#8b5cf6",
+      "qtdProva": 40,
+      "disciplinas": [
+        {
+          "id": "legislacao-educacional",
+          "nome": "Legislação Educacional",
+          "incidencia": "alta",
+          "topicos": [
+            { "id": "le-01", "nome": "LDB — Lei 9.394/1996 (arts. 1-38 integrais)", "incidencia": "alta" },
+            { "id": "le-02", "nome": "LDB — Composição dos níveis escolares (arts. 21-38)", "incidencia": "alta", "obs": "45% das questões de LDB" },
+            { "id": "le-03", "nome": "LDB — Princípios e fins da educação (arts. 1-3)", "incidencia": "alta", "obs": "18% das questões de LDB" },
+            { "id": "le-04", "nome": "LDB — Direito à educação e dever de educar (arts. 4-7)", "incidencia": "alta", "obs": "18% das questões de LDB" },
+            { "id": "le-05", "nome": "Constituição Federal — arts. 205-217 (Educação, Cultura, Desporto)", "incidencia": "alta" },
+            { "id": "le-06", "nome": "PNE — Plano Nacional de Educação (Lei 13.005/2014)", "incidencia": "alta" },
+            { "id": "le-07", "nome": "PDE — Plano Distrital de Educação 2015-2024", "incidencia": "media" },
+            { "id": "le-08", "nome": "Resolução CEDF nº 2/2023", "incidencia": "media" },
+            { "id": "le-09", "nome": "Portaria Conjunta SEDF nº 38/2022 (atribuições do Professor de Ed. Básica)", "incidencia": "alta" }
+          ]
+        },
+        {
+          "id": "eca",
+          "nome": "ECA — Estatuto da Criança e do Adolescente",
+          "incidencia": "media",
+          "topicos": [
+            { "id": "eca-01", "nome": "ECA — Convivência familiar e comunitária (arts. 19-52-D)", "incidencia": "media", "obs": "29% das questões de ECA" },
+            { "id": "eca-02", "nome": "ECA — Direito à educação, cultura, esporte e lazer (arts. 53-59)", "incidencia": "media", "obs": "17% das questões de ECA" },
+            { "id": "eca-03", "nome": "ECA — Disposições preliminares (arts. 1-6)", "incidencia": "media", "obs": "15% das questões de ECA" },
+            { "id": "eca-04", "nome": "ECA — Direito à vida e à saúde (arts. 7-14)", "incidencia": "baixa", "obs": "9% das questões de ECA" },
+            { "id": "eca-05", "nome": "Lei 13.146/2015 — Estatuto da Pessoa com Deficiência (arts. 27-30)", "incidencia": "media" }
+          ]
+        },
+        {
+          "id": "politicas-publicas",
+          "nome": "Políticas Públicas Educacionais",
+          "incidencia": "alta",
+          "topicos": [
+            { "id": "pp-01", "nome": "BNCC — Base Nacional Comum Curricular (completa, ênfase em Arte/Música)", "incidencia": "alta" },
+            { "id": "pp-02", "nome": "Diretrizes Curriculares Nacionais Gerais para Educação Básica", "incidencia": "alta" },
+            { "id": "pp-03", "nome": "Currículo em Movimento da Educação Básica — Pressupostos Teóricos", "incidencia": "alta" },
+            { "id": "pp-04", "nome": "Diretrizes de Avaliação Educacional (aprendizagem, institucional e em larga escala)", "incidencia": "media" },
+            { "id": "pp-05", "nome": "Decreto nº 44.918/2023 (valorização das mulheres na SEEDF)", "incidencia": "media" },
+            { "id": "pp-06", "nome": "Plano Distrital de Política para Mulheres 2020-2023", "incidencia": "baixa" }
+          ]
+        },
+        {
+          "id": "gestao-pedagogica",
+          "nome": "Organização e Gestão Pedagógica",
+          "incidencia": "media",
+          "topicos": [
+            { "id": "gp-01", "nome": "Planejamento escolar (concepção, modalidades, importância)", "incidencia": "media" },
+            { "id": "gp-02", "nome": "Projeto Político-Pedagógico (PPP)", "incidencia": "media" },
+            { "id": "gp-03", "nome": "Currículo: concepções e organização", "incidencia": "media" },
+            { "id": "gp-04", "nome": "Avaliação escolar: concepções e modalidades", "incidencia": "media" },
+            { "id": "gp-05", "nome": "Coordenação pedagógica", "incidencia": "baixa" },
+            { "id": "gp-06", "nome": "Tendências pedagógicas contemporâneas", "incidencia": "media" },
+            { "id": "gp-07", "nome": "Inclusão e atendimento à diversidade", "incidencia": "media" },
+            { "id": "gp-08", "nome": "Gestão democrática", "incidencia": "media" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "especificos",
+      "nome": "Conhecimentos Específicos — Música",
+      "sigla": "CE",
+      "cor": "#f59e0b",
+      "qtdProva": 50,
+      "disciplinas": [
+        {
+          "id": "metodologias",
+          "nome": "Metodologias de Ensino Musical",
+          "incidencia": "alta",
+          "destaque": "Tópico mais cobrado",
+          "topicos": [
+            { "id": "me-01", "nome": "Murray Schafer: paisagem sonora, consciência sonora, ecologia acústica", "incidencia": "alta" },
+            { "id": "me-02", "nome": "Keith Swanwick: Teoria Espiral do Desenvolvimento Musical, modelo C(L)A(S)P", "incidencia": "alta" },
+            { "id": "me-03", "nome": "Carl Orff: método Orff-Schulwerk, instrumentarium Orff, ritmo corporal", "incidencia": "alta" },
+            { "id": "me-04", "nome": "Zoltán Kodály: método Kodály, fononímia, solfejo relativo", "incidencia": "alta" },
+            { "id": "me-05", "nome": "Émile Jaques-Dalcroze: euritmia, relação movimento-música", "incidencia": "alta" },
+            { "id": "me-06", "nome": "Edwin Gordon: Teoria da Aprendizagem Musical, audiação", "incidencia": "alta" },
+            { "id": "me-07", "nome": "Hans-Joachim Koellreutter: criatividade e improvisação", "incidencia": "media" },
+            { "id": "me-08", "nome": "Aplicação de metodologias em contexto escolar (questões situacionais)", "incidencia": "alta" }
+          ]
+        },
+        {
+          "id": "bncc-musica",
+          "nome": "BNCC e Ensino de Música",
+          "incidencia": "alta",
+          "topicos": [
+            { "id": "bm-01", "nome": "Música como linguagem artística na BNCC", "incidencia": "alta" },
+            { "id": "bm-02", "nome": "Objetos de conhecimento: contextos e práticas, elementos da linguagem, materialidades", "incidencia": "alta" },
+            { "id": "bm-03", "nome": "Notação e registro musical; processos de criação na BNCC", "incidencia": "alta" },
+            { "id": "bm-04", "nome": "Competências e habilidades por etapa (EF1-EF5, EF6-EF9, EM)", "incidencia": "alta" },
+            { "id": "bm-05", "nome": "Integração com outras linguagens artísticas", "incidencia": "media" },
+            { "id": "bm-06", "nome": "Percussão corporal, improvisação, criação coletiva em contexto pedagógico", "incidencia": "media" },
+            { "id": "bm-07", "nome": "PCN de Arte — especificidades da música", "incidencia": "media" }
+          ]
+        },
+        {
+          "id": "historia-musica",
+          "nome": "História da Música",
+          "incidencia": "alta",
+          "topicos": [
+            { "id": "hm-01", "nome": "Período Medieval: cantochão, organum, troubadours, Ars Nova", "incidencia": "media" },
+            { "id": "hm-02", "nome": "Renascimento: polifonia vocal, madrigal, Palestrina, escola veneziana", "incidencia": "media" },
+            { "id": "hm-03", "nome": "Barroco: ópera, oratório, suíte, Bach, Haendel, Vivaldi", "incidencia": "alta" },
+            { "id": "hm-04", "nome": "Classicismo: forma sonata, sinfonia, Haydn, Mozart, Beethoven", "incidencia": "alta" },
+            { "id": "hm-05", "nome": "Romantismo: piano, lied, música programática, Wagner, Brahms", "incidencia": "alta" },
+            { "id": "hm-06", "nome": "Modernismo e vanguardas do século XX: impressionismo, expressionismo, neoclassicismo", "incidencia": "alta" },
+            { "id": "hm-07", "nome": "Dodecafonismo e serialismo: Schoenberg, Berg, Webern", "incidencia": "media" },
+            { "id": "hm-08", "nome": "Música eletrônica: Pierre Schaeffer (música concreta), Stockhausen, música eletroacústica", "incidencia": "media" },
+            { "id": "hm-09", "nome": "Música contemporânea: minimalismo, música aleatória, John Cage", "incidencia": "media" },
+            { "id": "hm-10", "nome": "Música brasileira: choro, samba, baião, bossa nova, MPB, música regional", "incidencia": "alta" },
+            { "id": "hm-11", "nome": "Compositores brasileiros: Villa-Lobos, Pixinguinha, Tom Jobim, Hermeto Pascoal", "incidencia": "alta" }
+          ]
+        },
+        {
+          "id": "teoria-musical",
+          "nome": "Teoria Musical",
+          "incidencia": "media",
+          "topicos": [
+            { "id": "tm-01", "nome": "Elementos musicais: altura, duração, intensidade, timbre", "incidencia": "media" },
+            { "id": "tm-02", "nome": "Leitura e escrita musical (notação tradicional)", "incidencia": "media" },
+            { "id": "tm-03", "nome": "Escalas maiores, menores e modais", "incidencia": "media" },
+            { "id": "tm-04", "nome": "Intervalos musicais", "incidencia": "media" },
+            { "id": "tm-05", "nome": "Acordes e funções harmônicas", "incidencia": "media" },
+            { "id": "tm-06", "nome": "Cifração e leitura de cifras", "incidencia": "baixa" },
+            { "id": "tm-07", "nome": "Formas musicais: sonata, fuga, rondó, tema e variações, suíte", "incidencia": "media" },
+            { "id": "tm-08", "nome": "Compasso e ritmo", "incidencia": "media" }
+          ]
+        },
+        {
+          "id": "regencia",
+          "nome": "Regência",
+          "incidencia": "media",
+          "obs": "Incidência ALTA para vagas CEP-EMB",
+          "topicos": [
+            { "id": "re-01", "nome": "Técnica gestual básica: padrões métricos (2, 3 e 4 tempos)", "incidencia": "alta" },
+            { "id": "re-02", "nome": "Entradas, fermatas, dinâmica gestual", "incidencia": "alta" },
+            { "id": "re-03", "nome": "Trabalho com banda sinfônica", "incidencia": "media" },
+            { "id": "re-04", "nome": "Trabalho com orquestra", "incidencia": "media" },
+            { "id": "re-05", "nome": "Trabalho com coro", "incidencia": "media" },
+            { "id": "re-06", "nome": "Regência aplicada ao contexto pedagógico", "incidencia": "alta" }
+          ]
+        },
+        {
+          "id": "legislacao-cep-emb",
+          "nome": "Legislação Específica do CEP-EMB",
+          "incidencia": "alta",
+          "destaque": "Diferencial — candidatos costumam ignorar",
+          "topicos": [
+            { "id": "lc-01", "nome": "Portaria nº 89/2021 — Atribuições no CEP-EMB", "incidencia": "alta" },
+            { "id": "lc-02", "nome": "Portaria Conjunta nº 40/2025 — Atribuições CEP-EMB (atualizada)", "incidencia": "alta" },
+            { "id": "lc-03", "nome": "Portaria Conjunta SEDF nº 38/2022 — Atribuições do Professor de Educação Básica", "incidencia": "alta" },
+            { "id": "lc-04", "nome": "Estrutura do ensino profissional de música no DF", "incidencia": "media" }
+          ]
+        }
+      ]
+    }
+  ],
+  "bancas": [
+    { "id": "quadrix-2022", "nome": "Quadrix 2022", "tipo": "Efetivo", "edital": "nº 31", "prioridade": 1 },
+    { "id": "quadrix-2025", "nome": "Quadrix 2025", "tipo": "PSS Temporários", "edital": "nº 36", "prioridade": 2 },
+    { "id": "iades-2023", "nome": "IADES 2023", "tipo": "PSS Temporários", "edital": "nº 53", "prioridade": 3 },
+    { "id": "quadrix-2021", "nome": "Quadrix 2021", "tipo": "PSS Temporários", "prioridade": 4 },
+    { "id": "quadrix-2016", "nome": "Quadrix 2016", "tipo": "PSS Temporários", "prioridade": 5 }
+  ]
+}

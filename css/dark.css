@@ -1,0 +1,132 @@
+/* ============================================================
+   SEDF ESTUDOS — Dark Mode
+   Ativado via: body[data-tema="escuro"]
+   ============================================================ */
+
+[data-tema="escuro"] {
+  --cor-fundo: #0f172a;
+  --cor-fundo-card: #1e293b;
+  --cor-texto: #f1f5f9;
+  --cor-texto-leve: #94a3b8;
+  --cor-borda: #334155;
+
+  --cor-sucesso-bg: rgba(34,197,94,.12);
+  --cor-atencao-bg: rgba(234,179,8,.12);
+  --cor-erro-bg: rgba(239,68,68,.12);
+  --cor-basicos-bg: rgba(59,130,246,.12);
+  --cor-complementares-bg: rgba(139,92,246,.12);
+  --cor-especificos-bg: rgba(245,158,11,.12);
+
+  --sombra-sm: 0 1px 3px rgba(0,0,0,.3);
+  --sombra-md: 0 4px 16px rgba(0,0,0,.35);
+  --sombra-lg: 0 8px 32px rgba(0,0,0,.4);
+}
+
+/* Loading */
+[data-tema="escuro"] #tela-loading {
+  background: linear-gradient(160deg, #0a1628 0%, #0f2540 100%);
+}
+
+/* Login */
+[data-tema="escuro"] #tela-login {
+  background: linear-gradient(160deg, #0a1628 0%, #0d2040 50%, #0f2a50 100%);
+}
+
+/* Modo selector */
+[data-tema="escuro"] #tela-modo {
+  background: linear-gradient(160deg, #0a1628 0%, #0f2540 100%);
+}
+
+/* Sidebar */
+[data-tema="escuro"] #sidebar {
+  background: #0f172a;
+  border-right: 1px solid var(--cor-borda);
+}
+
+/* Barra de modo */
+[data-tema="escuro"] #barra-modo {
+  background: #0f172a;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Nav inferior */
+[data-tema="escuro"] #nav-inferior {
+  background: #1e293b;
+  border-top-color: var(--cor-borda);
+}
+
+[data-tema="escuro"] #nav-inferior .nav-item.ativo {
+  color: #93c5fd;
+}
+
+/* Banner offline */
+[data-tema="escuro"] #banner-offline {
+  background: #1e293b;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Painel header (mantém gradiente mas mais escuro) */
+[data-tema="escuro"] .painel-header {
+  background: linear-gradient(160deg, #0a1628 0%, #0f2540 100%);
+}
+
+/* Cards */
+[data-tema="escuro"] .card {
+  background: var(--cor-fundo-card);
+  border-color: var(--cor-borda);
+}
+
+/* Inputs */
+[data-tema="escuro"] .input {
+  background: #0f172a;
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+[data-tema="escuro"] .input::placeholder { color: var(--cor-texto-leve); }
+[data-tema="escuro"] .input:focus { border-color: var(--cor-secundaria); }
+
+/* Chips */
+[data-tema="escuro"] .chip {
+  background: #0f172a;
+  border-color: var(--cor-borda);
+  color: var(--cor-texto-leve);
+}
+[data-tema="escuro"] .chip.ativo {
+  background: var(--cor-secundaria);
+  border-color: var(--cor-secundaria);
+  color: #fff;
+}
+
+/* Toast */
+[data-tema="escuro"] #toast {
+  background: #1e293b;
+  border: 1px solid var(--cor-borda);
+}
+
+/* Botão Google */
+[data-tema="escuro"] .btn-google {
+  background: #1e293b;
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
+}
+
+/* Modo card no seletor */
+[data-tema="escuro"] .modo-card {
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.08);
+}
+[data-tema="escuro"] .modo-card:hover { background: rgba(255,255,255,.08); }
+
+/* Scrollbars sutis em desktop */
+@media (min-width: 768px) {
+  [data-tema="escuro"] .painel::-webkit-scrollbar {
+    width: 4px;
+  }
+  [data-tema="escuro"] .painel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  [data-tema="escuro"] .painel::-webkit-scrollbar-thumb {
+    background: var(--cor-borda);
+    border-radius: 2px;
+  }
+}
