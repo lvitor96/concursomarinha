@@ -110,9 +110,11 @@ function _renderizarEsqueleto(el, usuario) {
     <div class="secao" style="padding-top:0;">
       <div class="secao-header"><h3 class="secao-titulo">Começar agora</h3></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:80px;">
-        ${_acaoCard('❓', 'Questões',   'Treinar agora',    'questoes')}
-        ${_acaoCard('📚', 'Resumos',    'Estudar conteúdo', 'estudar')}
+        ${_acaoCard('❓', 'Questões',    'Treinar agora',    'questoes')}
+        ${_acaoCard('📚', 'Resumos',     'Estudar conteúdo', 'estudar')}
+        ${_acaoCard('⏱️', 'Simulado',   'Prova cronometrada','simulado')}
         ${_acaoCard('📅', 'Cronograma', 'Planejar estudos', 'cronograma')}
+        ${_acaoCard('📊', 'Estatísticas','Seu progresso',   'estatisticas')}
         ${_acaoCard('⚙️', 'Config.',    'Ajustes',          'config')}
       </div>
     </div>

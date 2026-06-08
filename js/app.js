@@ -184,7 +184,17 @@ function navegarPara(painel) {
 const _modulosCarregados = new Set();
 
 async function carregarModulo(painel) {
-  // Dashboard sempre re-renderiza para mostrar dados frescos
+  // Painéis de dados sempre re-renderizam para mostrar dados frescos
+  if (painel === 'estatisticas') {
+    try {
+      const { iniciarEstatisticas } = await import('./estatisticas.js');
+      await iniciarEstatisticas();
+    } catch (err) {
+      console.error('Erro ao carregar estatísticas:', err);
+    }
+    return;
+  }
+
   if (painel === 'dashboard') {
     try {
       const { iniciarDashboard } = await import('./dashboard.js');
