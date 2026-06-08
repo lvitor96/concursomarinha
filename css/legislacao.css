@@ -1,0 +1,317 @@
+/* ================================================================
+   legislacao.css — Módulo Legislação
+   ================================================================ */
+
+/* ── Lista de documentos ────────────────────────────────────── */
+.leg-doc-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 80px;
+}
+
+.leg-doc-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+  text-align: left;
+  width: 100%;
+}
+
+.leg-doc-card:hover {
+  border-color: var(--cor-secundaria);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.leg-doc-icone {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.leg-doc-info { flex: 1; min-width: 0; }
+
+.leg-doc-sigla {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.leg-doc-titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.3;
+}
+
+.leg-doc-subtitulo {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-top: 2px;
+}
+
+.leg-doc-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.leg-doc-progresso {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--cor-borda);
+  overflow: hidden;
+}
+
+.leg-doc-progresso-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width .3s;
+}
+
+.leg-doc-pct {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  flex-shrink: 0;
+  width: 32px;
+  text-align: right;
+}
+
+/* ── Visualizador de documento ──────────────────────────────── */
+.leg-viewer-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--cor-fundo-card);
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.leg-viewer-back {
+  padding: 6px 10px;
+  border-radius: var(--raio-sm);
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .12s;
+  flex-shrink: 0;
+}
+
+.leg-viewer-back:hover {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
+.leg-viewer-doc-info { flex: 1; min-width: 0; }
+
+.leg-viewer-sigla {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.leg-viewer-titulo {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Busca */
+.leg-busca-wrap {
+  padding: 10px 16px 0;
+  position: sticky;
+  top: 57px;
+  z-index: 19;
+  background: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda);
+  padding-bottom: 10px;
+}
+
+.leg-busca {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s;
+}
+
+.leg-busca:focus { border-color: var(--cor-secundaria); }
+
+/* Capítulos e artigos */
+.leg-capitulo {
+  padding: 12px 16px 0;
+}
+
+.leg-capitulo-titulo {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--cor-texto-leve);
+  padding: 8px 0 6px;
+  border-bottom: 1px solid var(--cor-borda);
+  margin-bottom: 6px;
+}
+
+.leg-artigo {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  margin-bottom: 6px;
+  overflow: hidden;
+  transition: border-color .12s;
+}
+
+.leg-artigo.lido { border-color: var(--cor-sucesso); }
+.leg-artigo.favorito { border-color: var(--cor-acento); }
+.leg-artigo.lido.favorito { border-color: var(--cor-acento); }
+
+.leg-artigo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.leg-artigo-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+  min-width: 36px;
+}
+
+.leg-artigo-titulo-nome {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leg-artigo-badges {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.leg-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all .12s;
+  border: none;
+  background: transparent;
+  color: var(--cor-texto-leve);
+  padding: 0;
+}
+
+.leg-badge:hover { transform: scale(1.15); }
+.leg-badge.ativo-lido    { color: var(--cor-sucesso); }
+.leg-badge.ativo-fav     { color: var(--cor-acento); }
+.leg-badge.ativo-anot    { color: var(--cor-secundaria); }
+
+.leg-chevron {
+  font-size: 10px;
+  color: var(--cor-texto-leve);
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+
+.leg-artigo.expandido .leg-chevron { transform: rotate(180deg); }
+
+/* Conteúdo expandido */
+.leg-artigo-corpo {
+  display: none;
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.leg-artigo.expandido .leg-artigo-corpo { display: block; }
+
+.leg-artigo-texto {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--cor-texto);
+  white-space: pre-line;
+  padding-top: 10px;
+}
+
+/* Anotação */
+.leg-anotacao-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.leg-anotacao-area {
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 12px;
+  line-height: 1.5;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  transition: border-color .15s;
+}
+
+.leg-anotacao-area:focus { border-color: var(--cor-secundaria); }
+.leg-anotacao-area.salvando { border-color: var(--cor-sucesso); }
+
+/* Sem resultados */
+.leg-sem-resultados {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+}

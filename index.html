@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="/css/cronograma.css">
   <link rel="stylesheet" href="/css/simulado.css">
   <link rel="stylesheet" href="/css/estatisticas.css">
+  <link rel="stylesheet" href="/css/legislacao.css">
 
   <!-- Firebase Import Map -->
   <script type="importmap">
@@ -178,6 +179,10 @@
           <span class="nav-icone" aria-hidden="true">📊</span>
           <span>Estatísticas</span>
         </button>
+        <button class="nav-item" data-painel="legislacao">
+          <span class="nav-icone" aria-hidden="true">⚖️</span>
+          <span>Legislação</span>
+        </button>
         <button class="nav-item" data-painel="cronograma">
           <span class="nav-icone" aria-hidden="true">📅</span>
           <span>Cronograma</span>
@@ -226,6 +231,13 @@
 
         <!-- Questões -->
         <section id="painel-questoes" class="painel" aria-label="Banco de Questões">
+          <div class="painel-carregando">
+            <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
+          </div>
+        </section>
+
+        <!-- Legislação -->
+        <section id="painel-legislacao" class="painel" aria-label="Textos Legais">
           <div class="painel-carregando">
             <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
           </div>

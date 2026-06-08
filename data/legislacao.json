@@ -1,0 +1,482 @@
+{
+  "versao": "1.0.0",
+  "documentos": [
+    {
+      "id": "ldb",
+      "sigla": "LDB",
+      "titulo": "Lei de Diretrizes e Bases",
+      "subtitulo": "Lei nº 9.394, de 20 de dezembro de 1996",
+      "cor": "#3b82f6",
+      "icone": "📋",
+      "capitulos": [
+        {
+          "titulo": "Título I — Da Educação",
+          "artigos": [
+            {
+              "num": 1,
+              "texto": "A educação abrange os processos formativos que se desenvolvem na vida familiar, na convivência humana, no trabalho, nas instituições de ensino e pesquisa, nos movimentos sociais e organizações da sociedade civil e nas manifestações culturais.\n§ 1º Esta Lei disciplina a educação escolar, que se desenvolve, predominantemente, por meio do ensino, em instituições próprias.\n§ 2º A educação escolar deverá vincular-se ao mundo do trabalho e à prática social."
+            },
+            {
+              "num": 2,
+              "texto": "A educação, dever da família e do Estado, inspirada nos princípios de liberdade e nos ideais de solidariedade humana, tem por finalidade o pleno desenvolvimento do educando, seu preparo para o exercício da cidadania e sua qualificação para o trabalho."
+            },
+            {
+              "num": 3,
+              "titulo": "Princípios do ensino",
+              "texto": "O ensino será ministrado com base nos seguintes princípios:\nI – igualdade de condições para o acesso e permanência na escola;\nII – liberdade de aprender, ensinar, pesquisar e divulgar a cultura, o pensamento, a arte e o saber;\nIII – pluralismo de ideias e de concepções pedagógicas;\nIV – respeito à liberdade e apreço à tolerância;\nV – coexistência de instituições públicas e privadas de ensino;\nVI – gratuidade do ensino público em estabelecimentos oficiais;\nVII – valorização do profissional da educação escolar;\nVIII – gestão democrática do ensino público, na forma desta Lei e da legislação dos sistemas de ensino;\nIX – garantia de padrão de qualidade;\nX – valorização da experiência extraescolar;\nXI – vinculação entre a educação escolar, o trabalho e as práticas sociais;\nXII – consideração com a diversidade étnico-racial;\nXIII – garantia do direito à educação e à aprendizagem ao longo da vida."
+            }
+          ]
+        },
+        {
+          "titulo": "Título III — Do Direito à Educação e do Dever de Educar",
+          "artigos": [
+            {
+              "num": 4,
+              "titulo": "Dever do Estado",
+              "texto": "O dever do Estado com educação escolar pública será efetivado mediante a garantia de:\nI – educação básica obrigatória e gratuita dos 4 (quatro) aos 17 (dezessete) anos de idade;\nII – educação infantil gratuita às crianças de até 5 (cinco) anos de idade;\nIII – atendimento educacional especializado gratuito aos educandos com deficiência, transtornos globais do desenvolvimento e altas habilidades ou superdotação;\nIV – acesso público e gratuito aos ensinos fundamental e médio para todos os que não os concluíram na idade própria;\nV – acesso aos níveis mais elevados do ensino, da pesquisa e da criação artística, segundo a capacidade de cada um;\nVI – oferta de ensino noturno regular, adequado às condições do educando;\nVII – oferta de educação escolar regular para jovens e adultos;\nVIII – atendimento ao educando, em todas as etapas da educação básica, por meio de programas suplementares de material didático-escolar, transporte, alimentação e assistência à saúde;\nIX – padrões mínimos de qualidade de ensino;\nX – vaga na escola pública de educação infantil ou de ensino fundamental mais próxima de sua residência a toda criança a partir do dia em que completar 4 (quatro) anos de idade."
+            },
+            {
+              "num": 5,
+              "texto": "O acesso à educação básica obrigatória é direito público subjetivo, podendo qualquer cidadão, grupo de cidadãos, associação comunitária, organização sindical, entidade de classe ou outra legalmente constituída e, ainda, o Ministério Público, acionar o poder público para exigi-lo.\n§ 1º O poder público, na esfera de sua competência federativa, deverá:\nI – recensear anualmente as crianças e adolescentes em idade escolar, bem como os jovens e adultos que não concluíram a educação básica;\nII – fazer-lhes a chamada pública;\nIII – zelar, junto aos pais ou responsáveis, pela frequência à escola."
+            },
+            {
+              "num": 6,
+              "texto": "É dever dos pais ou responsáveis efetuar a matrícula das crianças na educação básica a partir dos 4 (quatro) anos de idade."
+            }
+          ]
+        },
+        {
+          "titulo": "Título IV — Da Organização da Educação Nacional",
+          "artigos": [
+            {
+              "num": 12,
+              "titulo": "Incumbências dos estabelecimentos",
+              "texto": "Os estabelecimentos de ensino, respeitadas as normas comuns e as do seu sistema de ensino, terão a incumbência de:\nI – elaborar e executar sua proposta pedagógica;\nII – administrar seu pessoal e seus recursos materiais e financeiros;\nIII – assegurar o cumprimento dos dias letivos e horas-aula estabelecidos;\nIV – velar pelo cumprimento do plano de trabalho de cada docente;\nV – prover meios para a recuperação dos alunos de menor rendimento;\nVI – articular-se com as famílias e a comunidade, criando processos de integração da sociedade com a escola;\nVII – informar pai e mãe, conviventes ou não com seus filhos, e, se for o caso, os responsáveis legais, sobre a frequência e rendimento dos alunos e sobre a execução da proposta pedagógica da escola;\nVIII – notificar ao Conselho Tutelar do Município a relação dos alunos que apresentem quantidade de faltas acima de cinquenta por cento do percentual permitido em lei;\nIX – promover medidas de conscientização, de prevenção e de combate a todos os tipos de violência, especialmente a intimidação sistemática (bullying);\nX – estabelecer ações destinadas a promover a cultura de paz nas escolas."
+            },
+            {
+              "num": 13,
+              "titulo": "Incumbências dos docentes",
+              "texto": "Os docentes incumbir-se-ão de:\nI – participar da elaboração da proposta pedagógica do estabelecimento de ensino;\nII – elaborar e cumprir plano de trabalho, segundo a proposta pedagógica do estabelecimento de ensino;\nIII – zelar pela aprendizagem dos alunos;\nIV – estabelecer estratégias de recuperação para os alunos de menor rendimento;\nV – ministrar os dias letivos e horas-aula estabelecidos, além de participar integralmente dos períodos dedicados ao planejamento, à avaliação e ao desenvolvimento profissional;\nVI – colaborar com as atividades de articulação da escola com as famílias e a comunidade."
+            },
+            {
+              "num": 14,
+              "titulo": "Gestão democrática",
+              "texto": "Os sistemas de ensino definirão as normas da gestão democrática do ensino público na educação básica, de acordo com as suas peculiaridades e conforme os seguintes princípios:\nI – participação dos profissionais da educação na elaboração do projeto pedagógico da escola;\nII – participação das comunidades escolar e local em conselhos escolares ou equivalentes."
+            },
+            {
+              "num": 15,
+              "texto": "Os sistemas de ensino assegurarão às unidades escolares públicas de educação básica que os integram progressivos graus de autonomia pedagógica e administrativa e de gestão financeira, observadas as normas gerais de direito financeiro público."
+            }
+          ]
+        },
+        {
+          "titulo": "Título V — Dos Níveis e das Modalidades de Educação e Ensino",
+          "artigos": [
+            {
+              "num": 22,
+              "titulo": "Finalidades da educação básica",
+              "texto": "A educação básica tem por finalidades desenvolver o educando, assegurar-lhe a formação comum indispensável para o exercício da cidadania e fornecer-lhe meios para progredir no trabalho e em estudos posteriores."
+            },
+            {
+              "num": 23,
+              "texto": "A educação básica poderá organizar-se em séries anuais, períodos semestrais, ciclos, alternância regular de períodos de estudos, grupos não-seriados, com base na idade, na competência e em outros critérios, ou por forma diversa de organização, sempre que o interesse do processo de aprendizagem assim o recomendar."
+            },
+            {
+              "num": 24,
+              "titulo": "Organização da educação básica",
+              "texto": "A educação básica, nos níveis fundamental e médio, será organizada de acordo com as seguintes regras comuns:\nI – a carga horária mínima anual será de oitocentas horas para o ensino fundamental e para o ensino médio, distribuídas por um mínimo de duzentos dias de efetivo trabalho escolar;\nII – a classificação em qualquer série ou etapa, exceto a primeira do ensino fundamental, pode ser feita:\na) por promoção, para alunos que cursaram, com aproveitamento, a série ou fase anterior;\nb) por transferência, para candidatos procedentes de outras escolas;\nc) independentemente de escolarização anterior, mediante avaliação feita pela escola;\nIII – nos estabelecimentos que adotam a progressão regular por série, o regimento escolar pode admitir formas de progressão parcial;\nV – a verificação do rendimento escolar observará os seguintes critérios:\na) avaliação contínua e cumulativa do desempenho do aluno, com prevalência dos aspectos qualitativos sobre os quantitativos;\nb) possibilidade de aceleração de estudos para alunos com atraso escolar;\nc) possibilidade de avanço nos cursos e nas séries mediante verificação do aprendizado;\nd) aproveitamento de estudos concluídos com êxito;\ne) obrigatoriedade de estudos de recuperação, de preferência paralelos ao período letivo, para os casos de baixo rendimento escolar;\nVI – o controle de frequência fica a cargo da escola, conforme o disposto no seu regimento e nas normas do respectivo sistema de ensino, exigida a frequência mínima de setenta e cinco por cento do total de horas letivas para aprovação."
+            },
+            {
+              "num": 26,
+              "titulo": "Currículo da educação básica",
+              "texto": "Os currículos da educação infantil, do ensino fundamental e do ensino médio devem ter base nacional comum, a ser complementada, em cada sistema de ensino e em cada estabelecimento escolar, por uma parte diversificada, exigida pelas características regionais e locais da sociedade, da cultura, da economia e dos educandos.\n§ 1º Os currículos a que se refere o caput devem abranger, obrigatoriamente, o estudo da língua portuguesa e da matemática, o conhecimento do mundo físico e natural e da realidade social e política, especialmente do Brasil.\n§ 2º O ensino da arte, especialmente em suas expressões regionais, constituirá componente curricular obrigatório da educação básica.\n§ 6º As artes visuais, a dança, a música e o teatro são as linguagens que constituirão o componente curricular de que trata o § 2º deste artigo."
+            },
+            {
+              "num": "26-A",
+              "titulo": "História e cultura afro-brasileira",
+              "texto": "Nos estabelecimentos de ensino fundamental e de ensino médio, públicos e privados, torna-se obrigatório o estudo da história e cultura afro-brasileira e indígena.\n§ 1º O conteúdo programático a que se refere este artigo incluirá diversos aspectos da história e da cultura que caracterizam a formação da população brasileira, a partir desses dois grupos étnicos, tais como o estudo da história da África e dos africanos, a luta dos negros e dos povos indígenas no Brasil, a cultura negra e indígena brasileira e o negro e o índio na formação da sociedade nacional, resgatando as suas contribuições nas áreas social, econômica e política, pertinentes à história do Brasil.\n§ 2º Os conteúdos referentes à história e cultura afro-brasileira e dos povos indígenas brasileiros serão ministrados no âmbito de todo o currículo escolar, em especial nas áreas de educação artística e de literatura e história brasileiras."
+            },
+            {
+              "num": 27,
+              "titulo": "Diretrizes para conteúdos curriculares",
+              "texto": "Os conteúdos curriculares da educação básica observarão, ainda, as seguintes diretrizes:\nI – a difusão de valores fundamentais ao interesse social, aos direitos e deveres dos cidadãos, de respeito ao bem comum e à ordem democrática;\nII – consideração das condições de escolaridade dos alunos em cada estabelecimento;\nIII – orientação para o trabalho;\nIV – promoção do desporto educacional e apoio às práticas desportivas não-formais."
+            },
+            {
+              "num": 29,
+              "titulo": "Educação Infantil",
+              "texto": "A educação infantil, primeira etapa da educação básica, tem como finalidade o desenvolvimento integral da criança de até 5 (cinco) anos, em seus aspectos físico, psicológico, intelectual e social, complementando a ação da família e da comunidade."
+            },
+            {
+              "num": 32,
+              "titulo": "Ensino Fundamental",
+              "texto": "O ensino fundamental obrigatório, com duração de 9 (nove) anos, gratuito na escola pública, iniciando-se aos 6 (seis) anos de idade, terá por objetivo a formação básica do cidadão, mediante:\nI – o desenvolvimento da capacidade de aprender, tendo como meios básicos o pleno domínio da leitura, da escrita e do cálculo;\nII – a compreensão do ambiente natural e social, do sistema político, da economia, da tecnologia das artes, dos valores em que se fundamenta a sociedade;\nIII – o desenvolvimento da capacidade de aprendizagem, tendo em vista a aquisição de conhecimentos e habilidades e a formação de atitudes e valores;\nIV – o fortalecimento dos vínculos de família, dos laços de solidariedade humana e de tolerância recíproca em que se assenta a vida social."
+            },
+            {
+              "num": 35,
+              "titulo": "Ensino Médio — finalidades",
+              "texto": "O ensino médio, etapa final da educação básica, com duração mínima de três anos, terá como finalidades:\nI – a consolidação e o aprofundamento dos conhecimentos adquiridos no ensino fundamental, possibilitando o prosseguimento de estudos;\nII – a preparação básica para o trabalho e a cidadania do educando, para continuar aprendendo, de modo a ser capaz de se adaptar com flexibilidade a novas condições de ocupação ou aperfeiçoamento posteriores;\nIII – o aprimoramento do educando como pessoa humana, incluindo a formação ética e o desenvolvimento da autonomia intelectual e do pensamento crítico;\nIV – a compreensão dos fundamentos científico-tecnológicos dos processos produtivos, relacionando a teoria com a prática, no ensino de cada disciplina."
+            }
+          ]
+        },
+        {
+          "titulo": "Título VI — Dos Profissionais da Educação",
+          "artigos": [
+            {
+              "num": 61,
+              "titulo": "Profissionais da educação — definição",
+              "texto": "Consideram-se profissionais da educação escolar básica os que, nela estando em efetivo exercício e tendo sido formados em cursos reconhecidos, são habilitados a atuar como docentes ou em suporte pedagógico a essa atividade, isto é, em direção de escola, planejamento, inspeção, supervisão, orientação e formação continuada.\nParágrafo único. A formação dos profissionais da educação, de modo a atender às especificidades do exercício de suas atividades, bem como aos objetivos das diferentes etapas e modalidades da educação básica, terá como fundamentos:\nI – a presença de sólida formação básica, que propicie o conhecimento dos fundamentos científicos e sociais de suas competências de trabalho;\nII – a associação entre teorias e práticas, mediante estágios supervisionados e capacitação em serviço;\nIII – o aproveitamento da formação e experiências anteriores, em instituições de ensino e em outras atividades."
+            },
+            {
+              "num": 62,
+              "titulo": "Formação de docentes",
+              "texto": "A formação de docentes para atuar na educação básica far-se-á em nível superior, em curso de licenciatura plena, admitida, como formação mínima para o exercício do magistério na educação infantil e nos cinco primeiros anos do ensino fundamental, a oferecida em nível médio, na modalidade normal.\n§ 1º A União, o Distrito Federal, os Estados e os Municípios, em regime de colaboração, deverão promover a formação inicial, a continuada e a capacitação dos profissionais de magistério.\n§ 2º A formação continuada e a capacitação dos profissionais de magistério poderão utilizar recursos e tecnologias de educação a distância."
+            },
+            {
+              "num": 67,
+              "titulo": "Valorização dos profissionais da educação",
+              "texto": "Os sistemas de ensino promoverão a valorização dos profissionais da educação, assegurando-lhes, inclusive nos termos dos estatutos e dos planos de carreira do magistério público:\nI – ingresso exclusivamente por concurso público de provas e títulos;\nII – aperfeiçoamento profissional continuado, inclusive com licenciamento periódico remunerado para esse fim;\nIII – piso salarial profissional;\nIV – progressão funcional baseada na titulação ou habilitação, e na avaliação do desempenho;\nV – período reservado a estudos, planejamento e avaliação, incluído na carga de trabalho;\nVI – condições adequadas de trabalho.\n§ 1º A experiência docente é pré-requisito para o exercício profissional de quaisquer outras funções de magistério, nos termos das normas de cada sistema de ensino."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eca",
+      "sigla": "ECA",
+      "titulo": "Estatuto da Criança e do Adolescente",
+      "subtitulo": "Lei nº 8.069, de 13 de julho de 1990",
+      "cor": "#22c55e",
+      "icone": "👦",
+      "capitulos": [
+        {
+          "titulo": "Título I — Das Disposições Preliminares",
+          "artigos": [
+            {
+              "num": 1,
+              "texto": "Esta Lei dispõe sobre a proteção integral à criança e ao adolescente."
+            },
+            {
+              "num": 2,
+              "texto": "Considera-se criança, para os efeitos desta Lei, a pessoa até doze anos de idade incompletos, e adolescente aquela entre doze e dezoito anos de idade.\nParágrafo único. Nos casos expressos em lei, aplica-se excepcionalmente este Estatuto às pessoas entre dezoito e vinte e um anos de idade."
+            },
+            {
+              "num": 3,
+              "texto": "A criança e o adolescente gozam de todos os direitos fundamentais inerentes à pessoa humana, sem prejuízo da proteção integral de que trata esta Lei, assegurando-se-lhes, por lei ou por outros meios, todas as oportunidades e facilidades, a fim de lhes facultar o desenvolvimento físico, mental, moral, espiritual e social, em condições de liberdade e de dignidade.\nParágrafo único. Os direitos enunciados nesta Lei aplicam-se a todas as crianças e adolescentes, sem discriminação de nascimento, situação familiar, idade, sexo, raça, etnia ou cor, religião ou crença, deficiência, condição pessoal de desenvolvimento e aprendizagem, condição econômica, ambiente social, região e local de moradia ou outra condição que diferencie as pessoas, as famílias ou a comunidade em que vivem."
+            },
+            {
+              "num": 4,
+              "titulo": "Dever da família, sociedade e Estado",
+              "texto": "É dever da família, da comunidade, da sociedade em geral e do poder público assegurar, com absoluta prioridade, a efetivação dos direitos referentes à vida, à saúde, à alimentação, à educação, ao esporte, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária.\nParágrafo único. A garantia de prioridade compreende:\na) primazia de receber proteção e socorro em quaisquer circunstâncias;\nb) precedência de atendimento nos serviços públicos ou de relevância pública;\nc) preferência na formulação e na execução das políticas sociais públicas;\nd) destinação privilegiada de recursos públicos nas áreas relacionadas com a proteção à infância e à juventude."
+            },
+            {
+              "num": 5,
+              "texto": "Nenhuma criança ou adolescente será objeto de qualquer forma de negligência, discriminação, exploração, violência, crueldade e opressão, punido na forma da lei qualquer atentado, por ação ou omissão, aos seus direitos fundamentais."
+            }
+          ]
+        },
+        {
+          "titulo": "Título II — Dos Direitos Fundamentais — Capítulo IV: Do Direito à Educação, à Cultura, ao Esporte e ao Lazer",
+          "artigos": [
+            {
+              "num": 53,
+              "titulo": "Direito à educação",
+              "texto": "A criança e o adolescente têm direito à educação, visando ao pleno desenvolvimento de sua pessoa, preparo para o exercício da cidadania e qualificação para o trabalho, assegurando-se-lhes:\nI – igualdade de condições para o acesso e permanência na escola;\nII – direito de ser respeitado por seus educadores;\nIII – direito de contestar critérios avaliativos, podendo recorrer às instâncias escolares superiores;\nIV – direito de organização e participação em entidades estudantis;\nV – acesso à escola pública e gratuita próxima de sua residência, garantindo-se vagas no mesmo estabelecimento a irmãos que frequentem a mesma etapa ou ciclo de ensino da educação básica.\nParágrafo único. É direito dos pais ou responsáveis ter ciência do processo pedagógico, bem como participar da definição das propostas educacionais."
+            },
+            {
+              "num": 54,
+              "titulo": "Dever do Estado com a educação",
+              "texto": "É dever do Estado assegurar à criança e ao adolescente:\nI – ensino fundamental, obrigatório e gratuito, inclusive para os que a ele não tiveram acesso na idade própria;\nII – progressiva extensão da obrigatoriedade e gratuidade ao ensino médio;\nIII – atendimento educacional especializado aos portadores de deficiência, preferencialmente na rede regular de ensino;\nIV – atendimento em creche e pré-escola às crianças de zero a cinco anos de idade;\nV – acesso aos níveis mais elevados do ensino, da pesquisa e da criação artística, segundo a capacidade de cada um;\nVI – oferta de ensino noturno regular, adequado às condições do adolescente trabalhador;\nVII – atendimento no ensino fundamental, através de programas suplementares de material didático-escolar, transporte, alimentação e assistência à saúde.\n§ 1º O acesso ao ensino obrigatório e gratuito é direito público subjetivo.\n§ 2º O não oferecimento do ensino obrigatório pelo poder público ou sua oferta irregular importa responsabilidade da autoridade competente.\n§ 3º Compete ao poder público recensear os educandos no ensino fundamental, fazer-lhes a chamada e zelar, junto aos pais ou responsável, pela frequência à escola."
+            },
+            {
+              "num": 55,
+              "texto": "Os pais ou responsável têm a obrigação de matricular seus filhos ou pupilos na rede regular de ensino."
+            },
+            {
+              "num": 56,
+              "titulo": "Comunicação ao Conselho Tutelar",
+              "texto": "Os dirigentes de estabelecimentos de ensino fundamental comunicarão ao Conselho Tutelar os casos de:\nI – maus-tratos envolvendo seus alunos;\nII – reiteração de faltas injustificadas e de evasão escolar, esgotados os recursos escolares;\nIII – elevados níveis de repetência."
+            },
+            {
+              "num": 57,
+              "texto": "O poder público estimulará pesquisas, experiências e novas propostas relativas a calendário, seriação, currículo, metodologia, didática e avaliação, com vistas à inserção de crianças e adolescentes excluídos do ensino fundamental obrigatório."
+            },
+            {
+              "num": 58,
+              "texto": "No processo educacional respeitar-se-ão os valores culturais, artísticos e históricos próprios do contexto social da criança e do adolescente, garantindo-se a estes a liberdade da criação e o acesso às fontes de cultura."
+            },
+            {
+              "num": 59,
+              "texto": "Os municípios, com apoio dos estados e da União, estimularão e facilitarão a destinação de recursos e espaços para programações culturais, esportivas e de lazer voltadas para a infância e a juventude."
+            }
+          ]
+        },
+        {
+          "titulo": "Título II — Capítulo VII: Da Prevenção Especial",
+          "artigos": [
+            {
+              "num": 70,
+              "titulo": "Prevenção — dever de todos",
+              "texto": "É dever de todos prevenir a ocorrência de ameaça ou violação dos direitos da criança e do adolescente."
+            },
+            {
+              "num": "70-A",
+              "titulo": "Política pública de redução da violência",
+              "texto": "A União, os Estados, o Distrito Federal e os Municípios deverão atuar de forma articulada na elaboração de políticas públicas e na execução de ações destinadas a coibir o uso de castigo físico ou de tratamento cruel ou degradante e difundir formas não violentas de educação de crianças e de adolescentes, tendo como principais ações:\nI – a promoção de campanhas educativas permanentes para a divulgação do direito da criança e do adolescente de serem educados e cuidados sem o uso de castigo físico ou de tratamento cruel ou degradante;\nII – a integração com os órgãos do Poder Judiciário, do Ministério Público e da Defensoria Pública, com o Conselho Tutelar, com os Conselhos de Direitos da Criança e do Adolescente e com as entidades não governamentais que atuam na promoção, proteção e defesa dos direitos da criança e do adolescente;\nIII – a formação continuada e a capacitação dos profissionais de saúde, educação e assistência social e dos demais agentes que atuam na promoção, proteção e defesa dos direitos da criança e do adolescente para o desenvolvimento das competências necessárias à prevenção, à identificação de evidências, ao diagnóstico e ao enfrentamento de todas as formas de violência contra a criança e o adolescente."
+            }
+          ]
+        },
+        {
+          "titulo": "Título V — Do Conselho Tutelar",
+          "artigos": [
+            {
+              "num": 131,
+              "titulo": "Conselho Tutelar — definição",
+              "texto": "O Conselho Tutelar é um órgão permanente e autônomo, não jurisdicional, encarregado pela sociedade de zelar pelo cumprimento dos direitos da criança e do adolescente, definidos nesta Lei."
+            },
+            {
+              "num": 132,
+              "texto": "Em cada Município e em cada Região Administrativa do Distrito Federal haverá, no mínimo, 1 (um) Conselho Tutelar como órgão integrante da administração pública local, composto de 5 (cinco) membros, escolhidos pela população local para mandato de 4 (quatro) anos, permitida 1 (uma) recondução, mediante novo processo de escolha."
+            },
+            {
+              "num": 136,
+              "titulo": "Atribuições do Conselho Tutelar",
+              "texto": "São atribuições do Conselho Tutelar:\nI – atender as crianças e adolescentes nas hipóteses previstas nos arts. 98 e 105, aplicando as medidas previstas no art. 101, I a VII;\nII – atender e aconselhar os pais ou responsável, aplicando as medidas previstas no art. 129, I a VII;\nIII – promover a execução de suas decisões, podendo para tanto requisitar serviços públicos nas áreas de saúde, educação, serviço social, previdência, trabalho e segurança, bem como representar junto à autoridade judiciária nos casos de descumprimento injustificado de suas deliberações;\nIV – encaminhar ao Ministério Público notícia de fato que constitua infração administrativa ou penal contra os direitos da criança ou adolescente;\nV – encaminhar à autoridade judiciária os casos de sua competência;\nVI – providenciar a medida estabelecida pela autoridade judiciária, dentre as previstas no art. 101, de I a VI, para o adolescente autor de ato infracional;\nVII – expedir notificações;\nVIII – requisitar certidões de nascimento e de óbito de criança ou adolescente quando necessário;\nIX – assessorar o Poder Executivo local na elaboração da proposta orçamentária para planos e programas de atendimento dos direitos da criança e do adolescente;\nX – representar, em nome da pessoa e da família, contra a violação dos direitos previstos no art. 220, § 3º, inciso II, da Constituição Federal;\nXI – representar ao Ministério Público para efeito das ações de perda ou suspensão do poder familiar, após esgotadas as possibilidades de manutenção da criança ou do adolescente junto à família natural;\nXII – promover e incentivar, na comunidade e nos grupos profissionais, ações de divulgação e treinamento para o reconhecimento de sintomas de maus-tratos em crianças e adolescentes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cf1988",
+      "sigla": "CF/88",
+      "titulo": "Constituição Federal — Educação",
+      "subtitulo": "Constituição da República Federativa do Brasil, 1988 — Seção I: Da Educação (Arts. 205–214)",
+      "cor": "#f59e0b",
+      "icone": "🏛️",
+      "capitulos": [
+        {
+          "titulo": "Capítulo III — Da Educação, da Cultura e do Desporto",
+          "artigos": [
+            {
+              "num": 205,
+              "titulo": "Educação como direito",
+              "texto": "A educação, direito de todos e dever do Estado e da família, será promovida e incentivada com a colaboração da sociedade, visando ao pleno desenvolvimento da pessoa, seu preparo para o exercício da cidadania e sua qualificação para o trabalho."
+            },
+            {
+              "num": 206,
+              "titulo": "Princípios do ensino",
+              "texto": "O ensino será ministrado com base nos seguintes princípios:\nI – igualdade de condições para o acesso e permanência na escola;\nII – liberdade de aprender, ensinar, pesquisar e divulgar o pensamento, a arte e o saber;\nIII – pluralismo de ideias e de concepções pedagógicas, e coexistência de instituições públicas e privadas de ensino;\nIV – gratuidade do ensino público em estabelecimentos oficiais;\nV – valorização dos profissionais da educação escolar, garantidos, na forma da lei, planos de carreira, com ingresso exclusivamente por concurso público de provas e títulos, aos das redes públicas;\nVI – gestão democrática do ensino público, na forma da lei;\nVII – garantia de padrão de qualidade;\nVIII – piso salarial profissional nacional para os profissionais da educação escolar pública, nos termos de lei federal."
+            },
+            {
+              "num": 207,
+              "texto": "As universidades gozam de autonomia didático-científica, administrativa e de gestão financeira e patrimonial, e obedecerão ao princípio de indissociabilidade entre ensino, pesquisa e extensão."
+            },
+            {
+              "num": 208,
+              "titulo": "Dever do Estado com a educação",
+              "texto": "O dever do Estado com a educação será efetivado mediante a garantia de:\nI – educação básica obrigatória e gratuita dos 4 (quatro) aos 17 (dezessete) anos de idade, assegurada inclusive sua oferta gratuita para todos os que a ela não tiveram acesso na idade própria;\nII – progressiva universalização do ensino médio gratuito;\nIII – atendimento educacional especializado aos portadores de deficiência, preferencialmente na rede regular de ensino;\nIV – educação infantil, em creche e pré-escola, às crianças até 5 (cinco) anos de idade;\nV – acesso aos níveis mais elevados do ensino, da pesquisa e da criação artística, segundo a capacidade de cada um;\nVI – oferta de ensino noturno regular, adequado às condições do educando;\nVII – atendimento ao educando, em todas as etapas da educação básica, por meio de programas suplementares de material didático escolar, transporte, alimentação e assistência à saúde.\n§ 1º O acesso ao ensino obrigatório e gratuito é direito público subjetivo.\n§ 2º O não-oferecimento do ensino obrigatório pelo Poder Público, ou sua oferta irregular, importa responsabilidade da autoridade competente.\n§ 3º Compete ao Poder Público recensear os educandos no ensino fundamental, fazer-lhes a chamada e zelar, junto aos pais ou responsáveis, pela frequência à escola."
+            },
+            {
+              "num": 210,
+              "texto": "Serão fixados conteúdos mínimos para o ensino fundamental, de maneira a assegurar formação básica comum e respeito aos valores culturais e artísticos, nacionais e regionais.\n§ 1º O ensino religioso, de matrícula facultativa, constituirá disciplina dos horários normais das escolas públicas de ensino fundamental.\n§ 2º O ensino fundamental regular será ministrado em língua portuguesa, assegurada às comunidades indígenas também a utilização de suas línguas maternas e processos próprios de aprendizagem."
+            },
+            {
+              "num": 211,
+              "titulo": "Organização dos sistemas de ensino",
+              "texto": "A União, os Estados, o Distrito Federal e os Municípios organizarão em regime de colaboração seus sistemas de ensino.\n§ 1º A União organizará o sistema federal de ensino e o dos Territórios, financiará as instituições de ensino públicas federais e exercerá, em matéria educacional, função redistributiva e supletiva, de forma a garantir equalização de oportunidades educacionais e padrão mínimo de qualidade do ensino mediante assistência técnica e financeira aos Estados, ao Distrito Federal e aos Municípios.\n§ 2º Os Municípios atuarão prioritariamente no ensino fundamental e na educação infantil.\n§ 3º Os Estados e o Distrito Federal atuarão prioritariamente no ensino fundamental e médio.\n§ 4º Na organização de seus sistemas de ensino, a União, os Estados, o Distrito Federal e os Municípios definirão formas de colaboração, de modo a assegurar a universalização do ensino obrigatório."
+            },
+            {
+              "num": 212,
+              "titulo": "Financiamento da educação",
+              "texto": "A União aplicará, anualmente, nunca menos de dezoito, e os Estados, o Distrito Federal e os Municípios vinte e cinco por cento, no mínimo, da receita resultante de impostos, compreendida a proveniente de transferências, na manutenção e desenvolvimento do ensino.\n§ 5º A educação básica pública terá como fonte adicional de financiamento a contribuição social do salário-educação, recolhida pelas empresas na forma da lei."
+            },
+            {
+              "num": 214,
+              "titulo": "Plano Nacional de Educação",
+              "texto": "A lei estabelecerá o plano nacional de educação, de duração decenal, com o objetivo de articular o sistema nacional de educação em regime de colaboração e definir diretrizes, objetivos, metas e estratégias de implementação para assegurar a manutenção e desenvolvimento do ensino em seus diversos níveis, etapas e modalidades por meio de ações integradas dos poderes públicos das diferentes esferas federativas que conduzam a:\nI – erradicação do analfabetismo;\nII – universalização do atendimento escolar;\nIII – melhoria da qualidade do ensino;\nIV – formação para o trabalho;\nV – promoção humanística, científica e tecnológica do País;\nVI – estabelecimento de meta de aplicação de recursos públicos em educação como proporção do produto interno bruto."
+            },
+            {
+              "num": 227,
+              "titulo": "Prioridade absoluta à criança e adolescente",
+              "texto": "É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.\n§ 1º O Estado promoverá programas de assistência integral à saúde da criança, do adolescente e do jovem, admitida a participação de entidades não governamentais, mediante políticas específicas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pne",
+      "sigla": "PNE",
+      "titulo": "Plano Nacional de Educação",
+      "subtitulo": "Lei nº 13.005, de 25 de junho de 2014",
+      "cor": "#8b5cf6",
+      "icone": "🎯",
+      "capitulos": [
+        {
+          "titulo": "Disposições Gerais",
+          "artigos": [
+            {
+              "num": 1,
+              "texto": "É aprovado o Plano Nacional de Educação – PNE, com vigência por 10 (dez) anos, a contar da publicação desta Lei, na forma do Anexo, com vistas ao cumprimento do disposto no art. 214 da Constituição Federal."
+            },
+            {
+              "num": 2,
+              "titulo": "Diretrizes do PNE",
+              "texto": "São diretrizes do PNE:\nI – erradicação do analfabetismo;\nII – universalização do atendimento escolar;\nIII – superação das desigualdades educacionais, com ênfase na promoção da cidadania e na erradicação de todas as formas de discriminação;\nIV – melhoria da qualidade da educação;\nV – formação para o trabalho e para a cidadania, com ênfase nos valores morais e éticos em que se fundamenta a sociedade;\nVI – promoção do princípio da gestão democrática da educação pública;\nVII – promoção humanística, científica, cultural e tecnológica do País;\nVIII – estabelecimento de meta de aplicação de recursos públicos em educação como proporção do Produto Interno Bruto – PIB, que assegure atendimento às necessidades de expansão, com padrão de qualidade e equidade;\nIX – valorização dos (as) profissionais da educação;\nX – promoção dos princípios do respeito aos direitos humanos, à diversidade e à sustentabilidade socioambiental."
+            },
+            {
+              "num": 5,
+              "titulo": "Avaliação e monitoramento",
+              "texto": "A execução do PNE e o cumprimento de suas metas serão objeto de monitoramento contínuo e de avaliações periódicas, realizados pelas seguintes instâncias:\nI – Ministério da Educação – MEC;\nII – Comissão de Educação da Câmara dos Deputados e Comissão de Educação, Cultura e Esporte do Senado Federal;\nIII – Conselho Nacional de Educação – CNE;\nIV – Fórum Nacional de Educação."
+            }
+          ]
+        },
+        {
+          "titulo": "Metas selecionadas do PNE (Anexo)",
+          "artigos": [
+            {
+              "num": "Meta 1",
+              "titulo": "Educação Infantil",
+              "texto": "Universalizar, até 2016, a educação infantil na pré-escola para as crianças de 4 (quatro) a 5 (cinco) anos de idade e ampliar a oferta de educação infantil em creches de forma a atender, no mínimo, 50% (cinquenta por cento) das crianças de até 3 (três) anos até o final da vigência deste PNE."
+            },
+            {
+              "num": "Meta 2",
+              "titulo": "Ensino Fundamental",
+              "texto": "Universalizar o ensino fundamental de 9 (nove) anos para toda a população de 6 (seis) a 14 (quatorze) anos e garantir que pelo menos 95% (noventa e cinco por cento) dos alunos concluam essa etapa na idade recomendada, até o último ano de vigência deste PNE."
+            },
+            {
+              "num": "Meta 4",
+              "titulo": "Educação Especial",
+              "texto": "Universalizar, para a população de 4 (quatro) a 17 (dezessete) anos com deficiência, transtornos globais do desenvolvimento e altas habilidades ou superdotação, o acesso à educação básica e ao atendimento educacional especializado, preferencialmente na rede regular de ensino, com a garantia de sistema educacional inclusivo, de salas de recursos multifuncionais, classes, escolas ou serviços especializados, públicos ou conveniados."
+            },
+            {
+              "num": "Meta 7",
+              "titulo": "IDEB — qualidade da educação básica",
+              "texto": "Fomentar a qualidade da educação básica em todas as etapas e modalidades, com melhoria do fluxo escolar e da aprendizagem de modo a atingir as seguintes médias nacionais para o IDEB: 6,0 nos anos iniciais do ensino fundamental; 5,5 nos anos finais do ensino fundamental; 5,2 no ensino médio."
+            },
+            {
+              "num": "Meta 15",
+              "titulo": "Formação de professores",
+              "texto": "Garantir, em regime de colaboração entre a União, os Estados, o Distrito Federal e os Municípios, no prazo de 1 (um) ano de vigência deste PNE, política nacional de formação dos profissionais da educação de que tratam os incisos I, II e III do caput do art. 61 da Lei no 9.394, de 20 de dezembro de 1996, assegurado que todos os professores e as professoras da educação básica possuam formação específica de nível superior, obtida em curso de licenciatura na área de conhecimento em que atuam."
+            },
+            {
+              "num": "Meta 17",
+              "titulo": "Valorização docente — piso salarial",
+              "texto": "Valorizar os(as) profissionais do magistério das redes públicas de educação básica de forma a equiparar seu rendimento médio ao dos(as) demais profissionais com escolaridade equivalente, até o final do sexto ano de vigência deste PNE."
+            },
+            {
+              "num": "Meta 18",
+              "titulo": "Plano de carreira",
+              "texto": "Assegurar, no prazo de 2 (dois) anos, a existência de planos de Carreira para os(as) profissionais da educação básica e superior pública de todos os sistemas de ensino e, para o plano de Carreira dos(as) profissionais da educação básica pública, tomar como referência o piso salarial nacional profissional, definido em lei federal, nos termos do inciso VIII do art. 206 da Constituição Federal."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bncc",
+      "sigla": "BNCC",
+      "titulo": "Base Nacional Comum Curricular",
+      "subtitulo": "Resolução CNE/CP nº 2, de 22 de dezembro de 2017",
+      "cor": "#ef4444",
+      "icone": "📐",
+      "capitulos": [
+        {
+          "titulo": "Competências Gerais da Educação Básica",
+          "artigos": [
+            {
+              "num": "CG 1",
+              "titulo": "Conhecimento",
+              "texto": "Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa, democrática e inclusiva."
+            },
+            {
+              "num": "CG 2",
+              "titulo": "Pensamento científico, crítico e criativo",
+              "texto": "Exercitar a curiosidade intelectual e recorrer à abordagem própria das ciências, incluindo a investigação, a reflexão, a análise crítica, a imaginação e a criatividade, para investigar causas, elaborar e testar hipóteses, formular e resolver problemas e criar soluções (inclusive tecnológicas) com base nos conhecimentos das diferentes áreas."
+            },
+            {
+              "num": "CG 3",
+              "titulo": "Repertório cultural",
+              "texto": "Valorizar e fruir as diversas manifestações artísticas e culturais, das locais às mundiais, e também participar de práticas diversificadas da produção artístico-cultural."
+            },
+            {
+              "num": "CG 4",
+              "titulo": "Comunicação",
+              "texto": "Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e escrita), corporal, visual, sonora e digital –, bem como conhecimentos das linguagens artística, matemática e científica, para se expressar e partilhar informações, experiências, ideias e sentimentos em diferentes contextos e produzir sentidos que levem ao entendimento mútuo."
+            },
+            {
+              "num": "CG 5",
+              "titulo": "Cultura digital",
+              "texto": "Compreender, utilizar e criar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as escolares) para se comunicar, acessar e disseminar informações, produzir conhecimentos, resolver problemas e exercer protagonismo e autoria na vida pessoal e coletiva."
+            },
+            {
+              "num": "CG 6",
+              "titulo": "Trabalho e projeto de vida",
+              "texto": "Valorizar a diversidade de saberes e vivências culturais e apropriar-se de conhecimentos e experiências que lhe possibilitem entender as relações próprias do mundo do trabalho e fazer escolhas alinhadas ao exercício da cidadania e ao seu projeto de vida, com liberdade, autonomia, consciência crítica e responsabilidade."
+            },
+            {
+              "num": "CG 7",
+              "titulo": "Argumentação",
+              "texto": "Argumentar com base em fatos, dados e informações confiáveis, para formular, negociar e defender ideias, pontos de vista e decisões comuns que respeitem e promovam os direitos humanos, a consciência socioambiental e o consumo responsável em âmbito local, regional e global, com posicionamento ético em relação ao cuidado de si mesmo, dos outros e do planeta."
+            },
+            {
+              "num": "CG 8",
+              "titulo": "Autoconhecimento e autocuidado",
+              "texto": "Conhecer-se, apreciar-se e cuidar de sua saúde física e emocional, compreendendo-se na diversidade humana e reconhecendo suas emoções e as dos outros, com autocrítica e capacidade para lidar com elas."
+            },
+            {
+              "num": "CG 9",
+              "titulo": "Empatia e cooperação",
+              "texto": "Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, identidades, culturas e potencialidades, sem preconceitos de qualquer natureza."
+            },
+            {
+              "num": "CG 10",
+              "titulo": "Responsabilidade e cidadania",
+              "texto": "Agir pessoal e coletivamente com autonomia, responsabilidade, flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários."
+            }
+          ]
+        },
+        {
+          "titulo": "Área de Linguagens — Arte (Música)",
+          "artigos": [
+            {
+              "num": "Música — Apresentação",
+              "titulo": "Música na BNCC",
+              "texto": "A Música é a expressão artística que se materializa por meio dos sons, que ganham forma, sentido e significado no âmbito tanto da sensibilidade subjetiva quanto das interações sociais, como resultado de saberes e valores diversos estabelecidos no domínio de cada cultura.\nO componente curricular contribui para a humanização das pessoas, pela experiência sensível com as produções artísticas e com o patrimônio cultural da humanidade em suas diversas manifestações.\nA aprendizagem de música nos Anos Iniciais possibilita às crianças o desenvolvimento da percepção e da expressão sonora, enquanto nos Anos Finais propicia a ampliação do repertório musical e o aprofundamento dos conhecimentos musicais."
+            },
+            {
+              "num": "Música — Obj. 1",
+              "titulo": "Contextos e práticas",
+              "texto": "Explorar, investigar e fruir a música integrada à sua existência, valorizando e respeitando a diversidade de manifestações musicais de diferentes povos e culturas, crenças e valores, identificando-as como expressões da diversidade humana e patrimônio cultural."
+            },
+            {
+              "num": "Música — Obj. 2",
+              "titulo": "Elementos da linguagem musical",
+              "texto": "Explorar e analisar, criticamente, os elementos constitutivos da música (altura, duração, timbre, intensidade, ritmo, melodia, textura etc.) por meio de escuta ativa, de partituras, de áudios, de vídeos e de software de edição musical."
+            },
+            {
+              "num": "Música — Obj. 3",
+              "titulo": "Materialidades",
+              "texto": "Apreciar e experimentar, em projetos temáticos, as relações processuais entre diversas linguagens artísticas, incluindo música, utilizando materiais, instrumentos e recursos tecnológicos disponíveis para a criação de composições e de registros sonoros."
+            },
+            {
+              "num": "Música — Obj. 4",
+              "titulo": "Notação e registro musical",
+              "texto": "Explorar e analisar diferentes sistemas de notação musical (convencional e não convencional), como formas de registro, preservação e propagação da música ao longo do tempo e das culturas."
+            },
+            {
+              "num": "Música — Obj. 5",
+              "titulo": "Processos de criação",
+              "texto": "Criar e improvisar música, utilizando diferentes formas de notação e de registro, valorizando o repertório de sons do cotidiano, os elementos da natureza e as tradições musicais populares e eruditas brasileiras e estrangeiras."
+            },
+            {
+              "num": "Música — Obj. 6",
+              "titulo": "Matrizes estéticas e culturais",
+              "texto": "Reconhecer e analisar as transformações históricas dos sistemas de notação e de execução musical, situando e compreendendo criticamente a diversidade de valores estéticos, culturais e sociais que integram a prática musical."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

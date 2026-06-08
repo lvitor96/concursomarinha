@@ -3,7 +3,7 @@
  * Estratégia: Cache-first para assets estáticos, Network-first para dados.
  */
 
-const CACHE_VERSION = 'v7';
+const CACHE_VERSION = 'v8';
 const CACHE_STATIC  = `sedf-static-${CACHE_VERSION}`;
 const CACHE_DYNAMIC = `sedf-dynamic-${CACHE_VERSION}`;
 
@@ -24,6 +24,9 @@ const ASSETS_ESTATICOS = [
   '/js/dashboard.js',
   '/js/simulado.js',
   '/js/estatisticas.js',
+  '/js/legislacao.js',
+  '/css/legislacao.css',
+  '/data/legislacao.json',
   '/js/questoes.js',
   '/js/resumos.js',
   '/js/cronograma.js',

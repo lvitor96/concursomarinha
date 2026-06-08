@@ -185,6 +185,16 @@ const _modulosCarregados = new Set();
 
 async function carregarModulo(painel) {
   // Painéis de dados sempre re-renderizam para mostrar dados frescos
+  if (painel === 'legislacao') {
+    try {
+      const { iniciarLegislacao } = await import('./legislacao.js');
+      await iniciarLegislacao();
+    } catch (err) {
+      console.error('Erro ao carregar legislação:', err);
+    }
+    return;
+  }
+
   if (painel === 'estatisticas') {
     try {
       const { iniciarEstatisticas } = await import('./estatisticas.js');
