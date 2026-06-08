@@ -477,7 +477,14 @@ function renderizarPainelConfig() {
   const el = document.getElementById('painel-config');
   if (!el) return;
 
-  const usuario = ESTADO.usuario;
+  const usuario  = ESTADO.usuario;
+  const ttsKey   = localStorage.getItem('sedf-tts-key') || '';
+  const ttsVoice = localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B';
+  const ttsStatusHtml = ttsKey
+    ? `<span style="color:var(--cor-sucesso);">✅ Google TTS ativo &mdash; ${ttsVoice}</span>`
+    : `<span style="color:var(--cor-texto-leve);">⚠️ Sem chave &mdash; usando Web Speech API</span>`;
+
+  const optVoice = (v) => ttsVoice === v ? 'selected' : '';
 
   el.innerHTML = `
     <div class="painel-header" data-emoji="⚙️">
@@ -529,7 +536,7 @@ function renderizarPainelConfig() {
             placeholder="AIzaSy…"
             autocomplete="off"
             style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;font-family:var(--fonte-mono,monospace);width:100%;box-sizing:border-box;"
-            value="${localStorage.getItem('sedf-tts-key') || ''}">
+            value="${ttsKey}">
         </div>
 
         <div style="display:flex;flex-direction:column;gap:4px;">
@@ -539,16 +546,16 @@ function renderizarPainelConfig() {
           </label>
           <select id="cfg-tts-voice"
             style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;width:100%;box-sizing:border-box;">
-            <option value="pt-BR-Neural2-B" ${(localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B') === 'pt-BR-Neural2-B' ? 'selected' : ''}>Neural2-B — Masculina (recomendado)</option>
-            <option value="pt-BR-Neural2-C" ${localStorage.getItem('sedf-tts-voice') === 'pt-BR-Neural2-C' ? 'selected' : ''}>Neural2-C — Feminina</option>
-            <option value="pt-BR-Standard-B" ${localStorage.getItem('sedf-tts-voice') === 'pt-BR-Standard-B' ? 'selected' : ''}>Standard-B — Masculina</option>
-            <option value="pt-BR-Standard-C" ${localStorage.getItem('sedf-tts-voice') === 'pt-BR-Standard-C' ? 'selected' : ''}>Standard-C — Feminina</option>
+            <option value="pt-BR-Neural2-B" ${optVoice('pt-BR-Neural2-B')}>Neural2-B — Masculina (recomendado)</option>
+            <option value="pt-BR-Neural2-C" ${optVoice('pt-BR-Neural2-C')}>Neural2-C — Feminina</option>
+            <option value="pt-BR-Standard-B" ${optVoice('pt-BR-Standard-B')}>Standard-B — Masculina</option>
+            <option value="pt-BR-Standard-C" ${optVoice('pt-BR-Standard-C')}>Standard-C — Feminina</option>
           </select>
         </div>
 
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
           <div id="cfg-tts-status" style="font-size:12px;flex:1;">
-            ${_ttsStatusHtml()}
+            ${ttsStatusHtml}
           </div>
           <button id="cfg-tts-save" class="btn btn-sm" style="white-space:nowrap;">
             Salvar
