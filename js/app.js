@@ -104,7 +104,13 @@ function selecionarModo(modo) {
     sessionStorage.removeItem('sedf-modo');
     delete document.body.dataset.modo;
   }
-  iniciarApp();
+  if (modo === 'carro') {
+    iniciarApp();
+    // Abre o painel Carro automaticamente após a app iniciar
+    setTimeout(() => navegarPara('carro'), 100);
+  } else {
+    iniciarApp();
+  }
 }
 
 function aplicarModo(modo) {
@@ -147,15 +153,47 @@ function configurarNavegacao() {
   // Bottom nav + sidebar nav
   document.querySelectorAll('[data-painel]').forEach(btn => {
     btn.addEventListener('click', () => {
+      fecharMenuMais();
       navegarPara(btn.dataset.painel);
     });
   });
+
+  // Botão "Mais"
+  const btnMais = document.getElementById('nav-btn-mais');
+  const menuMais = document.getElementById('nav-mais-menu');
+  if (btnMais && menuMais) {
+    btnMais.addEventListener('click', () => {
+      const aberto = !menuMais.classList.contains('oculto');
+      if (aberto) fecharMenuMais();
+      else        abrirMenuMais();
+    });
+    // Fecha ao clicar fora
+    document.addEventListener('click', e => {
+      if (!menuMais.contains(e.target) && e.target !== btnMais) {
+        fecharMenuMais();
+      }
+    }, { capture: true });
+  }
 
   // Botão "Mudar modo"
   const btnMudar = document.getElementById('btn-mudar-modo');
   if (btnMudar) {
     btnMudar.addEventListener('click', () => mostrarTela('modo'));
   }
+}
+
+function abrirMenuMais() {
+  const menu = document.getElementById('nav-mais-menu');
+  const btn  = document.getElementById('nav-btn-mais');
+  menu?.classList.remove('oculto');
+  btn?.classList.add('ativo');
+}
+
+function fecharMenuMais() {
+  const menu = document.getElementById('nav-mais-menu');
+  const btn  = document.getElementById('nav-btn-mais');
+  menu?.classList.add('oculto');
+  btn?.classList.remove('ativo');
 }
 
 function navegarPara(painel) {
@@ -167,8 +205,19 @@ function navegarPara(painel) {
     p.classList.toggle('ativo', p.id === `painel-${painel}`);
   });
 
-  // Botões nav
-  document.querySelectorAll('[data-painel]').forEach(btn => {
+  // Botões nav — marca ativo apenas no nav principal (não no menu Mais)
+  const paineisMais = ['cronograma','estatisticas','legislacao','videoaulas','edital','config'];
+  document.querySelectorAll('#nav-inferior [data-painel]').forEach(btn => {
+    btn.classList.toggle('ativo', btn.dataset.painel === painel);
+  });
+  document.querySelectorAll('#sidebar [data-painel]').forEach(btn => {
+    btn.classList.toggle('ativo', btn.dataset.painel === painel);
+  });
+  // Se for painel do menu Mais, marca o botão Mais como ativo
+  const btnMais = document.getElementById('nav-btn-mais');
+  if (btnMais) btnMais.classList.toggle('ativo', paineisMais.includes(painel));
+  // Marca item dentro do menu Mais
+  document.querySelectorAll('.nav-mais-item').forEach(btn => {
     btn.classList.toggle('ativo', btn.dataset.painel === painel);
   });
 
@@ -201,6 +250,16 @@ async function carregarModulo(painel) {
       await iniciarVideoaulas();
     } catch (err) {
       console.error('Erro ao carregar videoaulas:', err);
+    }
+    return;
+  }
+
+  if (painel === 'carro') {
+    try {
+      const { iniciarCarro } = await import('./carro.js');
+      await iniciarCarro();
+    } catch (err) {
+      console.error('Erro ao carregar modo carro:', err);
     }
     return;
   }
@@ -348,28 +407,38 @@ function renderizarDashboardPlaceholder() {
     <!-- Ações rápidas -->
     <div class="secao" style="padding-top:0;">
       <div class="secao-header">
-        <h3 class="secao-titulo">Começar agora</h3>
+        <h3 class="secao-titulo">Ir para</h3>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <button class="card card-hover" onclick="app.navegarPara('questoes')" style="padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
-          <span style="font-size:28px;">❓</span>
+        <button class="card card-hover" onclick="app.navegarPara('questoes')" style="padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <span style="font-size:26px;">❓</span>
           <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Questões</span>
-          <span style="font-size:11px;color:var(--cor-texto-leve);">Treinar agora</span>
+          <span style="font-size:11px;color:var(--cor-texto-leve);">Treinar</span>
         </button>
-        <button class="card card-hover" onclick="app.navegarPara('estudar')" style="padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
-          <span style="font-size:28px;">📚</span>
+        <button class="card card-hover" onclick="app.navegarPara('estudar')" style="padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <span style="font-size:26px;">📚</span>
           <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Resumos</span>
-          <span style="font-size:11px;color:var(--cor-texto-leve);">Estudar conteúdo</span>
+          <span style="font-size:11px;color:var(--cor-texto-leve);">Estudar</span>
         </button>
-        <button class="card card-hover" onclick="app.navegarPara('cronograma')" style="padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
-          <span style="font-size:28px;">📅</span>
-          <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Cronograma</span>
-          <span style="font-size:11px;color:var(--cor-texto-leve);">Planejar estudos</span>
+        <button class="card card-hover" onclick="app.navegarPara('simulado')" style="padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <span style="font-size:26px;">⏱️</span>
+          <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Simulado</span>
+          <span style="font-size:11px;color:var(--cor-texto-leve);">Prova cronometrada</span>
         </button>
-        <button class="card card-hover" onclick="app.navegarPara('config')" style="padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;">
-          <span style="font-size:28px;">⚙️</span>
-          <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Config.</span>
-          <span style="font-size:11px;color:var(--cor-texto-leve);">Ajustes</span>
+        <button class="card card-hover" onclick="app.navegarPara('legislacao')" style="padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <span style="font-size:26px;">⚖️</span>
+          <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Legislação</span>
+          <span style="font-size:11px;color:var(--cor-texto-leve);">LDB · ECA · CF/88</span>
+        </button>
+        <button class="card card-hover" onclick="app.navegarPara('videoaulas')" style="padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <span style="font-size:26px;">🎬</span>
+          <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Videoaulas</span>
+          <span style="font-size:11px;color:var(--cor-texto-leve);">Biblioteca YouTube</span>
+        </button>
+        <button class="card card-hover" onclick="app.navegarPara('edital')" style="padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <span style="font-size:26px;">📋</span>
+          <span style="font-size:13px;font-weight:600;color:var(--cor-texto);">Edital</span>
+          <span style="font-size:11px;color:var(--cor-texto-leve);">Estrutura da prova</span>
         </button>
       </div>
     </div>

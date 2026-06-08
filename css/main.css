@@ -1021,3 +1021,69 @@ textarea.input {
 [data-modo="metro"] .painel-header-titulo {
   font-size: 20px;
 }
+
+/* ════════════════════════════════
+   NAV "MAIS" — Menu de módulos secundários
+   ════════════════════════════════ */
+.nav-mais-menu {
+  position: fixed;
+  bottom: var(--altura-nav-inferior);
+  left: 0;
+  right: 0;
+  background: var(--cor-fundo-card);
+  border-top: 1px solid var(--cor-borda);
+  box-shadow: 0 -8px 32px rgba(0,0,0,.14);
+  z-index: 9;
+  transform: translateY(0);
+  transition: transform .25s cubic-bezier(.4,0,.2,1), opacity .2s;
+  padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+}
+
+.nav-mais-menu.oculto {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-mais-grade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.nav-mais-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 8px;
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo);
+  border: 1.5px solid var(--cor-borda);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-mais-item:active {
+  transform: scale(.93);
+}
+
+.nav-mais-item:hover,
+.nav-mais-item.ativo {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
+.nav-mais-icone {
+  font-size: 22px;
+  line-height: 1;
+}
+
+@media (min-width: 900px) {
+  .nav-mais-menu { display: none; }
+}

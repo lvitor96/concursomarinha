@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="/css/legislacao.css">
   <link rel="stylesheet" href="/css/videoaulas.css">
   <link rel="stylesheet" href="/css/edital.css">
+  <link rel="stylesheet" href="/css/carro.css">
 
   <!-- Firebase Import Map -->
   <script type="importmap">
@@ -267,6 +268,13 @@
           </div>
         </section>
 
+        <!-- Modo Carro -->
+        <section id="painel-carro" class="painel" aria-label="Modo Carro — Áudio">
+          <div class="painel-carregando">
+            <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
+          </div>
+        </section>
+
         <!-- Edital Ativo -->
         <section id="painel-edital" class="painel" aria-label="Edital Ativo">
           <div class="painel-carregando">
@@ -300,6 +308,36 @@
   </div><!-- /app-corpo -->
 
   <!-- Navegação inferior (mobile) -->
+  <!-- Menu "Mais" — módulos secundários -->
+  <div id="nav-mais-menu" class="nav-mais-menu oculto" role="dialog" aria-label="Mais módulos">
+    <div class="nav-mais-grade">
+      <button class="nav-mais-item" data-painel="cronograma">
+        <span class="nav-mais-icone">📅</span>
+        <span>Cronograma</span>
+      </button>
+      <button class="nav-mais-item" data-painel="estatisticas">
+        <span class="nav-mais-icone">📊</span>
+        <span>Estatísticas</span>
+      </button>
+      <button class="nav-mais-item" data-painel="legislacao">
+        <span class="nav-mais-icone">⚖️</span>
+        <span>Legislação</span>
+      </button>
+      <button class="nav-mais-item" data-painel="videoaulas">
+        <span class="nav-mais-icone">🎬</span>
+        <span>Videoaulas</span>
+      </button>
+      <button class="nav-mais-item" data-painel="edital">
+        <span class="nav-mais-icone">📋</span>
+        <span>Edital</span>
+      </button>
+      <button class="nav-mais-item" data-painel="config">
+        <span class="nav-mais-icone">⚙️</span>
+        <span>Config.</span>
+      </button>
+    </div>
+  </div>
+
   <nav id="nav-inferior" role="navigation" aria-label="Navegação principal">
     <button class="nav-item ativo" data-painel="dashboard">
       <span class="nav-icone" aria-hidden="true">🏠</span>
@@ -317,13 +355,9 @@
       <span class="nav-icone" aria-hidden="true">⏱️</span>
       <span>Prova</span>
     </button>
-    <button class="nav-item" data-painel="cronograma">
-      <span class="nav-icone" aria-hidden="true">📅</span>
-      <span>Agenda</span>
-    </button>
-    <button class="nav-item" data-painel="config">
-      <span class="nav-icone" aria-hidden="true">⚙️</span>
-      <span>Config.</span>
+    <button class="nav-item" id="nav-btn-mais">
+      <span class="nav-icone" aria-hidden="true">⋯</span>
+      <span>Mais</span>
     </button>
   </nav>
 
