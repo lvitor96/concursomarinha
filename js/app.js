@@ -473,142 +473,65 @@ function _cardProgresso(nome, sigla, bloco, feito, total) {
 }
 
 // ── Painel Config ────────────────────────────────────────────
+// HTML é estático (index.html). Esta função apenas preenche campos
+// dinâmicos e registra event listeners.
 function renderizarPainelConfig() {
-  const el = document.getElementById('painel-config');
-  if (!el) return;
+  const usuario = ESTADO.usuario;
 
-  const usuario  = ESTADO.usuario;
+  // Perfil
+  const foto = document.getElementById('cfg-user-photo');
+  const nome = document.getElementById('cfg-user-name');
+  const email = document.getElementById('cfg-user-email');
+  if (foto)  { foto.src = usuario?.photoURL || ''; foto.alt = usuario?.displayName || 'Usuário'; }
+  if (nome)  nome.textContent  = usuario?.displayName || '—';
+  if (email) email.textContent = usuario?.email || '—';
+
+  // Aparência
+  const btnDark = document.getElementById('toggle-dark');
+  if (btnDark) {
+    btnDark.textContent = document.body.dataset.tema === 'escuro' ? '🌙 ON' : '☀️ OFF';
+    btnDark.onclick = null;
+    btnDark.addEventListener('click', alternarTema);
+  }
+
+  // TTS — preenche campos com valores salvos
   const ttsKey   = localStorage.getItem('sedf-tts-key') || '';
   const ttsVoice = localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B';
-  const ttsStatusHtml = ttsKey
-    ? `<span style="color:var(--cor-sucesso);">✅ Google TTS ativo &mdash; ${ttsVoice}</span>`
-    : `<span style="color:var(--cor-texto-leve);">⚠️ Sem chave &mdash; usando Web Speech API</span>`;
 
-  const optVoice = (v) => ttsVoice === v ? 'selected' : '';
+  const inputKey    = document.getElementById('cfg-tts-key');
+  const selectVoice = document.getElementById('cfg-tts-voice');
+  const statusEl    = document.getElementById('cfg-tts-status');
+  const btnSave     = document.getElementById('cfg-tts-save');
 
-  el.innerHTML = `
-    <div class="painel-header" data-emoji="⚙️">
-      <div class="painel-header-titulo">Configurações</div>
-    </div>
+  if (inputKey)    inputKey.value = ttsKey;
+  if (selectVoice) selectVoice.value = ttsVoice;
+  if (statusEl)    statusEl.innerHTML = _ttsStatusHtml();
 
-    <!-- Perfil -->
-    <div class="secao">
-      <div class="secao-header"><h3 class="secao-titulo">Perfil</h3></div>
-      <div class="card" style="padding:16px;display:flex;align-items:center;gap:14px;">
-        <img class="avatar" src="${usuario?.photoURL || ''}" width="48" height="48" alt="${usuario?.displayName || 'Usuário'}">
-        <div>
-          <div style="font-weight:700;font-size:15px;">${usuario?.displayName || '—'}</div>
-          <div style="font-size:12px;color:var(--cor-texto-leve);">${usuario?.email || '—'}</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modo escuro -->
-    <div class="secao" style="padding-top:0;">
-      <div class="secao-header"><h3 class="secao-titulo">Aparência</h3></div>
-      <div class="card" style="padding:16px;display:flex;align-items:center;justify-content:space-between;">
-        <div>
-          <div style="font-weight:600;font-size:14px;">Modo Escuro</div>
-          <div style="font-size:12px;color:var(--cor-texto-leve);">Reduz o brilho da tela</div>
-        </div>
-        <button id="toggle-dark" class="btn btn-sm" style="min-width:64px;">
-          ${document.body.dataset.tema === 'escuro' ? '🌙 ON' : '☀️ OFF'}
-        </button>
-      </div>
-    </div>
-
-    <!-- Integrações -->
-    <div class="secao" style="padding-top:0;">
-      <div class="secao-header"><h3 class="secao-titulo">Integrações</h3></div>
-      <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:14px;">
-
-        <div style="font-size:13px;color:var(--cor-texto-leve);line-height:1.5;">
-          Configure a <strong>Google Cloud TTS</strong> para voz neural mais natural no
-          <strong>Modo Carro</strong>. Sem chave, usa a Web Speech API (voz do sistema).
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <label for="cfg-tts-key"
-            style="font-size:12px;font-weight:600;color:var(--cor-texto);letter-spacing:.3px;text-transform:uppercase;">
-            Chave Google Cloud TTS
-          </label>
-          <input id="cfg-tts-key" type="password"
-            placeholder="AIzaSy…"
-            autocomplete="off"
-            style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;font-family:var(--fonte-mono,monospace);width:100%;box-sizing:border-box;"
-            value="${ttsKey}">
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <label for="cfg-tts-voice"
-            style="font-size:12px;font-weight:600;color:var(--cor-texto);letter-spacing:.3px;text-transform:uppercase;">
-            Voz
-          </label>
-          <select id="cfg-tts-voice"
-            style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;width:100%;box-sizing:border-box;">
-            <option value="pt-BR-Neural2-B" ${optVoice('pt-BR-Neural2-B')}>Neural2-B — Masculina (recomendado)</option>
-            <option value="pt-BR-Neural2-C" ${optVoice('pt-BR-Neural2-C')}>Neural2-C — Feminina</option>
-            <option value="pt-BR-Standard-B" ${optVoice('pt-BR-Standard-B')}>Standard-B — Masculina</option>
-            <option value="pt-BR-Standard-C" ${optVoice('pt-BR-Standard-C')}>Standard-C — Feminina</option>
-          </select>
-        </div>
-
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div id="cfg-tts-status" style="font-size:12px;flex:1;">
-            ${ttsStatusHtml}
-          </div>
-          <button id="cfg-tts-save" class="btn btn-sm" style="white-space:nowrap;">
-            Salvar
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Sobre -->
-    <div class="secao" style="padding-top:0;">
-      <div class="secao-header"><h3 class="secao-titulo">Sobre</h3></div>
-      <div class="card" style="padding:16px;">
-        <div style="font-size:13px;color:var(--cor-texto-leve);line-height:1.7;">
-          <div><strong>App:</strong> SEDF Estudos v0.1.0</div>
-          <div><strong>Cargo:</strong> Professor de Educação Básica — Música</div>
-          <div><strong>Escola:</strong> CEP-EMB · Concurso Público SEDF</div>
-          <div style="margin-top:8px;font-size:11px;opacity:.6;">Banco de questões: provas reais (Quadrix, IADES)</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Logout -->
-    <div class="secao" style="padding-top:0;">
-      <button id="btn-logout" class="btn btn-outline btn-full" style="color:var(--cor-erro);border-color:var(--cor-erro);">
-        Sair da conta
-      </button>
-    </div>
-  `;
-
-  // Toggle dark mode
-  document.getElementById('toggle-dark')?.addEventListener('click', alternarTema);
-
-  // TTS — salvar chave + voz
-  document.getElementById('cfg-tts-save')?.addEventListener('click', () => {
-    const key   = document.getElementById('cfg-tts-key')?.value.trim() || '';
-    const voice = document.getElementById('cfg-tts-voice')?.value || 'pt-BR-Neural2-B';
-    if (key) {
-      localStorage.setItem('sedf-tts-key', key);
-    } else {
-      localStorage.removeItem('sedf-tts-key');
-    }
-    localStorage.setItem('sedf-tts-voice', voice);
-    const statusEl = document.getElementById('cfg-tts-status');
-    if (statusEl) statusEl.innerHTML = _ttsStatusHtml();
-    mostrarToast(key ? '✅ Chave TTS salva com sucesso' : '⚠️ Chave removida — usando Web Speech API');
-  });
+  if (btnSave) {
+    btnSave.onclick = null;
+    btnSave.addEventListener('click', () => {
+      const key   = inputKey?.value.trim() || '';
+      const voice = selectVoice?.value || 'pt-BR-Neural2-B';
+      if (key) {
+        localStorage.setItem('sedf-tts-key', key);
+      } else {
+        localStorage.removeItem('sedf-tts-key');
+      }
+      localStorage.setItem('sedf-tts-voice', voice);
+      if (statusEl) statusEl.innerHTML = _ttsStatusHtml();
+      mostrarToast(key ? '✅ Chave TTS salva com sucesso' : '⚠️ Chave removida — usando Web Speech API');
+    });
+  }
 
   // Logout
-  document.getElementById('btn-logout')?.addEventListener('click', async () => {
-    await fazerLogout();
-    location.reload();
-  });
+  const btnLogout = document.getElementById('btn-logout');
+  if (btnLogout) {
+    btnLogout.onclick = null;
+    btnLogout.addEventListener('click', async () => {
+      await fazerLogout();
+      location.reload();
+    });
+  }
 }
 
 function _ttsStatusHtml() {

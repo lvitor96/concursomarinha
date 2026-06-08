@@ -298,9 +298,100 @@
 
         <!-- Configurações -->
         <section id="painel-config" class="painel" aria-label="Configurações">
-          <div class="painel-carregando">
-            <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
+
+          <div class="painel-header" data-emoji="⚙️">
+            <div class="painel-header-titulo">Configurações</div>
           </div>
+
+          <!-- Perfil -->
+          <div class="secao">
+            <div class="secao-header"><h3 class="secao-titulo">Perfil</h3></div>
+            <div class="card" style="padding:16px;display:flex;align-items:center;gap:14px;">
+              <img id="cfg-user-photo" class="avatar" src="" width="48" height="48" alt="Foto do usuário">
+              <div>
+                <div id="cfg-user-name" style="font-weight:700;font-size:15px;">—</div>
+                <div id="cfg-user-email" style="font-size:12px;color:var(--cor-texto-leve);">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aparência -->
+          <div class="secao" style="padding-top:0;">
+            <div class="secao-header"><h3 class="secao-titulo">Aparência</h3></div>
+            <div class="card" style="padding:16px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-weight:600;font-size:14px;">Modo Escuro</div>
+                <div style="font-size:12px;color:var(--cor-texto-leve);">Reduz o brilho da tela</div>
+              </div>
+              <button id="toggle-dark" class="btn btn-sm" style="min-width:64px;">☀️ OFF</button>
+            </div>
+          </div>
+
+          <!-- Integrações -->
+          <div class="secao" style="padding-top:0;">
+            <div class="secao-header"><h3 class="secao-titulo">Integrações</h3></div>
+            <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:14px;">
+
+              <div style="font-size:13px;color:var(--cor-texto-leve);line-height:1.5;">
+                Configure a <strong>Google Cloud TTS</strong> para voz neural mais natural no
+                <strong>Modo Carro</strong>. Sem chave, usa a Web Speech API (voz do sistema).
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <label for="cfg-tts-key"
+                  style="font-size:12px;font-weight:600;color:var(--cor-texto);letter-spacing:.3px;text-transform:uppercase;">
+                  Chave Google Cloud TTS
+                </label>
+                <input id="cfg-tts-key" type="password"
+                  placeholder="AIzaSy…"
+                  autocomplete="off"
+                  style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;font-family:monospace;width:100%;box-sizing:border-box;">
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <label for="cfg-tts-voice"
+                  style="font-size:12px;font-weight:600;color:var(--cor-texto);letter-spacing:.3px;text-transform:uppercase;">
+                  Voz
+                </label>
+                <select id="cfg-tts-voice"
+                  style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;width:100%;box-sizing:border-box;">
+                  <option value="pt-BR-Neural2-B">Neural2-B — Masculina (recomendado)</option>
+                  <option value="pt-BR-Neural2-C">Neural2-C — Feminina</option>
+                  <option value="pt-BR-Standard-B">Standard-B — Masculina</option>
+                  <option value="pt-BR-Standard-C">Standard-C — Feminina</option>
+                </select>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <div id="cfg-tts-status" style="font-size:12px;flex:1;">
+                  <span style="color:var(--cor-texto-leve);">⚠️ Sem chave &mdash; usando Web Speech API</span>
+                </div>
+                <button id="cfg-tts-save" class="btn btn-sm" style="white-space:nowrap;">Salvar</button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Sobre -->
+          <div class="secao" style="padding-top:0;">
+            <div class="secao-header"><h3 class="secao-titulo">Sobre</h3></div>
+            <div class="card" style="padding:16px;">
+              <div style="font-size:13px;color:var(--cor-texto-leve);line-height:1.7;">
+                <div><strong>App:</strong> SEDF Estudos v0.1.0</div>
+                <div><strong>Cargo:</strong> Professor de Educação Básica — Música</div>
+                <div><strong>Escola:</strong> CEP-EMB · Concurso Público SEDF</div>
+                <div style="margin-top:8px;font-size:11px;opacity:.6;">Banco de questões: provas reais (Quadrix, IADES)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logout -->
+          <div class="secao" style="padding-top:0;">
+            <button id="btn-logout" class="btn btn-outline btn-full" style="color:var(--cor-erro);border-color:var(--cor-erro);">
+              Sair da conta
+            </button>
+          </div>
+
         </section>
 
       </div><!-- /paineis-wrapper -->
