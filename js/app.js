@@ -184,15 +184,22 @@ function navegarPara(painel) {
 const _modulosCarregados = new Set();
 
 async function carregarModulo(painel) {
+  // Dashboard sempre re-renderiza para mostrar dados frescos
+  if (painel === 'dashboard') {
+    try {
+      const { iniciarDashboard } = await import('./dashboard.js');
+      await iniciarDashboard();
+    } catch (err) {
+      console.error('Erro ao carregar dashboard:', err);
+    }
+    return;
+  }
+
   if (_modulosCarregados.has(painel)) return;
   _modulosCarregados.add(painel);
 
   try {
     switch (painel) {
-      case 'dashboard':
-        // Dashboard é renderizado inline por agora
-        renderizarDashboardPlaceholder();
-        break;
       case 'estudar': {
         const { iniciarResumes } = await import('./resumos.js');
         await iniciarResumes();

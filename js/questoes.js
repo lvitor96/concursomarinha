@@ -7,7 +7,7 @@ import { db } from './firebase.js';
 import { obterUsuario } from './auth.js';
 import {
   doc, setDoc, getDoc, collection, getDocs,
-  serverTimestamp, writeBatch,
+  serverTimestamp, writeBatch, increment,
 } from 'firebase/firestore';
 
 /* ═══════════════════════════════════════════════
@@ -843,6 +843,25 @@ async function _salvarProgresso(questao, correta) {
     );
   } catch (e) {
     // offline — será sincronizado depois pelo Firestore
+  }
+
+  // Tracking diário + status por questão (alimenta o dashboard)
+  const hoje = new Date().toISOString().slice(0, 10);
+  try {
+    await Promise.all([
+      setDoc(
+        doc(db, 'users', usuario.uid, 'daily', hoje),
+        { respondidas: increment(1), acertos: increment(correta ? 1 : 0), atualizadoEm: serverTimestamp() },
+        { merge: true }
+      ),
+      setDoc(
+        doc(db, 'users', usuario.uid, 'questoesStatus', questao.id),
+        { respondida: true, correta, bloco: questao.bloco, atualizadoEm: serverTimestamp() },
+        { merge: true }
+      ),
+    ]);
+  } catch (e) {
+    // offline
   }
 }
 
