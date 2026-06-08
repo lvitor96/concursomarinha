@@ -1,0 +1,288 @@
+/* ================================================================
+   videoaulas.css — Módulo Videoaulas
+   ================================================================ */
+
+/* ── Formulário de adição ───────────────────────────────────── */
+.vid-add-wrap {
+  margin: 14px 16px 0;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+}
+
+.vid-add-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.vid-add-header-titulo {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.vid-add-toggle {
+  font-size: 12px;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+.vid-add-form {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.vid-add-form.aberto { display: flex; }
+
+.vid-add-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s;
+}
+
+.vid-add-input:focus { border-color: var(--cor-secundaria); }
+
+.vid-add-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.vid-add-bloco {
+  padding: 9px 10px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color .15s;
+}
+
+.vid-add-bloco:focus { border-color: var(--cor-secundaria); }
+
+.vid-add-status {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  min-height: 16px;
+}
+
+.vid-add-status.erro  { color: var(--cor-erro); }
+.vid-add-status.ok    { color: var(--cor-sucesso); }
+
+/* ── Biblioteca pessoal ─────────────────────────────────────── */
+.vid-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.vid-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .12s;
+}
+
+.vid-card.assistido { border-color: var(--cor-sucesso); }
+
+.vid-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.vid-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity .15s;
+}
+
+.vid-card-thumb-wrap:hover .vid-card-thumb { opacity: .85; }
+
+.vid-card-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.vid-card-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  transition: transform .15s;
+}
+
+.vid-card-thumb-wrap:hover .vid-card-play-btn { transform: scale(1.1); }
+
+.vid-card-info {
+  padding: 10px 12px;
+}
+
+.vid-card-titulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  line-height: 1.4;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vid-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.vid-card-canal {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+}
+
+.vid-card-acoes {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.vid-btn-assistido {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: var(--raio-sm);
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .12s;
+}
+
+.vid-btn-assistido:hover,
+.vid-btn-assistido.ativo {
+  background: var(--cor-sucesso);
+  border-color: var(--cor-sucesso);
+  color: #fff;
+}
+
+.vid-btn-remover {
+  padding: 6px 8px;
+  border-radius: var(--raio-sm);
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all .12s;
+}
+
+.vid-btn-remover:hover {
+  background: var(--cor-erro);
+  border-color: var(--cor-erro);
+  color: #fff;
+}
+
+.vid-vazio {
+  text-align: center;
+  padding: 24px 16px;
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ── Sugestões ──────────────────────────────────────────────── */
+.vid-sug-bloco {
+  margin-bottom: 4px;
+}
+
+.vid-sug-bloco-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+  padding: 10px 16px 6px;
+}
+
+.vid-sug-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--cor-borda);
+  background: var(--cor-fundo-card);
+}
+
+.vid-sug-nome {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  flex: 1;
+}
+
+.vid-sug-btn {
+  padding: 5px 12px;
+  border-radius: var(--raio-sm);
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  transition: all .12s;
+}
+
+.vid-sug-btn:hover {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}

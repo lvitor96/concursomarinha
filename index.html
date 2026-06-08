@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="/css/simulado.css">
   <link rel="stylesheet" href="/css/estatisticas.css">
   <link rel="stylesheet" href="/css/legislacao.css">
+  <link rel="stylesheet" href="/css/videoaulas.css">
 
   <!-- Firebase Import Map -->
   <script type="importmap">
@@ -183,6 +184,10 @@
           <span class="nav-icone" aria-hidden="true">⚖️</span>
           <span>Legislação</span>
         </button>
+        <button class="nav-item" data-painel="videoaulas">
+          <span class="nav-icone" aria-hidden="true">🎬</span>
+          <span>Videoaulas</span>
+        </button>
         <button class="nav-item" data-painel="cronograma">
           <span class="nav-icone" aria-hidden="true">📅</span>
           <span>Cronograma</span>
@@ -252,6 +257,13 @@
 
         <!-- Simulado -->
         <section id="painel-simulado" class="painel" aria-label="Simulado Cronometrado">
+          <div class="painel-carregando">
+            <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
+          </div>
+        </section>
+
+        <!-- Videoaulas -->
+        <section id="painel-videoaulas" class="painel" aria-label="Videoaulas">
           <div class="painel-carregando">
             <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
           </div>

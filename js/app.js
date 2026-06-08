@@ -195,6 +195,16 @@ async function carregarModulo(painel) {
     return;
   }
 
+  if (painel === 'videoaulas') {
+    try {
+      const { iniciarVideoaulas } = await import('./videoaulas.js');
+      await iniciarVideoaulas();
+    } catch (err) {
+      console.error('Erro ao carregar videoaulas:', err);
+    }
+    return;
+  }
+
   if (painel === 'estatisticas') {
     try {
       const { iniciarEstatisticas } = await import('./estatisticas.js');
