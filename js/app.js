@@ -314,6 +314,11 @@ async function carregarModulo(painel) {
     return;
   }
 
+  if (painel === 'config') {
+    renderizarPainelConfig();
+    return;
+  }
+
   if (_modulosCarregados.has(painel)) return;
   _modulosCarregados.add(painel);
 
@@ -329,9 +334,6 @@ async function carregarModulo(painel) {
         await iniciarSimulado();
         break;
       }
-      case 'config':
-        renderizarPainelConfig();
-        break;
     }
   } catch (err) {
     console.error(`Erro ao carregar módulo ${painel}:`, err);
@@ -473,8 +475,7 @@ function _cardProgresso(nome, sigla, bloco, feito, total) {
 // ── Painel Config ────────────────────────────────────────────
 function renderizarPainelConfig() {
   const el = document.getElementById('painel-config');
-  if (!el || el.dataset.renderizado) return;
-  el.dataset.renderizado = '1';
+  if (!el) return;
 
   const usuario = ESTADO.usuario;
 
@@ -509,32 +510,51 @@ function renderizarPainelConfig() {
       </div>
     </div>
 
-    <!-- Google Cloud TTS -->
+    <!-- Integrações -->
     <div class="secao" style="padding-top:0;">
-      <div class="secao-header"><h3 class="secao-titulo">Modo Carro — Voz</h3></div>
-      <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+      <div class="secao-header"><h3 class="secao-titulo">Integrações</h3></div>
+      <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:14px;">
+
         <div style="font-size:13px;color:var(--cor-texto-leve);line-height:1.5;">
-          Configure a <strong>Google Cloud TTS</strong> para voz mais natural no Modo Carro.
-          Sem chave, usa Web Speech API (voz do sistema).
+          Configure a <strong>Google Cloud TTS</strong> para voz neural mais natural no
+          <strong>Modo Carro</strong>. Sem chave, usa a Web Speech API (voz do sistema).
         </div>
-        <div>
-          <label style="font-size:12px;font-weight:600;color:var(--cor-texto);display:block;margin-bottom:4px;">Chave de API Google Cloud TTS</label>
-          <input id="cfg-tts-key" type="password" placeholder="AIza…"
-            style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;"
+
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <label for="cfg-tts-key"
+            style="font-size:12px;font-weight:600;color:var(--cor-texto);letter-spacing:.3px;text-transform:uppercase;">
+            Chave Google Cloud TTS
+          </label>
+          <input id="cfg-tts-key" type="password"
+            placeholder="AIzaSy…"
+            autocomplete="off"
+            style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;font-family:var(--fonte-mono,monospace);width:100%;box-sizing:border-box;"
             value="${localStorage.getItem('sedf-tts-key') || ''}">
         </div>
-        <div>
-          <label style="font-size:12px;font-weight:600;color:var(--cor-texto);display:block;margin-bottom:4px;">Voz</label>
+
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <label for="cfg-tts-voice"
+            style="font-size:12px;font-weight:600;color:var(--cor-texto);letter-spacing:.3px;text-transform:uppercase;">
+            Voz
+          </label>
           <select id="cfg-tts-voice"
-            style="width:100%;padding:8px 10px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;">
-            <option value="pt-BR-Neural2-B" ${(localStorage.getItem('sedf-tts-voice')||'pt-BR-Neural2-B')==='pt-BR-Neural2-B'?'selected':''}>Neural2-B (Masculina)</option>
-            <option value="pt-BR-Neural2-C" ${localStorage.getItem('sedf-tts-voice')==='pt-BR-Neural2-C'?'selected':''}>Neural2-C (Feminina)</option>
-            <option value="pt-BR-Standard-B" ${localStorage.getItem('sedf-tts-voice')==='pt-BR-Standard-B'?'selected':''}>Standard-B (Masculina)</option>
-            <option value="pt-BR-Standard-C" ${localStorage.getItem('sedf-tts-voice')==='pt-BR-Standard-C'?'selected':''}>Standard-C (Feminina)</option>
+            style="padding:9px 12px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;width:100%;box-sizing:border-box;">
+            <option value="pt-BR-Neural2-B" ${(localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B') === 'pt-BR-Neural2-B' ? 'selected' : ''}>Neural2-B — Masculina (recomendado)</option>
+            <option value="pt-BR-Neural2-C" ${localStorage.getItem('sedf-tts-voice') === 'pt-BR-Neural2-C' ? 'selected' : ''}>Neural2-C — Feminina</option>
+            <option value="pt-BR-Standard-B" ${localStorage.getItem('sedf-tts-voice') === 'pt-BR-Standard-B' ? 'selected' : ''}>Standard-B — Masculina</option>
+            <option value="pt-BR-Standard-C" ${localStorage.getItem('sedf-tts-voice') === 'pt-BR-Standard-C' ? 'selected' : ''}>Standard-C — Feminina</option>
           </select>
         </div>
-        <button id="cfg-tts-save" class="btn btn-sm" style="align-self:flex-end;">Salvar</button>
-        <div id="cfg-tts-status" style="font-size:12px;color:var(--cor-texto-leve);"></div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div id="cfg-tts-status" style="font-size:12px;flex:1;">
+            ${_ttsStatusHtml()}
+          </div>
+          <button id="cfg-tts-save" class="btn btn-sm" style="white-space:nowrap;">
+            Salvar
+          </button>
+        </div>
+
       </div>
     </div>
 
@@ -562,21 +582,19 @@ function renderizarPainelConfig() {
   // Toggle dark mode
   document.getElementById('toggle-dark')?.addEventListener('click', alternarTema);
 
-  // TTS save
+  // TTS — salvar chave + voz
   document.getElementById('cfg-tts-save')?.addEventListener('click', () => {
     const key   = document.getElementById('cfg-tts-key')?.value.trim() || '';
     const voice = document.getElementById('cfg-tts-voice')?.value || 'pt-BR-Neural2-B';
-    const statusEl = document.getElementById('cfg-tts-status');
     if (key) {
       localStorage.setItem('sedf-tts-key', key);
     } else {
       localStorage.removeItem('sedf-tts-key');
     }
     localStorage.setItem('sedf-tts-voice', voice);
-    if (statusEl) {
-      statusEl.textContent = key ? `✓ Chave salva · Voz: ${voice}` : '⚠️ Sem chave — usando Web Speech API';
-      statusEl.style.color = key ? 'var(--cor-sucesso)' : 'var(--cor-atencao)';
-    }
+    const statusEl = document.getElementById('cfg-tts-status');
+    if (statusEl) statusEl.innerHTML = _ttsStatusHtml();
+    mostrarToast(key ? '✅ Chave TTS salva com sucesso' : '⚠️ Chave removida — usando Web Speech API');
   });
 
   // Logout
@@ -584,6 +602,19 @@ function renderizarPainelConfig() {
     await fazerLogout();
     location.reload();
   });
+}
+
+function _ttsStatusHtml() {
+  const key   = localStorage.getItem('sedf-tts-key');
+  const voice = localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B';
+  if (key) {
+    return `<span style="color:var(--cor-sucesso);">✅ Google TTS ativo &mdash; ${_escapeHtmlConfig(voice)}</span>`;
+  }
+  return `<span style="color:var(--cor-texto-leve);">⚠️ Sem chave &mdash; usando Web Speech API</span>`;
+}
+
+function _escapeHtmlConfig(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function alternarTema() {
