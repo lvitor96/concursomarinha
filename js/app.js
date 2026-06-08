@@ -205,6 +205,16 @@ async function carregarModulo(painel) {
     return;
   }
 
+  if (painel === 'edital') {
+    try {
+      const { iniciarEdital } = await import('./edital.js');
+      await iniciarEdital();
+    } catch (err) {
+      console.error('Erro ao carregar edital:', err);
+    }
+    return;
+  }
+
   if (painel === 'cronograma') {
     try {
       const { iniciarCronograma } = await import('./cronograma.js');

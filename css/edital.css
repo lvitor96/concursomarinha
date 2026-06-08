@@ -1,0 +1,333 @@
+/* ================================================================
+   edital.css — Módulo Edital Ativo
+   ================================================================ */
+
+/* ── Banner de status ───────────────────────────────────────── */
+.edt-banner {
+  margin: 0 16px 4px;
+  border-radius: var(--raio-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1.5px solid transparent;
+}
+
+.edt-banner-alerta {
+  background: var(--cor-atencao-bg, rgba(234,179,8,.08));
+  border-color: var(--cor-atencao, #d97706);
+}
+
+.edt-banner-ativo {
+  background: rgba(34,197,94,.08);
+  border-color: var(--cor-sucesso);
+}
+
+.edt-banner-icone {
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.edt-banner-titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin-bottom: 3px;
+}
+
+.edt-banner-msg {
+  font-size: 12px;
+  color: var(--cor-texto-leve);
+  line-height: 1.5;
+}
+
+/* ── Títulos de seção ───────────────────────────────────────── */
+.edt-secao-titulo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+  padding: 16px 16px 6px;
+}
+
+/* ── Blocos da prova ────────────────────────────────────────── */
+.edt-blocos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.edt-bloco-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.edt-bloco-sigla {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--raio-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: .3px;
+}
+
+.edt-bloco-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.edt-bloco-nome {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin-bottom: 2px;
+}
+
+.edt-bloco-desc {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  line-height: 1.4;
+}
+
+.edt-bloco-qtd {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+  text-align: right;
+  line-height: 1;
+}
+
+.edt-bloco-qtd span {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  display: block;
+  text-align: center;
+  margin-top: 1px;
+}
+
+.edt-total-card {
+  background: var(--cor-primaria);
+  border-radius: var(--raio-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edt-total-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,.9);
+}
+
+.edt-total-num {
+  font-family: var(--fonte-titulo);
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* ── Prontidão ──────────────────────────────────────────────── */
+.edt-prontidao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.edt-pront-item {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 12px 14px;
+}
+
+.edt-pront-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.edt-pront-nome {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  flex: 1;
+  min-width: 0;
+}
+
+.edt-pront-nivel {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.edt-nivel-alta  { background: rgba(34,197,94,.12);  color: #16a34a; }
+.edt-nivel-media { background: rgba(234,179,8,.12);  color: #b45309; }
+.edt-nivel-baixa { background: rgba(239,68,68,.12);  color: #dc2626; }
+
+.edt-pront-detalhe {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-top: 5px;
+}
+
+/* ── Último edital de referência ────────────────────────────── */
+.edt-ref-card {
+  margin: 0 16px;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+}
+
+.edt-ref-titulo {
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--cor-primaria);
+}
+
+.edt-ref-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+}
+
+.edt-ref-label,
+.edt-ref-valor {
+  padding: 8px 14px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.edt-ref-label {
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  white-space: nowrap;
+  background: var(--cor-fundo);
+}
+
+.edt-ref-valor {
+  color: var(--cor-texto);
+  line-height: 1.4;
+}
+
+.edt-ref-label:last-of-type,
+.edt-ref-valor:last-of-type { border-bottom: none; }
+
+/* ── Histórico de bancas ────────────────────────────────────── */
+.edt-historico {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0 16px;
+  background: var(--cor-borda);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+  border: 1.5px solid var(--cor-borda);
+}
+
+.edt-hist-item {
+  background: var(--cor-fundo-card);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edt-hist-ano {
+  font-family: var(--fonte-titulo);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cor-primaria);
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.edt-hist-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.edt-hist-nome {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.edt-hist-num {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+}
+
+.edt-hist-tipo {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ── Links de monitoramento ─────────────────────────────────── */
+.edt-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.edt-link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  text-decoration: none;
+  transition: border-color .12s, background .12s;
+  gap: 10px;
+}
+
+.edt-link-card:hover {
+  border-color: var(--cor-primaria);
+  background: rgba(26,58,92,.06);
+}
+
+.edt-link-nome {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.edt-link-seta {
+  font-size: 16px;
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+}

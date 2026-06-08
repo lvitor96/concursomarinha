@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="/css/estatisticas.css">
   <link rel="stylesheet" href="/css/legislacao.css">
   <link rel="stylesheet" href="/css/videoaulas.css">
+  <link rel="stylesheet" href="/css/edital.css">
 
   <!-- Firebase Import Map -->
   <script type="importmap">
@@ -188,6 +189,10 @@
           <span class="nav-icone" aria-hidden="true">🎬</span>
           <span>Videoaulas</span>
         </button>
+        <button class="nav-item" data-painel="edital">
+          <span class="nav-icone" aria-hidden="true">📋</span>
+          <span>Edital</span>
+        </button>
         <button class="nav-item" data-painel="cronograma">
           <span class="nav-icone" aria-hidden="true">📅</span>
           <span>Cronograma</span>
@@ -257,6 +262,13 @@
 
         <!-- Simulado -->
         <section id="painel-simulado" class="painel" aria-label="Simulado Cronometrado">
+          <div class="painel-carregando">
+            <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
+          </div>
+        </section>
+
+        <!-- Edital Ativo -->
+        <section id="painel-edital" class="painel" aria-label="Edital Ativo">
           <div class="painel-carregando">
             <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
           </div>
