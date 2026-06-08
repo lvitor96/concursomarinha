@@ -268,10 +268,10 @@ function _htmlQuestao(q, idx) {
     <div class="sim-enunciado">${q.enunciado}</div>
 
     <div class="sim-alts">
-      ${q.alternativas.map(alt => `
-        <button class="sim-alt ${marcada === alt.letra ? 'marcada' : ''}" data-alt="${alt.letra}">
-          <span class="sim-alt-letra">${alt.letra}</span>
-          <span class="sim-alt-texto">${alt.texto}</span>
+      ${Object.entries(q.alternativas).map(([letra, texto]) => `
+        <button class="sim-alt ${marcada === letra ? 'marcada' : ''}" data-alt="${letra}">
+          <span class="sim-alt-letra">${letra}</span>
+          <span class="sim-alt-texto">${texto}</span>
         </button>
       `).join('')}
     </div>
