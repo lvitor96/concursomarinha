@@ -505,7 +505,7 @@ function _diasDaSemana(offset = 0) {
 
 function _labelSemana(dias) {
   const ini = _formatarDataCurta(dias[0]);
-  const fim = _formatarDataCurta(dias[6]);
+  const fim = _formatarDataCurta(dias[dias.length - 1]);
   return `${ini} – ${fim}`;
 }
 

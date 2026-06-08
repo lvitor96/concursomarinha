@@ -205,6 +205,16 @@ async function carregarModulo(painel) {
     return;
   }
 
+  if (painel === 'cronograma') {
+    try {
+      const { iniciarCronograma } = await import('./cronograma.js');
+      await iniciarCronograma();
+    } catch (err) {
+      console.error('Erro ao carregar cronograma:', err);
+    }
+    return;
+  }
+
   if (painel === 'estatisticas') {
     try {
       const { iniciarEstatisticas } = await import('./estatisticas.js');
@@ -243,11 +253,6 @@ async function carregarModulo(painel) {
       case 'simulado': {
         const { iniciarSimulado } = await import('./simulado.js');
         await iniciarSimulado();
-        break;
-      }
-      case 'cronograma': {
-        const { iniciarCronograma } = await import('./cronograma.js');
-        await iniciarCronograma();
         break;
       }
       case 'config':
