@@ -11,8 +11,13 @@ const M = {
   indice:     0,        // posição atual na fila
   tocando:    false,
   utterance:  null,
+  audioAtual: null,     // Audio element (Google TTS)
   filtroBloco:'',
 };
+
+const TTS_KEY_STORAGE   = 'sedf-tts-key';
+const TTS_VOICE_STORAGE = 'sedf-tts-voice';
+const DEFAULT_VOICE     = 'pt-BR-Neural2-B';
 
 const synth = window.speechSynthesis;
 
@@ -34,8 +39,8 @@ export async function iniciarCarro() {
     }
   }
 
-  if (!synth) {
-    el.innerHTML = `<div class="estado-vazio"><div class="estado-vazio-emoji">🔇</div><div class="estado-vazio-texto">Seu navegador não suporta síntese de voz.<br>Use Chrome, Edge ou Safari.</div></div>`;
+  if (!synth && !localStorage.getItem(TTS_KEY_STORAGE)) {
+    el.innerHTML = `<div class="estado-vazio"><div class="estado-vazio-emoji">🔇</div><div class="estado-vazio-texto">Seu navegador não suporta síntese de voz.<br>Configure uma chave Google Cloud TTS nas Configurações ou use Chrome/Edge/Safari.</div></div>`;
     return;
   }
 
@@ -60,8 +65,18 @@ function _construirFila() {
 
 /* ── Render ──────────────────────────────────────────────────── */
 function _renderHome(el) {
-  const total = M.fila.length;
-  const atual = M.fila[M.indice];
+  const total    = M.fila.length;
+  const atual    = M.fila[M.indice];
+  const ttsKey   = localStorage.getItem(TTS_KEY_STORAGE);
+  const ttsVoice = localStorage.getItem(TTS_VOICE_STORAGE) || DEFAULT_VOICE;
+
+  const bannerTTS = ttsKey
+    ? `<div style="margin:0 16px 12px;padding:10px 14px;background:var(--cor-sucesso-bg,#e8f5e9);border:1px solid var(--cor-sucesso);border-radius:var(--raio-sm);font-size:12px;color:var(--cor-texto);">
+        🎙️ Google Cloud TTS ativo · Voz: <strong>${ttsVoice}</strong>
+      </div>`
+    : `<div style="margin:0 16px 12px;padding:10px 14px;background:var(--cor-atencao-bg);border:1px solid var(--cor-atencao);border-radius:var(--raio-sm);font-size:12px;color:var(--cor-texto);">
+        ⚠️ Usando Web Speech API (voz do sistema). Configure uma <strong>Chave Google Cloud TTS</strong> nas <button onclick="app.navegarPara('config')" style="background:none;border:none;padding:0;cursor:pointer;font-size:12px;font-weight:700;color:var(--cor-primaria);text-decoration:underline;">Configurações</button> para voz mais natural.
+      </div>`;
 
   el.innerHTML = `
     <div class="car-header">
@@ -69,6 +84,7 @@ function _renderHome(el) {
       <div class="car-titulo">Modo Carro</div>
       <div class="car-sub">Resumos em áudio — mãos livres</div>
     </div>
+    ${bannerTTS}
 
     <!-- Filtro de bloco -->
     <div class="car-filtro-wrap">
@@ -181,31 +197,87 @@ function _togglePlay() {
   }
 }
 
-function _reproduzir() {
+async function _sintetizarAudio(texto) {
+  const key   = localStorage.getItem(TTS_KEY_STORAGE);
+  if (!key) return null;
+  const voice = localStorage.getItem(TTS_VOICE_STORAGE) || DEFAULT_VOICE;
+  const resp  = await fetch(
+    `https://texttospeech.googleapis.com/v1/text:synthesize?key=${key}`,
+    {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input:       { text: texto },
+        voice:       { languageCode: 'pt-BR', name: voice },
+        audioConfig: { audioEncoding: 'MP3' },
+      }),
+    }
+  );
+  if (!resp.ok) throw new Error(`TTS API error: ${resp.status}`);
+  const data = await resp.json();
+  return data.audioContent; // base64 MP3
+}
+
+async function _reproduzir() {
   const resumo = M.fila[M.indice];
   if (!resumo) return;
 
-  const texto = _limparMarkdown(resumo.versaoCurta || resumo.nome);
-  const nomeResumo = resumo.nome;
+  const texto     = _limparMarkdown(resumo.versaoCurta || resumo.nome);
+  const textoFull = `${resumo.nome}. ${texto}`;
 
   _pararTudo();
+  M.tocando = true;
+  _atualizarUI();
 
-  const utt = new SpeechSynthesisUtterance(`${nomeResumo}. ${texto}`);
-  utt.lang = 'pt-BR';
-  utt.rate = 1.0;
+  // Tenta Google Cloud TTS primeiro
+  try {
+    const b64 = await _sintetizarAudio(textoFull);
+    if (b64) {
+      const audio = new Audio(`data:audio/mp3;base64,${b64}`);
+      M.audioAtual = audio;
+      audio.onended = () => {
+        M.tocando    = false;
+        M.audioAtual = null;
+        _atualizarUI();
+        if (M.indice < M.fila.length - 1) {
+          M.indice++;
+          _atualizarUI();
+          setTimeout(_reproduzir, 800);
+        }
+      };
+      audio.onerror = () => {
+        M.tocando    = false;
+        M.audioAtual = null;
+        _atualizarUI();
+      };
+      audio.play();
+      return;
+    }
+  } catch (err) {
+    console.warn('Google TTS falhou, usando Web Speech API:', err);
+  }
+
+  // Fallback: Web Speech API
+  if (!synth) {
+    M.tocando = false;
+    _atualizarUI();
+    return;
+  }
+
+  const utt = new SpeechSynthesisUtterance(textoFull);
+  utt.lang  = 'pt-BR';
+  utt.rate  = 1.0;
   utt.pitch = 1.0;
 
   utt.onstart = () => {
-    M.tocando = true;
     M.utterance = utt;
     _atualizarUI();
   };
 
   utt.onend = () => {
-    M.tocando = false;
+    M.tocando   = false;
     M.utterance = null;
     _atualizarUI();
-    // Avança automaticamente para o próximo
     if (M.indice < M.fila.length - 1) {
       M.indice++;
       _atualizarUI();
@@ -214,7 +286,7 @@ function _reproduzir() {
   };
 
   utt.onerror = () => {
-    M.tocando = false;
+    M.tocando   = false;
     M.utterance = null;
     _atualizarUI();
   };
@@ -223,17 +295,24 @@ function _reproduzir() {
 }
 
 function _pausar() {
-  if (synth.speaking) {
+  if (M.audioAtual) {
+    M.audioAtual.pause();
+    M.audioAtual = null;
+  } else if (synth?.speaking) {
     synth.cancel();
   }
-  M.tocando = false;
+  M.tocando   = false;
   M.utterance = null;
   _atualizarUI();
 }
 
 function _pararTudo() {
-  synth.cancel();
-  M.tocando = false;
+  if (M.audioAtual) {
+    M.audioAtual.pause();
+    M.audioAtual = null;
+  }
+  if (synth) synth.cancel();
+  M.tocando   = false;
   M.utterance = null;
 }
 

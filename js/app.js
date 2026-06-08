@@ -304,6 +304,16 @@ async function carregarModulo(painel) {
     return;
   }
 
+  if (painel === 'questoes') {
+    try {
+      const { iniciarQuestoes } = await import('./questoes.js');
+      await iniciarQuestoes();
+    } catch (err) {
+      console.error('Erro ao carregar questões:', err);
+    }
+    return;
+  }
+
   if (_modulosCarregados.has(painel)) return;
   _modulosCarregados.add(painel);
 
@@ -312,11 +322,6 @@ async function carregarModulo(painel) {
       case 'estudar': {
         const { iniciarResumes } = await import('./resumos.js');
         await iniciarResumes();
-        break;
-      }
-      case 'questoes': {
-        const { iniciarQuestoes } = await import('./questoes.js');
-        await iniciarQuestoes();
         break;
       }
       case 'simulado': {
@@ -504,6 +509,35 @@ function renderizarPainelConfig() {
       </div>
     </div>
 
+    <!-- Google Cloud TTS -->
+    <div class="secao" style="padding-top:0;">
+      <div class="secao-header"><h3 class="secao-titulo">Modo Carro — Voz</h3></div>
+      <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+        <div style="font-size:13px;color:var(--cor-texto-leve);line-height:1.5;">
+          Configure a <strong>Google Cloud TTS</strong> para voz mais natural no Modo Carro.
+          Sem chave, usa Web Speech API (voz do sistema).
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--cor-texto);display:block;margin-bottom:4px;">Chave de API Google Cloud TTS</label>
+          <input id="cfg-tts-key" type="password" placeholder="AIza…"
+            style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;"
+            value="${localStorage.getItem('sedf-tts-key') || ''}">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--cor-texto);display:block;margin-bottom:4px;">Voz</label>
+          <select id="cfg-tts-voice"
+            style="width:100%;padding:8px 10px;border:1px solid var(--cor-borda);border-radius:var(--raio-sm);background:var(--cor-fundo);color:var(--cor-texto);font-size:13px;">
+            <option value="pt-BR-Neural2-B" ${(localStorage.getItem('sedf-tts-voice')||'pt-BR-Neural2-B')==='pt-BR-Neural2-B'?'selected':''}>Neural2-B (Masculina)</option>
+            <option value="pt-BR-Neural2-C" ${localStorage.getItem('sedf-tts-voice')==='pt-BR-Neural2-C'?'selected':''}>Neural2-C (Feminina)</option>
+            <option value="pt-BR-Standard-B" ${localStorage.getItem('sedf-tts-voice')==='pt-BR-Standard-B'?'selected':''}>Standard-B (Masculina)</option>
+            <option value="pt-BR-Standard-C" ${localStorage.getItem('sedf-tts-voice')==='pt-BR-Standard-C'?'selected':''}>Standard-C (Feminina)</option>
+          </select>
+        </div>
+        <button id="cfg-tts-save" class="btn btn-sm" style="align-self:flex-end;">Salvar</button>
+        <div id="cfg-tts-status" style="font-size:12px;color:var(--cor-texto-leve);"></div>
+      </div>
+    </div>
+
     <!-- Sobre -->
     <div class="secao" style="padding-top:0;">
       <div class="secao-header"><h3 class="secao-titulo">Sobre</h3></div>
@@ -527,6 +561,23 @@ function renderizarPainelConfig() {
 
   // Toggle dark mode
   document.getElementById('toggle-dark')?.addEventListener('click', alternarTema);
+
+  // TTS save
+  document.getElementById('cfg-tts-save')?.addEventListener('click', () => {
+    const key   = document.getElementById('cfg-tts-key')?.value.trim() || '';
+    const voice = document.getElementById('cfg-tts-voice')?.value || 'pt-BR-Neural2-B';
+    const statusEl = document.getElementById('cfg-tts-status');
+    if (key) {
+      localStorage.setItem('sedf-tts-key', key);
+    } else {
+      localStorage.removeItem('sedf-tts-key');
+    }
+    localStorage.setItem('sedf-tts-voice', voice);
+    if (statusEl) {
+      statusEl.textContent = key ? `✓ Chave salva · Voz: ${voice}` : '⚠️ Sem chave — usando Web Speech API';
+      statusEl.style.color = key ? 'var(--cor-sucesso)' : 'var(--cor-atencao)';
+    }
+  });
 
   // Logout
   document.getElementById('btn-logout')?.addEventListener('click', async () => {

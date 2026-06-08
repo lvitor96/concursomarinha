@@ -180,12 +180,12 @@ function _filtrarERenderizar() {
 
   lista.innerHTML = filtrados.map(r => _htmlCard(r)).join('');
 
-  lista.querySelectorAll('.r-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const id = card.dataset.id;
-      const resumo = M.resumos.find(r => r.id === id);
-      if (resumo) _abrirDetalhe(resumo);
-    });
+  lista.addEventListener('click', e => {
+    const card = e.target.closest('.r-card');
+    if (!card) return;
+    const id = card.dataset.id;
+    const resumo = M.resumos.find(r => r.id === id);
+    if (resumo) _abrirDetalhe(resumo);
   });
 }
 

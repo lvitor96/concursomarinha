@@ -11,10 +11,11 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 /* ── Estado ─────────────────────────────────────────────────── */
 const M = {
-  dados:     null,   // legislacao.json
-  status:    {},     // { [docId]: { [artKey]: { lido, favorito, anotacao } } }
-  docAtual:  null,   // documento aberto
-  busca:     '',
+  dados:            null,   // legislacao.json
+  status:           {},     // { [docId]: { [artKey]: { lido, favorito, anotacao } } }
+  docAtual:         null,   // documento aberto
+  busca:            '',
+  _statusCarregado: false,
 };
 
 let _autoSaveTimers = {};
@@ -38,6 +39,7 @@ export async function iniciarLegislacao() {
 
 /* ── Firestore ───────────────────────────────────────────────── */
 async function _carregarStatus() {
+  if (M._statusCarregado) return;
   const usuario = obterUsuario();
   if (!usuario || !M.dados) return;
 
@@ -47,6 +49,7 @@ async function _carregarStatus() {
       M.status[docDef.id] = snap.exists() ? snap.data() : {};
     })
   );
+  M._statusCarregado = true;
 }
 
 async function _salvarStatus(docId) {
