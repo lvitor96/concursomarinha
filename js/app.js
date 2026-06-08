@@ -210,6 +210,11 @@ async function carregarModulo(painel) {
         await iniciarQuestoes();
         break;
       }
+      case 'simulado': {
+        const { iniciarSimulado } = await import('./simulado.js');
+        await iniciarSimulado();
+        break;
+      }
       case 'cronograma': {
         const { iniciarCronograma } = await import('./cronograma.js');
         await iniciarCronograma();

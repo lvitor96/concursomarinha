@@ -1,0 +1,374 @@
+/* ================================================================
+   simulado.css — Módulo Simulado (Home · Prova · Resultado)
+   ================================================================ */
+
+/* ── Home / Config ──────────────────────────────────────────── */
+.sim-config {
+  margin: 14px 16px 0;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sim-config-titulo {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.sim-config-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.sim-campo label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+  margin-bottom: 4px;
+}
+
+.sim-campo select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s;
+}
+
+.sim-campo select:focus { border-color: var(--cor-secundaria); }
+
+/* Block toggles */
+.sim-blocos {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sim-bloco-toggle {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .12s;
+  line-height: 1.3;
+}
+
+.sim-bloco-toggle.ativo {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
+/* ── Histórico ──────────────────────────────────────────────── */
+.sim-historico {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 80px;
+}
+
+.sim-hist-item {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sim-hist-pct {
+  font-family: var(--fonte-titulo);
+  font-size: 24px;
+  font-weight: 700;
+  flex-shrink: 0;
+  width: 54px;
+  text-align: center;
+}
+
+.sim-hist-info { flex: 1; min-width: 0; }
+
+.sim-hist-data {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.sim-hist-detalhe {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-top: 2px;
+}
+
+.sim-hist-vazio {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+}
+
+/* ── Prova — header (sticky) ─────────────────────────────────── */
+.sim-prova-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--cor-fundo-card);
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sim-timer {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+  min-width: 72px;
+  text-align: center;
+  transition: color .25s;
+}
+
+.sim-timer.aviso   { color: var(--cor-atencao); }
+.sim-timer.urgente { color: var(--cor-erro); animation: pulse 1s ease infinite; }
+
+.sim-progresso-wrap { flex: 1; min-width: 0; }
+
+.sim-progresso-label {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-bottom: 4px;
+}
+
+.sim-progresso-barra {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--cor-borda);
+  overflow: hidden;
+}
+
+.sim-progresso-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--cor-primaria);
+  transition: width .35s ease;
+}
+
+/* ── Prova — mapa de questões (sticky abaixo do header) ──────── */
+.sim-mapa-scroll {
+  position: sticky;
+  top: 57px;
+  z-index: 19;
+  display: flex;
+  gap: 5px;
+  padding: 8px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  -webkit-overflow-scrolling: touch;
+}
+
+.sim-mapa-scroll::-webkit-scrollbar { display: none; }
+
+.sim-mapa-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto-leve);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.sim-mapa-btn.respondida {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
+.sim-mapa-btn.atual {
+  outline: 2px solid var(--cor-secundaria);
+  outline-offset: 1px;
+  border-color: var(--cor-secundaria);
+}
+
+/* ── Prova — área da questão ────────────────────────────────── */
+.sim-questao-area {
+  padding: 16px 16px 0;
+}
+
+.sim-questao-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.sim-questao-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.sim-questao-origem {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--cor-texto-leve);
+  opacity: .7;
+}
+
+.sim-enunciado {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cor-texto);
+  margin-bottom: 14px;
+  white-space: pre-line;
+}
+
+.sim-alts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sim-alt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 13px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  background: var(--cor-fundo-card);
+  cursor: pointer;
+  transition: all .12s;
+  text-align: left;
+  width: 100%;
+}
+
+.sim-alt:hover:not(.marcada) { border-color: var(--cor-primaria); }
+
+.sim-alt.marcada {
+  border-color: var(--cor-primaria);
+  background: rgba(26,58,92,.07);
+}
+
+.sim-alt-letra {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cor-borda);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .12s;
+}
+
+.sim-alt.marcada .sim-alt-letra {
+  background: var(--cor-primaria);
+  color: #fff;
+}
+
+.sim-alt-texto {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--cor-texto);
+}
+
+/* Navegação prev/next */
+.sim-nav-btns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.sim-btn-submit {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 80px;
+  border-radius: var(--raio-md);
+  border: none;
+  background: var(--cor-sucesso);
+  color: #fff;
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+
+.sim-btn-submit:hover { opacity: .88; }
+
+/* ── Resultado ──────────────────────────────────────────────── */
+.sim-resultado-header {
+  background: var(--cor-primaria);
+  padding: 28px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.sim-resultado-emoji  { font-size: 48px; margin-bottom: 8px; }
+
+.sim-resultado-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sim-resultado-pct {
+  font-family: var(--fonte-titulo);
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.sim-resultado-sub {
+  font-size: 13px;
+  opacity: .8;
+}
+
+.sim-resultado-body {
+  padding: 16px 16px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
