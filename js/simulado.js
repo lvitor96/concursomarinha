@@ -29,7 +29,7 @@ export async function iniciarSimulado() {
   if (!el) return;
 
   if (!M.todos.length) {
-    const r = await fetch('/data/questoes.json');
+    const r = await fetch('./data/questoes.json');
     const d = await r.json();
     M.todos = d.questoes ?? [];
   }

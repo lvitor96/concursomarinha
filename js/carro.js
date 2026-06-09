@@ -31,7 +31,7 @@ export async function iniciarCarro() {
 
   if (!M.resumos.length) {
     try {
-      const r = await fetch('/data/resumos.json');
+      const r = await fetch('./data/resumos.json');
       const d = await r.json();
       M.resumos = d.resumos || [];
     } catch {

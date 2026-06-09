@@ -34,7 +34,7 @@ export async function iniciarCronograma() {
   if (!painel) return;
 
   try {
-    const resp = await fetch('/data/topicos.json');
+    const resp = await fetch('./data/topicos.json');
     const data = await resp.json();
     M.topicos = _flatTopicos(data);
   } catch {

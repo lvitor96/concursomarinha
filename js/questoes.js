@@ -55,7 +55,7 @@ export async function iniciarQuestoes() {
 
 async function _carregarQuestoes() {
   try {
-    const res = await fetch('/data/questoes.json');
+    const res = await fetch('./data/questoes.json');
     const dados = await res.json();
     M.todos = dados.questoes || [];
   } catch (e) {

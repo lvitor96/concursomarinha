@@ -31,7 +31,7 @@ export async function iniciarEdital() {
 /* ── Dados ───────────────────────────────────────────────────── */
 async function _carregarDados() {
   try {
-    const r = await fetch('/data/edital.json');
+    const r = await fetch('./data/edital.json');
     return await r.json();
   } catch {
     return null;

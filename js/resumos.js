@@ -25,7 +25,7 @@ export async function iniciarResumes() {
 
   // Carrega JSON
   try {
-    const resp = await fetch('/data/resumos.json');
+    const resp = await fetch('./data/resumos.json');
     const data = await resp.json();
     M.resumos = data.resumos || [];
   } catch {

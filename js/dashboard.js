@@ -22,7 +22,7 @@ export async function iniciarDashboard() {
     getDoc(doc(db, 'users', usuario.uid, 'cronograma', 'log')),
     getDoc(doc(db, 'users', usuario.uid, 'daily', hoje)),
     getDocs(collection(db, 'users', usuario.uid, 'questoesStatus')),
-    fetch('/data/questoes.json').then(r => r.json()),
+    fetch('./data/questoes.json').then(r => r.json()),
   ]);
 
   const log      = logRes.status    === 'fulfilled' && logRes.value.exists()    ? logRes.value.data()    : {};

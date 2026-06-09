@@ -34,7 +34,7 @@ function mostrarTela(nome) {
 // ── Service Worker ───────────────────────────────────────────
 function registrarSW() {
   if (!('serviceWorker' in navigator)) return;
-  navigator.serviceWorker.register('/sw.js', { scope: '/' })
+  navigator.serviceWorker.register('./sw.js')
     .then(reg => {
       reg.addEventListener('updatefound', () => {
         const novoSW = reg.installing;

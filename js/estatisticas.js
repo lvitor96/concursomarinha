@@ -25,7 +25,7 @@ export async function iniciarEstatisticas() {
     getDocs(collection(db, 'users', usuario.uid, 'progresso')),
     getDocs(collection(db, 'users', usuario.uid, 'daily')),
     getDocs(query(collection(db, 'users', usuario.uid, 'simulados'), orderBy('data', 'desc'), limit(3))),
-    fetch('/data/questoes.json').then(r => r.json()),
+    fetch('./data/questoes.json').then(r => r.json()),
   ]);
 
   const log         = logRes.status === 'fulfilled' && logRes.value.exists() ? logRes.value.data() : {};

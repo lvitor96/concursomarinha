@@ -28,7 +28,7 @@ export async function iniciarLegislacao() {
   el.innerHTML = `<div style="padding:32px;text-align:center;"><div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);margin:auto;"></div></div>`;
 
   if (!M.dados) {
-    const r = await fetch('/data/legislacao.json');
+    const r = await fetch('./data/legislacao.json');
     M.dados = await r.json();
   }
 

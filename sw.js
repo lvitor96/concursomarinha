@@ -3,45 +3,48 @@
  * Estratégia: Cache-first para assets estáticos, Network-first para dados.
  */
 
-const CACHE_VERSION = 'v17';
+const CACHE_VERSION = 'v18';
 const CACHE_STATIC  = `sedf-static-${CACHE_VERSION}`;
 const CACHE_DYNAMIC = `sedf-dynamic-${CACHE_VERSION}`;
 
+// BASE é '' na raiz (Netlify) ou '/concursomarinha' no GitHub Pages
+const BASE = self.location.pathname.replace(/\/sw\.js$/, '');
+
 const ASSETS_ESTATICOS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/css/main.css',
-  '/css/dark.css',
-  '/js/app.js',
-  '/js/firebase.js',
-  '/js/auth.js',
-  '/js/sync.js',
-  '/icons/icon.svg',
-  '/css/questoes.css',
-  '/css/resumos.css',
-  '/css/cronograma.css',
-  '/js/dashboard.js',
-  '/js/simulado.js',
-  '/js/estatisticas.js',
-  '/js/legislacao.js',
-  '/css/legislacao.css',
-  '/data/legislacao.json',
-  '/js/questoes.js',
-  '/js/resumos.js',
-  '/js/cronograma.js',
-  '/js/videoaulas.js',
-  '/css/videoaulas.css',
-  '/js/edital.js',
-  '/css/edital.css',
-  '/data/edital.json',
-  '/js/carro.js',
-  '/css/carro.css',
-  '/css/simulado.css',
-  '/css/estatisticas.css',
-  '/data/topicos.json',
-  '/data/questoes.json',
-  '/data/resumos.json',
+  `${BASE}/`,
+  `${BASE}/index.html`,
+  `${BASE}/manifest.json`,
+  `${BASE}/css/main.css`,
+  `${BASE}/css/dark.css`,
+  `${BASE}/js/app.js`,
+  `${BASE}/js/firebase.js`,
+  `${BASE}/js/auth.js`,
+  `${BASE}/js/sync.js`,
+  `${BASE}/icons/icon.svg`,
+  `${BASE}/css/questoes.css`,
+  `${BASE}/css/resumos.css`,
+  `${BASE}/css/cronograma.css`,
+  `${BASE}/js/dashboard.js`,
+  `${BASE}/js/simulado.js`,
+  `${BASE}/js/estatisticas.js`,
+  `${BASE}/js/legislacao.js`,
+  `${BASE}/css/legislacao.css`,
+  `${BASE}/data/legislacao.json`,
+  `${BASE}/js/questoes.js`,
+  `${BASE}/js/resumos.js`,
+  `${BASE}/js/cronograma.js`,
+  `${BASE}/js/videoaulas.js`,
+  `${BASE}/css/videoaulas.css`,
+  `${BASE}/js/edital.js`,
+  `${BASE}/css/edital.css`,
+  `${BASE}/data/edital.json`,
+  `${BASE}/js/carro.js`,
+  `${BASE}/css/carro.css`,
+  `${BASE}/css/simulado.css`,
+  `${BASE}/css/estatisticas.css`,
+  `${BASE}/data/topicos.json`,
+  `${BASE}/data/questoes.json`,
+  `${BASE}/data/resumos.json`,
 ];
 
 const FIREBASE_SDK_BASE = 'https://www.gstatic.com/firebasejs/10.12.2';
@@ -118,7 +121,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Assets locais estáticos → Cache first
-  if (url.startsWith(self.location.origin)) {
+  if (url.startsWith(self.location.origin + BASE + '/') || url === self.location.origin + BASE) {
     event.respondWith(cacheFirst(event.request, CACHE_STATIC));
     return;
   }
@@ -143,7 +146,7 @@ async function cacheFirst(request, cacheName) {
   } catch {
     // Fallback para index.html em navegação
     if (request.mode === 'navigate') {
-      return caches.match('/index.html');
+      return caches.match(`${BASE}/index.html`);
     }
     return new Response('Offline', { status: 503 });
   }
@@ -161,7 +164,7 @@ async function networkFirst(request) {
     const cached = await caches.match(request);
     if (cached) return cached;
     if (request.mode === 'navigate') {
-      return caches.match('/index.html');
+      return caches.match(`${BASE}/index.html`);
     }
     return new Response('Offline', { status: 503 });
   }
