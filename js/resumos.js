@@ -6,16 +6,26 @@
 import { db } from './firebase.js';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
+// ── Constantes TTS (mesmas do Modo Carro) ────────────────────
+const TTS_KEY_STORAGE   = 'sedf-tts-key';
+const TTS_VOICE_STORAGE = 'sedf-tts-voice';
+const DEFAULT_VOICE     = 'pt-BR-Neural2-B';
+const TTS_KEY_DEFAULT   = 'AIzaSyBtPdRCRr5xsFuZ1xGleTfuV7YDJtXoPII';
+
 // ── Estado do módulo ─────────────────────────────────────────
 const M = {
-  resumos:      [],      // todos os resumos carregados
-  progresso:    {},      // { [id]: true } — marcados como estudados
-  anotacoes:    {},      // { [id]: string } — carregadas sob demanda
-  filtroBloco:  'todos',
-  busca:        '',
-  resumoAtivo:  null,    // objeto resumo em exibição
-  versao:       'curta', // 'curta' | 'completa'
-  _debounceId:  null,
+  resumos:        [],      // todos os resumos carregados
+  progresso:      {},      // { [id]: true } — marcados como estudados
+  anotacoes:      {},      // { [id]: string } — carregadas sob demanda
+  filtroBloco:    'todos',
+  busca:          '',
+  resumoAtivo:    null,    // objeto resumo em exibição
+  versao:         'curta', // 'curta' | 'completa'
+  _debounceId:    null,
+  // TTS
+  audioAtual:     null,    // Audio element (Google TTS)
+  utteranceAtual: null,    // SpeechSynthesisUtterance
+  idTocando:      null,    // id do card em reprodução
 };
 
 // ── Entrada ──────────────────────────────────────────────────
@@ -35,6 +45,9 @@ export async function iniciarResumes() {
 
   // Carrega progresso do Firestore (best-effort)
   await _carregarProgresso();
+
+  // Para qualquer áudio pendente de visita anterior
+  _pararAudioCard();
 
   // Modo inicial: Mesa → completo; Metrô/Carro → curto
   const modo = document.body.dataset.modo;
@@ -121,7 +134,21 @@ function _renderizarLista(painelEl) {
   // Preenche lista
   _filtrarERenderizar();
 
-  // Eventos
+  // Delegação de cliques na lista (uma só vez por renderização)
+  const lista = clone.querySelector('#r-lista');
+  lista.addEventListener('click', e => {
+    const audioBtn = e.target.closest('.r-btn-audio');
+    if (audioBtn) {
+      _toggleAudioCard(audioBtn.dataset.id);
+      return;
+    }
+    const card = e.target.closest('.r-card');
+    if (!card) return;
+    const resumo = M.resumos.find(r => r.id === card.dataset.id);
+    if (resumo) _abrirDetalhe(resumo);
+  });
+
+  // Eventos de filtro/busca
   clone.querySelector('#r-busca').addEventListener('input', e => {
     M.busca = e.target.value;
     _filtrarERenderizar();
@@ -179,23 +206,19 @@ function _filtrarERenderizar() {
   }
 
   lista.innerHTML = filtrados.map(r => _htmlCard(r)).join('');
-
-  lista.addEventListener('click', e => {
-    const card = e.target.closest('.r-card');
-    if (!card) return;
-    const id = card.dataset.id;
-    const resumo = M.resumos.find(r => r.id === id);
-    if (resumo) _abrirDetalhe(resumo);
-  });
 }
 
 function _htmlCard(r) {
-  const estudado  = M.progresso[r.id];
-  const incLabel  = { alta: '🔴 Alta', media: '🟡 Média', baixa: '🟢 Baixa' }[r.incidencia] || '';
+  const estudado = M.progresso[r.id];
+  const tocando  = M.idTocando === r.id;
+  const incLabel = { alta: '🔴 Alta', media: '🟡 Média', baixa: '🟢 Baixa' }[r.incidencia] || '';
   return `
-    <button class="r-card" data-id="${r.id}">
+    <div class="r-card" data-id="${r.id}">
       <div class="r-card-topo">
         <span class="r-card-nome">${_escapeHtml(r.nome)}</span>
+        <button class="r-btn-audio ${tocando ? 'tocando' : ''}" data-id="${r.id}"
+          aria-label="${tocando ? 'Pausar áudio' : 'Reproduzir em voz alta'}"
+          title="${tocando ? 'Pausar' : 'Ouvir resumo'}">${tocando ? '⏸' : '▶'}</button>
         ${estudado ? '<span class="r-estudado-badge">✅ Estudado</span>' : ''}
       </div>
       <div class="r-card-meta">
@@ -203,12 +226,116 @@ function _htmlCard(r) {
         <span class="r-incidencia ${r.incidencia}">${incLabel}</span>
         <span style="font-size:11px;color:var(--cor-texto-leve);">${_nomeDisc(r.disciplina)}</span>
       </div>
-    </button>
+    </div>
   `;
+}
+
+// ── TTS — Áudio nos cards ─────────────────────────────────────
+
+function _toggleAudioCard(id) {
+  if (M.idTocando === id) {
+    _pararAudioCard();
+    return;
+  }
+  _pararAudioCard();
+  M.idTocando = id;
+  _atualizarBotaoAudio(id, true);
+
+  const resumo = M.resumos.find(r => r.id === id);
+  if (!resumo) { _pararAudioCard(); return; }
+
+  const modo  = document.body.dataset.modo;
+  const texto = modo === 'mesa'
+    ? (resumo.versaoCompleta || resumo.versaoCurta || resumo.nome)
+    : (resumo.versaoCurta    || resumo.versaoCompleta || resumo.nome);
+
+  _reproduzirTexto(`${resumo.nome}. ${_limparMd(texto)}`, id);
+}
+
+function _pararAudioCard() {
+  if (M.audioAtual) {
+    M.audioAtual.pause();
+    M.audioAtual = null;
+  }
+  if (M.utteranceAtual) {
+    window.speechSynthesis?.cancel();
+    M.utteranceAtual = null;
+  }
+  const idAnterior = M.idTocando;
+  M.idTocando = null;
+  if (idAnterior) _atualizarBotaoAudio(idAnterior, false);
+}
+
+async function _reproduzirTexto(texto, id) {
+  const key   = localStorage.getItem(TTS_KEY_STORAGE) || TTS_KEY_DEFAULT;
+  const voice = localStorage.getItem(TTS_VOICE_STORAGE) || DEFAULT_VOICE;
+
+  if (key) {
+    try {
+      const resp = await fetch(
+        `https://texttospeech.googleapis.com/v1/text:synthesize?key=${key}`,
+        {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            input:       { text: texto },
+            voice:       { languageCode: 'pt-BR', name: voice },
+            audioConfig: { audioEncoding: 'MP3' },
+          }),
+        }
+      );
+      if (!resp.ok) throw new Error(`TTS ${resp.status}`);
+      const data = await resp.json();
+
+      if (M.idTocando !== id) return; // cancelado enquanto fazia fetch
+
+      const audio = new Audio(`data:audio/mp3;base64,${data.audioContent}`);
+      M.audioAtual = audio;
+      audio.onended = () => { if (M.idTocando === id) _pararAudioCard(); };
+      audio.onerror = () => { if (M.idTocando === id) _pararAudioCard(); };
+      audio.play();
+      return;
+    } catch (err) {
+      console.warn('Google TTS falhou, usando Web Speech API:', err);
+    }
+  }
+
+  // Fallback: Web Speech API
+  const synth = window.speechSynthesis;
+  if (!synth) { _pararAudioCard(); return; }
+
+  const utt      = new SpeechSynthesisUtterance(texto);
+  utt.lang       = 'pt-BR';
+  utt.rate       = 1.0;
+  M.utteranceAtual = utt;
+  utt.onend      = () => { if (M.idTocando === id) _pararAudioCard(); };
+  utt.onerror    = () => { if (M.idTocando === id) _pararAudioCard(); };
+  synth.speak(utt);
+}
+
+function _atualizarBotaoAudio(id, tocando) {
+  const btn = document.querySelector(`.r-btn-audio[data-id="${id}"]`);
+  if (!btn) return;
+  btn.textContent = tocando ? '⏸' : '▶';
+  btn.setAttribute('aria-label', tocando ? 'Pausar áudio' : 'Reproduzir em voz alta');
+  btn.classList.toggle('tocando', tocando);
+}
+
+function _limparMd(texto) {
+  return String(texto || '')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/`(.*?)`/g, '$1')
+    .replace(/^[-*•]\s/gm, '. ')
+    .replace(/\n+/g, '. ')
+    .replace(/\.{2,}/g, '.')
+    .trim();
 }
 
 // ── Vista: DETALHE ───────────────────────────────────────────
 async function _abrirDetalhe(resumo) {
+  _pararAudioCard();
   M.resumoAtivo = resumo;
   const painel = document.getElementById('painel-estudar');
   if (!painel) return;

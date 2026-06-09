@@ -157,6 +157,39 @@
   color: var(--cor-sucesso);
 }
 
+/* ── Botão de áudio no card ─────────────────────────────────── */
+.r-btn-audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  font-size: 11px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s, transform .1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.r-btn-audio:hover {
+  border-color: var(--cor-secundaria);
+  color: var(--cor-secundaria);
+}
+
+.r-btn-audio:active {
+  transform: scale(.88);
+}
+
+.r-btn-audio.tocando {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
 .r-estudado-badge {
   font-size: 10px;
   color: var(--cor-sucesso);
