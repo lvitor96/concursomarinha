@@ -1,0 +1,247 @@
+/* ================================================================
+   bibliografias.css — Módulo Bibliografias
+   ================================================================ */
+
+/* ── Busca ──────────────────────────────────────────────────── */
+.bib-busca-wrap {
+  padding: 16px 16px 0;
+}
+
+.bib-busca-input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  transition: border-color .15s;
+}
+
+.bib-busca-input:focus {
+  border-color: var(--cor-secundaria);
+}
+
+.bib-busca-input::placeholder {
+  color: var(--cor-texto-leve);
+}
+
+/* ── Conteúdo ────────────────────────────────────────────────── */
+.bib-conteudo {
+  padding-top: 16px;
+}
+
+/* ── Categoria ───────────────────────────────────────────────── */
+.bib-categoria {
+  margin-bottom: 8px;
+}
+
+.bib-categoria-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 8px;
+  position: sticky;
+  top: 0;
+  background: var(--cor-fundo);
+  z-index: 1;
+  border-bottom: 1.5px solid var(--cor-borda);
+}
+
+.bib-categoria-emoji {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.bib-categoria-nome {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  flex: 1;
+  margin: 0;
+}
+
+.bib-categoria-count {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 99px;
+  padding: 1px 8px;
+}
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.bib-obras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.bib-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.bib-card:hover {
+  border-color: var(--cor-secundaria);
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+
+.bib-card-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.bib-card-titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.35;
+}
+
+.bib-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--cor-texto-leve);
+}
+
+.bib-autor {
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.bib-meta-sep {
+  color: var(--cor-borda);
+  margin: 0 2px;
+}
+
+.bib-ano,
+.bib-editora {
+  font-size: 11px;
+}
+
+/* ── Badge de relevância ─────────────────────────────────────── */
+.bib-relevancia {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.bib-relevancia-alta {
+  background: rgba(239,68,68,.12);
+  color: var(--cor-erro);
+}
+
+.bib-relevancia-media {
+  background: rgba(234,179,8,.12);
+  color: var(--cor-atencao);
+}
+
+/* ── Resumo ──────────────────────────────────────────────────── */
+.bib-resumo {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cor-texto-leve);
+  margin: 0;
+}
+
+/* ── Tópicos ─────────────────────────────────────────────────── */
+.bib-topicos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.bib-topico-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-leve);
+  white-space: nowrap;
+}
+
+/* ── Botões de ação ──────────────────────────────────────────── */
+.bib-acoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 2px;
+}
+
+.bib-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: var(--raio-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s, transform .1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bib-btn:active {
+  transform: scale(.95);
+}
+
+.bib-btn-acessar {
+  background: var(--cor-primaria);
+  color: #fff;
+  border: none;
+}
+
+.bib-btn-acessar:hover {
+  opacity: .88;
+}
+
+.bib-btn-drive {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  border: 1.5px solid var(--cor-borda);
+}
+
+.bib-btn-drive:hover {
+  border-color: var(--cor-secundaria);
+  color: var(--cor-secundaria);
+}
+
+/* ── Dark mode ──────────────────────────────────────────────── */
+[data-tema="escuro"] .bib-busca-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+}
+
+[data-tema="escuro"] .bib-categoria-header {
+  background: var(--cor-fundo);
+}

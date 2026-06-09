@@ -1,0 +1,253 @@
+/* ================================================================
+   carro.css — Modo Carro (Text-to-Speech)
+   ================================================================ */
+
+/* ── Header ─────────────────────────────────────────────────── */
+.car-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 16px;
+  text-align: center;
+}
+
+.car-icone { font-size: 40px; margin-bottom: 6px; }
+
+.car-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--cor-texto);
+  margin-bottom: 2px;
+}
+
+.car-sub {
+  font-size: 12px;
+  color: var(--cor-texto-leve);
+}
+
+/* ── Filtros de bloco ───────────────────────────────────────── */
+.car-filtro-wrap {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.car-filtro-wrap::-webkit-scrollbar { display: none; }
+
+.car-filtro-btn {
+  padding: 6px 14px;
+  border-radius: var(--raio-full);
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto-leve);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .12s;
+  flex-shrink: 0;
+}
+
+.car-filtro-btn.ativo {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
+/* ── Card do conteúdo ───────────────────────────────────────── */
+.car-card {
+  margin: 0 16px 12px;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 16px;
+  min-height: 100px;
+}
+
+.car-card-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.car-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.car-incidencia {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cor-texto-leve);
+}
+
+.car-card-texto {
+  font-size: 13px;
+  color: var(--cor-texto-leve);
+  line-height: 1.6;
+}
+
+.car-vazio {
+  text-align: center;
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+  padding: 16px 0;
+}
+
+/* ── Controles de reprodução ────────────────────────────────── */
+.car-controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 4px 16px 12px;
+}
+
+.car-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto-leve);
+  cursor: pointer;
+  transition: all .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.car-btn:active { transform: scale(.93); }
+
+.car-btn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.car-btn-prev,
+.car-btn-next {
+  padding: 10px 16px;
+  font-size: 20px;
+}
+
+.car-btn-play {
+  padding: 16px 32px;
+  font-size: 32px;
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+  background: rgba(26,58,92,.06);
+}
+
+.car-btn-play:hover {
+  background: var(--cor-primaria);
+  color: #fff;
+}
+
+.car-btn-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  line-height: 1;
+}
+
+/* ── Barra de progresso da fila ─────────────────────────────── */
+.car-progresso-wrap {
+  padding: 0 16px 16px;
+}
+
+.car-progresso-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.car-status {
+  font-weight: 700;
+  color: var(--cor-secundaria);
+}
+
+/* ── Lista da fila ──────────────────────────────────────────── */
+.car-lista-titulo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+  padding: 4px 16px 6px;
+}
+
+.car-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0 16px;
+  border-radius: var(--raio-md);
+  overflow: hidden;
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-borda);
+}
+
+.car-lista-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--cor-fundo-card);
+  text-align: left;
+  cursor: pointer;
+  transition: background .1s;
+  width: 100%;
+}
+
+.car-lista-item:hover { background: var(--cor-fundo); }
+
+.car-lista-item.ativo {
+  background: rgba(26,58,92,.08);
+  border-left: 3px solid var(--cor-primaria);
+  padding-left: 11px;
+}
+
+.car-lista-num {
+  font-family: var(--fonte-titulo);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  width: 22px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.car-lista-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.car-lista-nome {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.car-lista-tocando {
+  font-size: 14px;
+  flex-shrink: 0;
+}

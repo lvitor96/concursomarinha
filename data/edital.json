@@ -1,0 +1,57 @@
+{
+  "status": "sem_edital",
+  "mensagem": "Nenhum edital publicado até o momento. Acompanhe os canais oficiais.",
+  "links_monitoramento": [
+    { "nome": "SEDF — Secretaria de Educação do DF",  "url": "https://www.se.df.gov.br" },
+    { "nome": "Quadrix — Concursos Públicos",          "url": "https://www.quadrix.org.br" },
+    { "nome": "Diário Oficial do DF (DODF)",           "url": "https://www.dodf.df.gov.br" }
+  ],
+  "ultimo_edital": {
+    "titulo": "Concurso Público SEDF 2022",
+    "banca": "Quadrix",
+    "numero": "Edital nº 31/2022",
+    "publicacao": "2022-08-16",
+    "cargo": "Professor de Educação Básica — Área: Música",
+    "especialidade": "CEP-EMB (Centro de Educação Profissional — Escola de Música de Brasília)",
+    "jornada": "40 horas semanais",
+    "tipo": "Efetivo (cargo de provimento efetivo)",
+    "vagas": "CR — Cadastro de Reserva",
+    "periodo_inscricao": "01/09/2022 – 30/09/2022",
+    "prova_objetiva": "04/12/2022",
+    "resultado_preliminar": "Março/2023",
+    "resultado_final": "Maio/2023"
+  },
+  "estrutura_prova": [
+    {
+      "id": "basicos",
+      "sigla": "CB",
+      "nome": "Conhecimentos Básicos",
+      "qtd": 30,
+      "cor": "#3b82f6",
+      "descricao": "Língua Portuguesa · Redação Oficial · Realidade do DF e RIDE"
+    },
+    {
+      "id": "complementares",
+      "sigla": "CC",
+      "nome": "Conhecimentos Complementares",
+      "qtd": 40,
+      "cor": "#8b5cf6",
+      "descricao": "Legislação Educacional · ECA · CF/88 · PNE · Gestão Escolar · Pedagogia"
+    },
+    {
+      "id": "especificos",
+      "sigla": "CE",
+      "nome": "Conhecimentos Específicos — Música",
+      "qtd": 50,
+      "cor": "#f59e0b",
+      "descricao": "Teoria Musical · Harmonia · Contraponto · História da Música · Pedagogia Musical · Legislação CEP-EMB"
+    }
+  ],
+  "bancas_historico": [
+    { "id": "quadrix-2022", "nome": "Quadrix 2022", "numero": "Edital nº 31", "tipo": "Efetivo",          "ano": 2022 },
+    { "id": "quadrix-2025", "nome": "Quadrix 2025", "numero": "Edital nº 36", "tipo": "PSS Temporários",  "ano": 2025 },
+    { "id": "iades-2023",   "nome": "IADES 2023",   "numero": "Edital nº 53", "tipo": "PSS Temporários",  "ano": 2023 },
+    { "id": "quadrix-2021", "nome": "Quadrix 2021", "numero": "—",            "tipo": "PSS Temporários",  "ano": 2021 },
+    { "id": "quadrix-2016", "nome": "Quadrix 2016", "numero": "—",            "tipo": "PSS Temporários",  "ano": 2016 }
+  ]
+}

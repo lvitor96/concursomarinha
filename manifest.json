@@ -1,0 +1,50 @@
+{
+  "name": "SEDF Estudos — Professor de Música",
+  "short_name": "SEDF Estudos",
+  "description": "Plataforma de estudos para o concurso da SEDF — Professor de Educação Básica (Música / CEP-EMB)",
+  "start_url": "/sedf-estudos/?source=pwa",
+  "scope": "/sedf-estudos/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a3a5c",
+  "theme_color": "#1a3a5c",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Questões",
+      "short_name": "Questões",
+      "url": "/?painel=questoes",
+      "description": "Ir para banco de questões"
+    },
+    {
+      "name": "Cronograma",
+      "short_name": "Agenda",
+      "url": "/?painel=cronograma",
+      "description": "Ver cronograma de estudos"
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

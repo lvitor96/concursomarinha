@@ -1,0 +1,305 @@
+/* ================================================================
+   estatisticas.css — Módulo Estatísticas
+   ================================================================ */
+
+/* ── Heatmap ────────────────────────────────────────────────── */
+.est-heatmap-wrap {
+  margin: 14px 16px 0;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 14px;
+}
+
+.est-heatmap-titulo {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  margin-bottom: 10px;
+}
+
+.est-heatmap-body {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.est-heatmap-days {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.est-heatmap-day-label {
+  font-size: 9px;
+  color: var(--cor-texto-leve);
+  height: 12px;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  width: 22px;
+}
+
+.est-heatmap-grid {
+  display: grid;
+  grid-template-rows: repeat(6, 12px);
+  grid-auto-flow: column;
+  grid-auto-columns: 12px;
+  gap: 3px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.est-heatmap-grid::-webkit-scrollbar { display: none; }
+
+.est-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--cor-borda);
+}
+
+.est-cell[data-level="0"]     { background: var(--cor-borda); }
+.est-cell[data-level="1"]     { background: #bbf7d0; }
+.est-cell[data-level="2"]     { background: #4ade80; }
+.est-cell[data-level="3"]     { background: #16a34a; }
+.est-cell[data-level="4"]     { background: #14532d; }
+.est-cell[data-rest="true"]   { background: rgba(139,92,246,.12); }
+.est-cell[data-futuro="true"] { background: transparent; border: 1px dashed var(--cor-borda); }
+
+[data-tema="escuro"] .est-cell[data-level="0"] { background: #2a2a2a; }
+[data-tema="escuro"] .est-cell[data-level="1"] { background: #14532d; }
+[data-tema="escuro"] .est-cell[data-level="2"] { background: #16a34a; }
+[data-tema="escuro"] .est-cell[data-level="3"] { background: #22c55e; }
+[data-tema="escuro"] .est-cell[data-level="4"] { background: #4ade80; }
+
+.est-heatmap-legenda {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 9px;
+  color: var(--cor-texto-leve);
+}
+
+.est-heatmap-legenda-celula {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* ── Stat cards ─────────────────────────────────────────────── */
+.est-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 14px 16px 0;
+}
+
+.est-stat-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 14px;
+  text-align: center;
+}
+
+.est-stat-valor {
+  font-family: var(--fonte-titulo);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.est-stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+  margin-top: 3px;
+}
+
+/* ── Barras horizontais (por bloco) ─────────────────────────── */
+.est-bloco-item {
+  margin-bottom: 12px;
+}
+
+.est-bloco-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.est-bloco-nome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.est-bloco-pcts {
+  display: flex;
+  gap: 8px;
+}
+
+.est-bloco-pct {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.est-barra-dupla {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.est-barra-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.est-barra-tipo {
+  font-size: 9px;
+  color: var(--cor-texto-leve);
+  width: 56px;
+  flex-shrink: 0;
+}
+
+.est-barra-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--cor-borda);
+  overflow: hidden;
+}
+
+.est-barra-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .4s ease;
+}
+
+/* ── Barras verticais (últimos 14 dias) ─────────────────────── */
+.est-barras-v {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 80px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.est-barra-v-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 2px;
+}
+
+.est-barra-v {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--cor-primaria);
+  transition: height .3s ease;
+  position: relative;
+}
+
+.est-barra-v-label {
+  font-size: 8px;
+  color: var(--cor-texto-leve);
+  position: absolute;
+  bottom: -18px;
+  white-space: nowrap;
+  transform: rotate(-35deg);
+  transform-origin: top center;
+  left: 50%;
+  width: max-content;
+}
+
+/* ── Tópicos a reforçar ─────────────────────────────────────── */
+.est-topico-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.est-topico-item:last-child { border-bottom: none; }
+
+.est-topico-nome {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.est-topico-pct {
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.est-topico-qtd {
+  font-size: 10px;
+  color: var(--cor-texto-leve);
+  flex-shrink: 0;
+}
+
+/* ── Simulados mini cards ───────────────────────────────────── */
+.est-sim-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.est-sim-item:last-child { border-bottom: none; }
+
+.est-sim-pct {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+  width: 48px;
+  text-align: center;
+}
+
+.est-sim-info { flex: 1; min-width: 0; }
+
+.est-sim-data {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.est-sim-detalhe {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-top: 2px;
+}
+
+.est-vazio {
+  text-align: center;
+  padding: 20px;
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+}

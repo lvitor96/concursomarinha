@@ -1,0 +1,436 @@
+/* ================================================================
+   cronograma.css — Módulo Cronograma (Kanban · Log · Agenda)
+   ================================================================ */
+
+/* ── Tabs ───────────────────────────────────────────────────── */
+.cron-tabs {
+  display: flex;
+  background: var(--cor-fundo-card);
+  border-bottom: 2px solid var(--cor-borda);
+  flex-shrink: 0;
+}
+
+.cron-tab {
+  flex: 1;
+  padding: 12px 6px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cor-texto-leve);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+  line-height: 1.2;
+}
+
+.cron-tab.ativo {
+  color: var(--cor-primaria);
+  border-bottom-color: var(--cor-primaria);
+}
+
+/* ── Kanban ─────────────────────────────────────────────────── */
+.cron-busca-wrap {
+  padding: 12px 16px 0;
+  flex-shrink: 0;
+}
+
+.cron-busca {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s;
+}
+
+.cron-busca:focus { border-color: var(--cor-secundaria); }
+
+.cron-kanban-scroll {
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px 80px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  flex: 1;
+}
+
+.cron-kanban-scroll::-webkit-scrollbar { height: 4px; }
+.cron-kanban-scroll::-webkit-scrollbar-thumb {
+  background: var(--cor-borda);
+  border-radius: 2px;
+}
+
+.cron-coluna {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: min(calc(100vw - 80px), 260px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (min-width: 900px) {
+  .cron-kanban-scroll { overflow-x: visible; flex-wrap: wrap; }
+  .cron-coluna { width: calc(25% - 8px); min-width: 200px; }
+}
+
+/* Column headers */
+.cron-col-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: var(--raio-md);
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.cron-col-count {
+  margin-left: auto;
+  background: rgba(255,255,255,.25);
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cron-col-para-estudar .cron-col-header { background: #3b82f6; }
+.cron-col-em-estudo    .cron-col-header { background: #8b5cf6; }
+.cron-col-revisao      .cron-col-header { background: #f59e0b; }
+.cron-col-dominado     .cron-col-header { background: #22c55e; }
+
+/* Topic cards */
+.cron-col-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 40px;
+}
+
+.cron-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  padding: 9px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cron-card-nome {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  line-height: 1.35;
+}
+
+.cron-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.cron-card-meta .tag { font-size: 9px; padding: 1px 6px; }
+
+.cron-inc {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.cron-inc.alta  { background: rgba(239,68,68,.12);  color: #ef4444; }
+.cron-inc.media { background: rgba(234,179,8,.12);  color: #b45309; }
+.cron-inc.baixa { background: rgba(34,197,94,.12);  color: #16a34a; }
+
+/* Move buttons */
+.cron-move-btns {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.cron-move-btn {
+  flex: 1;
+  padding: 3px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--raio-sm);
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-leve);
+  cursor: pointer;
+  transition: all .12s;
+  white-space: nowrap;
+}
+
+.cron-move-btn:hover:not(:disabled) {
+  background: var(--cor-primaria);
+  color: #fff;
+  border-color: var(--cor-primaria);
+}
+
+.cron-move-btn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.cron-col-vazia {
+  border: 2px dashed var(--cor-borda);
+  border-radius: var(--raio-sm);
+  padding: 24px 10px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  line-height: 1.4;
+}
+
+/* ── Log ────────────────────────────────────────────────────── */
+.cron-log-form {
+  margin: 14px 16px 0;
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cron-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cron-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cron-field label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--cor-texto-leve);
+}
+
+.cron-field input,
+.cron-field select,
+.cron-field textarea {
+  padding: 8px 10px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color .15s;
+}
+
+.cron-field input:focus,
+.cron-field select:focus,
+.cron-field textarea:focus { border-color: var(--cor-secundaria); }
+
+.cron-field textarea { min-height: 56px; resize: vertical; }
+
+.cron-log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 80px;
+}
+
+.cron-log-dia {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+}
+
+.cron-log-dia-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cron-log-dia-data {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.cron-log-dia-total {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+}
+
+.cron-sessao {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cron-sessao:last-child { border-bottom: none; }
+
+.cron-sessao-mins {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+  width: 36px;
+}
+
+.cron-sessao-info { flex: 1; min-width: 0; }
+
+.cron-sessao-topico {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  line-height: 1.3;
+}
+
+.cron-sessao-obs {
+  font-size: 11px;
+  color: var(--cor-texto-leve);
+  margin-top: 2px;
+}
+
+.cron-log-vazio {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+}
+
+/* ── Agenda ─────────────────────────────────────────────────── */
+.cron-semana-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 8px;
+  flex-shrink: 0;
+}
+
+.cron-semana-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.cron-nav-btn {
+  padding: 5px 12px;
+  border-radius: var(--raio-sm);
+  border: 1.5px solid var(--cor-borda);
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .12s;
+}
+
+.cron-nav-btn:hover {
+  background: var(--cor-primaria);
+  color: #fff;
+  border-color: var(--cor-primaria);
+}
+
+.cron-agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  padding: 0 16px 12px;
+  flex-shrink: 0;
+}
+
+.cron-dia-card {
+  background: var(--cor-fundo-card);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  padding: 7px 3px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.cron-dia-card:hover { border-color: var(--cor-secundaria); }
+.cron-dia-card.ativo { border-color: var(--cor-secundaria); background: rgba(45,106,159,.08); }
+.cron-dia-card.hoje  { border-color: var(--cor-primaria); }
+
+.cron-dia-card.tem-log {
+  background: rgba(34,197,94,.07);
+  border-color: var(--cor-sucesso);
+}
+
+.cron-dia-semana {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--cor-texto-leve);
+  letter-spacing: .3px;
+}
+
+.cron-dia-num {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1;
+}
+
+.cron-dia-pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cor-sucesso);
+}
+
+.cron-agenda-detalhe {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 80px;
+}
+
+.cron-agenda-dia-titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin-bottom: 10px;
+  padding-top: 4px;
+}
+
+.cron-agenda-vazio {
+  color: var(--cor-texto-leve);
+  font-size: 13px;
+  padding: 16px 0;
+  text-align: center;
+}
