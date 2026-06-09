@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="css/videoaulas.css">
   <link rel="stylesheet" href="css/edital.css">
   <link rel="stylesheet" href="css/carro.css">
+  <link rel="stylesheet" href="css/bibliografias.css">
 
   <!-- Firebase Import Map -->
   <script type="importmap">
@@ -198,6 +199,10 @@
           <span class="nav-icone" aria-hidden="true">📅</span>
           <span>Cronograma</span>
         </button>
+        <button class="nav-item" data-painel="bibliografias">
+          <span class="nav-icone" aria-hidden="true">📖</span>
+          <span>Bibliografias</span>
+        </button>
         <button class="nav-item" data-painel="config">
           <span class="nav-icone" aria-hidden="true">⚙️</span>
           <span>Configurações</span>
@@ -291,6 +296,13 @@
 
         <!-- Cronograma -->
         <section id="painel-cronograma" class="painel" aria-label="Cronograma de Estudos">
+          <div class="painel-carregando">
+            <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
+          </div>
+        </section>
+
+        <!-- Bibliografias -->
+        <section id="painel-bibliografias" class="painel" aria-label="Bibliografias">
           <div class="painel-carregando">
             <div class="spinner" style="border-color:var(--cor-borda);border-top-color:var(--cor-secundaria);"></div>
           </div>
@@ -421,6 +433,10 @@
       <button class="nav-mais-item" data-painel="edital">
         <span class="nav-mais-icone">📋</span>
         <span>Edital</span>
+      </button>
+      <button class="nav-mais-item" data-painel="bibliografias">
+        <span class="nav-mais-icone">📖</span>
+        <span>Bibliogr.</span>
       </button>
       <button class="nav-mais-item" data-painel="config">
         <span class="nav-mais-icone">⚙️</span>

@@ -1,0 +1,181 @@
+{
+  "categorias": [
+    {
+      "id": "metodologias",
+      "nome": "Metodologias de Ensino Musical",
+      "emoji": "🎓",
+      "obras": [
+        {
+          "id": "bib-01",
+          "tipo": "livro",
+          "titulo": "O Ouvido Pensante",
+          "autor": "Murray Schafer",
+          "ano": 1991,
+          "editora": "UNESP",
+          "relevancia": "alta",
+          "topicos": ["Escuta Criativa", "Paisagem Sonora", "Educação Musical"],
+          "resumo": "Obra seminal que propõe uma educação musical centrada na escuta ativa e criativa. Schafer defende o desenvolvimento da percepção auditiva como base de toda experiência musical, com exercícios práticos para sala de aula. Essencial para questões de metodologia.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-02",
+          "tipo": "livro",
+          "titulo": "A Afinação do Mundo",
+          "autor": "Murray Schafer",
+          "ano": 1997,
+          "editora": "UNESP",
+          "relevancia": "alta",
+          "topicos": ["Paisagem Sonora", "Ecologia Acústica", "Percepção Auditiva"],
+          "resumo": "Continuação do projeto de Schafer, aprofundando o conceito de paisagem sonora e sua relação com a ecologia. Apresenta a noção de que o mundo é uma composição musical passível de escuta e análise. Cobrado em questões sobre perspectivas contemporâneas.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-03",
+          "tipo": "livro",
+          "titulo": "Ensinando Música Musicalmente",
+          "autor": "Keith Swanwick",
+          "ano": 2003,
+          "editora": "Moderna",
+          "relevancia": "alta",
+          "topicos": ["Espiral do Desenvolvimento Musical", "CLASP", "Currículo Musical"],
+          "resumo": "Apresenta o modelo CLASP (Composição, Literatura, Apreciação, Técnica e Performance) e a espiral do desenvolvimento musical. Swanwick defende que o ensino deve centrar-se na experiência musical direta. Base para questões sobre modelos curriculares.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-04",
+          "tipo": "livro",
+          "titulo": "Música(s) e seu Ensino",
+          "autor": "Maura Penna",
+          "ano": 2010,
+          "editora": "Sulina",
+          "relevancia": "alta",
+          "topicos": ["Educação Musical Escolar", "Diversidade Cultural", "Lei 11.769/2008"],
+          "resumo": "Discute a obrigatoriedade do ensino de música na educação básica brasileira e seus desdobramentos práticos. Penna problematiza a pluralidade de músicas e a necessidade de uma educação musical inclusiva e democrática. Diretamente relacionado à Lei 11.769/2008.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-05",
+          "tipo": "livro",
+          "titulo": "Música, Cotidiano e Educação",
+          "autor": "Jusamara Souza (org.)",
+          "ano": 2000,
+          "editora": "UFRGS",
+          "relevancia": "media",
+          "topicos": ["Cotidiano Musical", "Sociologia da Música", "Educação Informal"],
+          "resumo": "Coletânea organizada por Jusamara Souza que explora as relações entre a música presente no cotidiano e o processo educativo formal. Apresenta perspectivas sociológicas e pedagógicas para o ensino de música na escola básica.",
+          "linkExterno": null
+        }
+      ]
+    },
+    {
+      "id": "teoria-historia",
+      "nome": "Teoria e História da Música",
+      "emoji": "🎼",
+      "obras": [
+        {
+          "id": "bib-06",
+          "tipo": "livro",
+          "titulo": "Teoria da Música",
+          "autor": "Bohumil Med",
+          "ano": 1996,
+          "editora": "Musimed",
+          "relevancia": "alta",
+          "topicos": ["Notação Musical", "Escalas e Modos", "Ritmo e Compasso", "Harmonia Básica"],
+          "resumo": "Manual de referência para teoria musical em língua portuguesa. Cobre notação, ritmo, escalas, intervalos, acordes e forma musical com clareza didática. É a principal referência teórica citada no edital da SEDF para conhecimentos específicos de música.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-07",
+          "tipo": "livro",
+          "titulo": "Uma Breve História da Música",
+          "autor": "Roy Bennett",
+          "ano": 1986,
+          "editora": "Zahar",
+          "relevancia": "alta",
+          "topicos": ["História da Música Ocidental", "Períodos Musicais", "Compositores e Obras"],
+          "resumo": "Panorama conciso da história da música ocidental desde a Antiguidade até o século XX. Linguagem acessível e bem organizada por períodos e estilos. Referência direta para questões de história da música nos concursos da área de educação musical.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-08",
+          "tipo": "livro",
+          "titulo": "Elementos do Design Musical — Série Completa",
+          "autor": "Roy Bennett",
+          "ano": null,
+          "editora": "Zahar",
+          "relevancia": "media",
+          "topicos": ["Forma Musical", "Textura Musical", "Harmonia", "Contraponto"],
+          "resumo": "Série de volumes didáticos que apresenta os elementos fundamentais da composição e análise musical: forma, textura, harmonia, ritmo e contraponto. Excelente complemento à teoria da música para compreensão de estruturas composicionais.",
+          "linkExterno": null
+        },
+        {
+          "id": "bib-09",
+          "tipo": "livro",
+          "titulo": "A Música Moderna",
+          "autor": "Paul Griffiths",
+          "ano": 1987,
+          "editora": "Zahar",
+          "relevancia": "media",
+          "topicos": ["Música do Século XX", "Atonalismo", "Serialismo", "Vanguardas"],
+          "resumo": "Guia abrangente sobre a música erudita do século XX, cobrindo do pós-romantismo às vanguardas. Griffiths analisa as principais correntes estéticas — impressionismo, serialismo, música concreta, minimalismo — com exemplos e contexto histórico.",
+          "linkExterno": null
+        }
+      ]
+    },
+    {
+      "id": "legislacao-docs",
+      "nome": "Legislação e Documentos Oficiais",
+      "emoji": "⚖️",
+      "obras": [
+        {
+          "id": "bib-10",
+          "tipo": "legislacao",
+          "titulo": "LDB — Lei de Diretrizes e Bases da Educação Nacional",
+          "autor": "Lei nº 9.394/1996",
+          "ano": 1996,
+          "editora": "Presidência da República",
+          "relevancia": "alta",
+          "topicos": ["Educação Básica", "Ensino de Arte", "Direitos e Deveres", "Organização Escolar"],
+          "resumo": "Principal marco legal da educação brasileira. Define os fundamentos, estrutura e finalidades da educação nacional. Essencial para questões sobre legislação educacional — especialmente Art. 26 (obrigatoriedade de Arte na educação básica) e estrutura do ensino.",
+          "linkExterno": "https://www.planalto.gov.br/ccivil_03/leis/l9394.htm"
+        },
+        {
+          "id": "bib-11",
+          "tipo": "legislacao",
+          "titulo": "BNCC — Base Nacional Comum Curricular",
+          "autor": "MEC / Conselho Nacional de Educação",
+          "ano": 2018,
+          "editora": "Ministério da Educação",
+          "relevancia": "alta",
+          "topicos": ["Competências Gerais", "Linguagens", "Arte", "Música na BNCC"],
+          "resumo": "Documento normativo que define as aprendizagens essenciais para todos os alunos da educação básica. A área de Música está inserida em Linguagens e integra as quatro linguagens artísticas. Amplamente cobrado em questões sobre currículo e práticas pedagógicas.",
+          "linkExterno": "http://basenacionalcomum.mec.gov.br/"
+        },
+        {
+          "id": "bib-12",
+          "tipo": "legislacao",
+          "titulo": "ECA — Estatuto da Criança e do Adolescente",
+          "autor": "Lei nº 8.069/1990",
+          "ano": 1990,
+          "editora": "Presidência da República",
+          "relevancia": "alta",
+          "topicos": ["Direitos da Criança", "Proteção Integral", "Educação e Cultura", "Responsabilidade Escolar"],
+          "resumo": "Estabelece a proteção integral à criança e ao adolescente, reconhecendo-os como sujeitos de direitos. Aborda direito à educação, cultura, esporte e lazer. Questões frequentes sobre deveres da escola, medidas protetivas e relação família-escola.",
+          "linkExterno": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
+        },
+        {
+          "id": "bib-13",
+          "tipo": "legislacao",
+          "titulo": "PNE — Plano Nacional de Educação",
+          "autor": "Lei nº 13.005/2014",
+          "ano": 2014,
+          "editora": "Presidência da República",
+          "relevancia": "alta",
+          "topicos": ["Metas Educacionais", "Formação de Professores", "Qualidade do Ensino", "Gestão Democrática"],
+          "resumo": "Define as 20 metas e estratégias para a educação brasileira no decênio 2014–2024. Inclui metas sobre valorização dos profissionais da educação, formação continuada e qualidade do ensino básico. Base para questões de políticas públicas educacionais.",
+          "linkExterno": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13005.htm"
+        }
+      ]
+    }
+  ]
+}

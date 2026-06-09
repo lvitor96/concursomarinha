@@ -314,6 +314,16 @@ async function carregarModulo(painel) {
     return;
   }
 
+  if (painel === 'bibliografias') {
+    try {
+      const { iniciarBibliografias } = await import('./bibliografias.js');
+      await iniciarBibliografias();
+    } catch (err) {
+      console.error('Erro ao carregar bibliografias:', err);
+    }
+    return;
+  }
+
   if (painel === 'config') {
     renderizarPainelConfig();
     return;
