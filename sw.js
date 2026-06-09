@@ -3,7 +3,7 @@
  * Estratégia: Cache-first para assets estáticos, Network-first para dados.
  */
 
-const CACHE_VERSION = 'v19';
+const CACHE_VERSION = 'v20';
 const CACHE_STATIC  = `sedf-static-${CACHE_VERSION}`;
 const CACHE_DYNAMIC = `sedf-dynamic-${CACHE_VERSION}`;
 

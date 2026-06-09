@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["claude/zealous-thompson-tKY9G"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: claude/zealous-thompson-tKY9G
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
