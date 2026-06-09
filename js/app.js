@@ -535,10 +535,14 @@ function renderizarPainelConfig() {
 }
 
 function _ttsStatusHtml() {
-  const key   = localStorage.getItem('sedf-tts-key');
-  const voice = localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B';
+  const key          = localStorage.getItem('sedf-tts-key');
+  const defaultKey   = 'AIzaSyBtPdRCRr5xsFuZ1xGleTfuV7YDJtXoPII';
+  const voice        = localStorage.getItem('sedf-tts-voice') || 'pt-BR-Neural2-B';
   if (key) {
     return `<span style="color:var(--cor-sucesso);">✅ Google TTS ativo &mdash; ${_escapeHtmlConfig(voice)}</span>`;
+  }
+  if (defaultKey) {
+    return `<span style="color:var(--cor-sucesso);">✅ Google TTS ativo (chave padrão) &mdash; ${_escapeHtmlConfig(voice)}</span>`;
   }
   return `<span style="color:var(--cor-texto-leve);">⚠️ Sem chave &mdash; usando Web Speech API</span>`;
 }

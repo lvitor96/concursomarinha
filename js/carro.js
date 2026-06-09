@@ -18,6 +18,7 @@ const M = {
 const TTS_KEY_STORAGE   = 'sedf-tts-key';
 const TTS_VOICE_STORAGE = 'sedf-tts-voice';
 const DEFAULT_VOICE     = 'pt-BR-Neural2-B';
+const TTS_KEY_DEFAULT   = 'AIzaSyBtPdRCRr5xsFuZ1xGleTfuV7YDJtXoPII';
 
 const synth = window.speechSynthesis;
 
@@ -39,7 +40,7 @@ export async function iniciarCarro() {
     }
   }
 
-  if (!synth && !localStorage.getItem(TTS_KEY_STORAGE)) {
+  if (!synth && !localStorage.getItem(TTS_KEY_STORAGE) && !TTS_KEY_DEFAULT) {
     el.innerHTML = `<div class="estado-vazio"><div class="estado-vazio-emoji">🔇</div><div class="estado-vazio-texto">Seu navegador não suporta síntese de voz.<br>Configure uma chave Google Cloud TTS nas Configurações ou use Chrome/Edge/Safari.</div></div>`;
     return;
   }
@@ -67,12 +68,13 @@ function _construirFila() {
 function _renderHome(el) {
   const total    = M.fila.length;
   const atual    = M.fila[M.indice];
-  const ttsKey   = localStorage.getItem(TTS_KEY_STORAGE);
-  const ttsVoice = localStorage.getItem(TTS_VOICE_STORAGE) || DEFAULT_VOICE;
+  const ttsKey       = localStorage.getItem(TTS_KEY_STORAGE);
+  const effectiveKey = ttsKey || TTS_KEY_DEFAULT;
+  const ttsVoice     = localStorage.getItem(TTS_VOICE_STORAGE) || DEFAULT_VOICE;
 
-  const bannerTTS = ttsKey
+  const bannerTTS = effectiveKey
     ? `<div style="margin:0 16px 12px;padding:10px 14px;background:var(--cor-sucesso-bg,#e8f5e9);border:1px solid var(--cor-sucesso);border-radius:var(--raio-sm);font-size:12px;color:var(--cor-texto);">
-        🎙️ Google Cloud TTS ativo · Voz: <strong>${ttsVoice}</strong>
+        🎙️ Google Cloud TTS ativo · Voz: <strong>${ttsVoice}</strong>${!ttsKey ? ' · <em>chave padrão</em>' : ''}
       </div>`
     : `<div style="margin:0 16px 12px;padding:10px 14px;background:var(--cor-atencao-bg);border:1px solid var(--cor-atencao);border-radius:var(--raio-sm);font-size:12px;color:var(--cor-texto);">
         ⚠️ Usando Web Speech API (voz do sistema). Configure uma <strong>Chave Google Cloud TTS</strong> nas <button onclick="app.navegarPara('config')" style="background:none;border:none;padding:0;cursor:pointer;font-size:12px;font-weight:700;color:var(--cor-primaria);text-decoration:underline;">Configurações</button> para voz mais natural.
@@ -198,7 +200,7 @@ function _togglePlay() {
 }
 
 async function _sintetizarAudio(texto) {
-  const key   = localStorage.getItem(TTS_KEY_STORAGE);
+  const key   = localStorage.getItem(TTS_KEY_STORAGE) || TTS_KEY_DEFAULT;
   if (!key) return null;
   const voice = localStorage.getItem(TTS_VOICE_STORAGE) || DEFAULT_VOICE;
   const resp  = await fetch(
